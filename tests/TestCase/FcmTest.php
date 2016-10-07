@@ -12,8 +12,8 @@ class FcmTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->api_key = getenv('FCM_API_KEY');
-        $this->target = getenv('TOKEN');
+        $this->api_key = getenv('API_KEY');
+        $this->target = getenv('TARGET');
     }
 
     public function testFcm()
@@ -46,12 +46,12 @@ class FcmTest extends PHPUnit_Framework_TestCase
             ->setContentAvailable(true)
             ->setDryRun(true);
 
-        $fcm = new Fcm('AIzaSyBmXaqLuv8EIyWsVRfzft_jQOdN8-j2nzQ');
+        $fcm = new Fcm($this->api_key);
         $fcm->setNotification($notificationBuilder)
             ->setData($dataBuilder)
             ->setOptions($optionsBuilder);
 
-        $response = $fcm->sendTo('dhTJ-ujn2No:APA91bHhdfNzKE1oIDVd1hgAW4lAN_YEo_wUWx2dEkxWk80_dVhx8OAFaE2NrjC7ieFBJG5qTX84FGOYCPGHuAl6F7H2lGWrwZxIQTFMOa1zTMIBfNyI_ddroVSKql3R4-9lq271HcwC');
+        $response = $fcm->sendTo($this->target);
 
         $this->assertEquals(1, $response->getNumberTargetsSuccess());
         $this->assertEquals(0, $response->getNumberTargetsFailure());
