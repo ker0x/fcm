@@ -1,0 +1,29 @@
+{
+    "name": "ker0x/fcm",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.5",
+        "satooshi/php-coveralls": "^1.0",
+        "squizlabs/php_codesniffer": "^2.7"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Romain Monteil",
+            "email": "rmo@emakina.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "ker0x\\Fcm\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ker0x\\Fcm\\Test\\": "tests"
+        }
+    }
+}
