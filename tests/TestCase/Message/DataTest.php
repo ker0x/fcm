@@ -1,9 +1,11 @@
 <?php
+namespace Kerox\Fcm\Test\TestCase\Message;
 
 use Kerox\Fcm\Message\Data;
 use Kerox\Fcm\Message\DataBuilder;
+use Kerox\Fcm\Test\AbstractTestCase;
 
-class DataTest extends PHPUnit_Framework_TestCase
+class DataTest extends AbstractTestCase
 {
     public function testDataFromDataBuilder()
     {

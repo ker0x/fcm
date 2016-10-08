@@ -1,10 +1,12 @@
 <?php
+namespace Kerox\Fcm\Test\TestCase\Message;
 
 use Kerox\Fcm\Message\Exception\InvalidOptionsException;
 use Kerox\Fcm\Message\Options;
 use Kerox\Fcm\Message\OptionsBuilder;
+use Kerox\Fcm\Test\AbstractTestCase;
 
-class OptionsTest extends PHPUnit_Framework_TestCase
+class OptionsTest extends AbstractTestCase
 {
     public function testOptionsFromOptionsBuilder()
     {

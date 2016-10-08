@@ -1,9 +1,12 @@
 <?php
+namespace Kerox\Fcm\Test\TestCase\Message;
+
 use Kerox\Fcm\Message\Exception\InvalidNotificationException;
 use Kerox\Fcm\Message\Notification;
 use Kerox\Fcm\Message\NotificationBuilder;
+use Kerox\Fcm\Test\AbstractTestCase;
 
-class NotificationTest extends PHPUnit_Framework_TestCase
+class NotificationTest extends AbstractTestCase
 {
     public function testNotificationFromNotificationBuilder()
     {

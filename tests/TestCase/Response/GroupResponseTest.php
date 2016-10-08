@@ -1,9 +1,11 @@
 <?php
+namespace Kerox\Fcm\Test\TestCase\Response;
 
 use GuzzleHttp\Psr7\Response;
 use Kerox\Fcm\Response\GroupResponse;
+use Kerox\Fcm\Test\AbstractTestCase;
 
-class GroupResponseTest extends PHPUnit_Framework_TestCase
+class GroupResponseTest extends AbstractTestCase
 {
     public function testResponseWithMixedResults()
     {

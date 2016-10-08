@@ -1,12 +1,14 @@
 <?php
+namespace Kerox\Fcm\Test\TestCase\Response;
 
 use GuzzleHttp\Psr7\Response;
 use Kerox\Fcm\Response\DownstreamResponse;
 use Kerox\Fcm\Response\Exception\InvalidRequestException;
 use Kerox\Fcm\Response\Exception\ServerResponseException;
 use Kerox\Fcm\Response\Exception\UnauthorizedRequestException;
+use Kerox\Fcm\Test\AbstractTestCase;
 
-class DownstreamResponseTest extends PHPUnit_Framework_TestCase
+class DownstreamResponseTest extends AbstractTestCase
 {
     public $tokens;
 

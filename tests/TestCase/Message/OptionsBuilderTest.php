@@ -1,9 +1,11 @@
 <?php
+namespace Kerox\Fcm\Test\TestCase\Message;
 
 use Kerox\Fcm\Message\Exception\InvalidOptionsException;
 use Kerox\Fcm\Message\OptionsBuilder;
+use Kerox\Fcm\Test\AbstractTestCase;
 
-class OptionsBuilderTest extends PHPUnit_Framework_TestCase
+class OptionsBuilderTest extends AbstractTestCase
 {
     public function testInvalidTimeToLive()
     {

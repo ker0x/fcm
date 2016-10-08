@@ -1,15 +1,11 @@
 <?php
+namespace Kerox\Fcm\Test\TestCase\Message;
 
 use Kerox\Fcm\Message\Exception\InvalidNotificationException;
 use Kerox\Fcm\Message\NotificationBuilder;
+use Kerox\Fcm\Test\AbstractTestCase;
 
-/**
- * Created by PhpStorm.
- * User: rmo
- * Date: 27/09/2016
- * Time: 00:24
- */
-class NotificationBuilderTest extends PHPUnit_Framework_TestCase
+class NotificationBuilderTest extends AbstractTestCase
 {
     public function testInvalidColor()
     {

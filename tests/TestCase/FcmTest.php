@@ -1,11 +1,13 @@
 <?php
+namespace Kerox\Fcm\Test\TestCase;
 
 use Kerox\Fcm\Fcm;
 use Kerox\Fcm\Message\DataBuilder;
 use Kerox\Fcm\Message\NotificationBuilder;
 use Kerox\Fcm\Message\OptionsBuilder;
+use Kerox\Fcm\Test\AbstractTestCase;
 
-class FcmTest extends PHPUnit_Framework_TestCase
+class FcmTest extends AbstractTestCase
 {
     public $target;
     public $api_key;
