@@ -1,5 +1,5 @@
 <?php
-namespace Kerox\Fcm\Test;
+namespace Kerox\Fcm\Test\TestCase;
 
 use PHPUnit_Framework_TestCase;
 

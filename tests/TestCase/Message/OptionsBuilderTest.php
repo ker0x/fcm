@@ -3,7 +3,7 @@ namespace Kerox\Fcm\Test\TestCase\Message;
 
 use Kerox\Fcm\Message\Exception\InvalidOptionsException;
 use Kerox\Fcm\Message\OptionsBuilder;
-use Kerox\Fcm\Test\AbstractTestCase;
+use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
 class OptionsBuilderTest extends AbstractTestCase
 {

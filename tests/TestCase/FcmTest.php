@@ -5,7 +5,7 @@ use Kerox\Fcm\Fcm;
 use Kerox\Fcm\Message\DataBuilder;
 use Kerox\Fcm\Message\NotificationBuilder;
 use Kerox\Fcm\Message\OptionsBuilder;
-use Kerox\Fcm\Test\AbstractTestCase;
+use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
 class FcmTest extends AbstractTestCase
 {

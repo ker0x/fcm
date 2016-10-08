@@ -3,7 +3,7 @@ namespace Kerox\Fcm\Test\TestCase\Response;
 
 use GuzzleHttp\Psr7\Response;
 use Kerox\Fcm\Response\GroupResponse;
-use Kerox\Fcm\Test\AbstractTestCase;
+use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
 class GroupResponseTest extends AbstractTestCase
 {

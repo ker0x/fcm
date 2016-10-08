@@ -4,7 +4,7 @@ namespace Kerox\Fcm\Test\TestCase\Response;
 use GuzzleHttp\Psr7\Response;
 use Kerox\Fcm\Message\TopicsBuilder;
 use Kerox\Fcm\Response\TopicResponse;
-use Kerox\Fcm\Test\AbstractTestCase;
+use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
 class TopicResponseTest extends AbstractTestCase
 {

@@ -4,7 +4,7 @@ namespace Kerox\Fcm\Test\TestCase\Message;
 use Kerox\Fcm\Message\Exception\InvalidNotificationException;
 use Kerox\Fcm\Message\Notification;
 use Kerox\Fcm\Message\NotificationBuilder;
-use Kerox\Fcm\Test\AbstractTestCase;
+use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
 class NotificationTest extends AbstractTestCase
 {

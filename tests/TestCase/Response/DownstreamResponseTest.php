@@ -6,7 +6,7 @@ use Kerox\Fcm\Response\DownstreamResponse;
 use Kerox\Fcm\Response\Exception\InvalidRequestException;
 use Kerox\Fcm\Response\Exception\ServerResponseException;
 use Kerox\Fcm\Response\Exception\UnauthorizedRequestException;
-use Kerox\Fcm\Test\AbstractTestCase;
+use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
 class DownstreamResponseTest extends AbstractTestCase
 {

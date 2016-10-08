@@ -3,7 +3,7 @@ namespace Kerox\Fcm\Test\TestCase\Message;
 
 use Kerox\Fcm\Message\Data;
 use Kerox\Fcm\Message\DataBuilder;
-use Kerox\Fcm\Test\AbstractTestCase;
+use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
 class DataTest extends AbstractTestCase
 {
