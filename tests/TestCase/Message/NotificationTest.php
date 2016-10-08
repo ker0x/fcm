@@ -1,7 +1,7 @@
 <?php
-use ker0x\Fcm\Message\Exception\InvalidNotificationException;
-use ker0x\Fcm\Message\Notification;
-use ker0x\Fcm\Message\NotificationBuilder;
+use Kerox\Fcm\Message\Exception\InvalidNotificationException;
+use Kerox\Fcm\Message\Notification;
+use Kerox\Fcm\Message\NotificationBuilder;
 
 /**
  * Created by PhpStorm.

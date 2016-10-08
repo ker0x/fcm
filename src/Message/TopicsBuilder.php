@@ -1,5 +1,5 @@
 <?php
-namespace ker0x\Fcm\Message;
+namespace Kerox\Fcm\Message;
 
 use Closure;
 

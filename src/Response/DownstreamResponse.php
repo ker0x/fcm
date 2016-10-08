@@ -1,5 +1,5 @@
 <?php
-namespace ker0x\Fcm\Response;
+namespace Kerox\Fcm\Response;
 
 use GuzzleHttp\Psr7\Response;
 
@@ -355,7 +355,7 @@ class DownstreamResponse extends BaseResponse
     /**
      * Merge response when a push notification is send to more than 1000 targets.
      *
-     * @param \ker0x\Fcm\Response\DownstreamResponse $response
+     * @param \Kerox\Fcm\Response\DownstreamResponse $response
      * @return void
      */
     public function merge(DownstreamResponse $response)

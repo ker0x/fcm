@@ -1,8 +1,8 @@
 <?php
-namespace ker0x\Fcm;
+namespace Kerox\Fcm;
 
 use GuzzleHttp\Psr7\Response;
-use ker0x\Fcm\Request\GroupRequest;
+use Kerox\Fcm\Request\GroupRequest;
 
 class FcmGroup extends BaseSender
 {

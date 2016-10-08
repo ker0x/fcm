@@ -1,10 +1,10 @@
 <?php
 
 use GuzzleHttp\Psr7\Response;
-use ker0x\Fcm\Response\DownstreamResponse;
-use ker0x\Fcm\Response\Exception\InvalidRequestException;
-use ker0x\Fcm\Response\Exception\ServerResponseException;
-use ker0x\Fcm\Response\Exception\UnauthorizedRequestException;
+use Kerox\Fcm\Response\DownstreamResponse;
+use Kerox\Fcm\Response\Exception\InvalidRequestException;
+use Kerox\Fcm\Response\Exception\ServerResponseException;
+use Kerox\Fcm\Response\Exception\UnauthorizedRequestException;
 
 class DownstreamResponseTest extends PHPUnit_Framework_TestCase
 {

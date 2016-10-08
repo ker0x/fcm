@@ -1,5 +1,5 @@
 <?php
-namespace ker0x\Fcm\Message\Exception;
+namespace Kerox\Fcm\Message\Exception;
 
 use Exception;
 

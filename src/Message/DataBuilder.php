@@ -1,11 +1,11 @@
 <?php
-namespace ker0x\Fcm\Message;
+namespace Kerox\Fcm\Message;
 
-use ker0x\Fcm\Message\Exception\InvalidDataException;
+use Kerox\Fcm\Message\Exception\InvalidDataException;
 
 /**
  * Class DataBuilder
- * @package ker0x\Fcm\Message
+ * @package Kerox\Fcm\Message
  */
 class DataBuilder
 {
@@ -18,7 +18,7 @@ class DataBuilder
     /**
      * @param string $key
      * @param $value
-     * @return \ker0x\Fcm\Message\DataBuilder
+     * @return \Kerox\Fcm\Message\DataBuilder
      */
     public function addData(string $key, $value): DataBuilder
     {
@@ -30,7 +30,7 @@ class DataBuilder
     /**
      * @param string $key
      * @return mixed
-     * @throws \ker0x\Fcm\Message\Exception\InvalidDataException
+     * @throws \Kerox\Fcm\Message\Exception\InvalidDataException
      */
     public function getData(string $key)
     {
@@ -42,7 +42,7 @@ class DataBuilder
 
     /**
      * @param array $data
-     * @return \ker0x\Fcm\Message\DataBuilder
+     * @return \Kerox\Fcm\Message\DataBuilder
      */
     public function setData(array $data): DataBuilder
     {
@@ -61,7 +61,7 @@ class DataBuilder
 
     /**
      * @param string $key
-     * @return \ker0x\Fcm\Message\DataBuilder
+     * @return \Kerox\Fcm\Message\DataBuilder
      */
     public function removeData(string $key): DataBuilder
     {

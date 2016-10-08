@@ -6,7 +6,7 @@
  * Time: 02:05
  */
 
-namespace ker0x\Fcm\Message\Exception;
+namespace Kerox\Fcm\Message\Exception;
 
 
 class InvalidDataException extends AbstractException

@@ -1,10 +1,10 @@
 <?php
-namespace ker0x\Fcm\Response;
+namespace Kerox\Fcm\Response;
 
 use GuzzleHttp\Psr7\Response;
-use ker0x\Fcm\Response\Exception\InvalidRequestException;
-use ker0x\Fcm\Response\Exception\ServerResponseException;
-use ker0x\Fcm\Response\Exception\UnauthorizedRequestException;
+use Kerox\Fcm\Response\Exception\InvalidRequestException;
+use Kerox\Fcm\Response\Exception\ServerResponseException;
+use Kerox\Fcm\Response\Exception\UnauthorizedRequestException;
 
 abstract class BaseResponse
 {
@@ -28,9 +28,9 @@ abstract class BaseResponse
      * Check the status code of the request.
      *
      * @param \GuzzleHttp\Psr7\Response $response The response of the push.
-     * @throws \ker0x\Fcm\Response\Exception\InvalidRequestException
-     * @throws \ker0x\Fcm\Response\Exception\ServerResponseException
-     * @throws \ker0x\Fcm\Response\Exception\UnauthorizedRequestException
+     * @throws \Kerox\Fcm\Response\Exception\InvalidRequestException
+     * @throws \Kerox\Fcm\Response\Exception\ServerResponseException
+     * @throws \Kerox\Fcm\Response\Exception\UnauthorizedRequestException
      */
     private function isRequestSuccess(Response $response)
     {

@@ -1,5 +1,5 @@
 <?php
-namespace ker0x\Fcm;
+namespace Kerox\Fcm;
 
 trait UtilityAwareTrait
 {

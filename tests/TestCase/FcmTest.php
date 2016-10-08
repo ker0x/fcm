@@ -1,9 +1,9 @@
 <?php
 
-use ker0x\Fcm\Fcm;
-use ker0x\Fcm\Message\DataBuilder;
-use ker0x\Fcm\Message\NotificationBuilder;
-use ker0x\Fcm\Message\OptionsBuilder;
+use Kerox\Fcm\Fcm;
+use Kerox\Fcm\Message\DataBuilder;
+use Kerox\Fcm\Message\NotificationBuilder;
+use Kerox\Fcm\Message\OptionsBuilder;
 
 class FcmTest extends PHPUnit_Framework_TestCase
 {

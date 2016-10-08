@@ -6,7 +6,7 @@
  * Time: 21:35
  */
 
-namespace ker0x\Fcm\Message\Exception;
+namespace Kerox\Fcm\Message\Exception;
 
 
 class InvalidNotificationException extends AbstractException

@@ -1,7 +1,7 @@
 <?php
 
-use ker0x\Fcm\Message\Data;
-use ker0x\Fcm\Message\DataBuilder;
+use Kerox\Fcm\Message\Data;
+use Kerox\Fcm\Message\DataBuilder;
 
 class DataTest extends PHPUnit_Framework_TestCase
 {

@@ -1,12 +1,12 @@
 <?php
-namespace ker0x\Fcm\Message;
+namespace Kerox\Fcm\Message;
 
-use ker0x\Fcm\Message\Exception\InvalidNotificationException;
-use ker0x\Fcm\UtilityAwareTrait;
+use Kerox\Fcm\Message\Exception\InvalidNotificationException;
+use Kerox\Fcm\UtilityAwareTrait;
 
 /**
  * Class Notification
- * @package ker0x\Fcm\Message
+ * @package Kerox\Fcm\Message
  */
 class Notification implements BuilderInterface
 {
@@ -75,7 +75,7 @@ class Notification implements BuilderInterface
 
     /**
      * Notification constructor.
-     * @param array|\ker0x\Fcm\Message\NotificationBuilder $notificationBuilder
+     * @param array|\Kerox\Fcm\Message\NotificationBuilder $notificationBuilder
      */
     public function __construct($notificationBuilder)
     {
@@ -122,8 +122,8 @@ class Notification implements BuilderInterface
 
     /**
      * @param array $notificationArray
-     * @return \ker0x\Fcm\Message\NotificationBuilder
-     * @throws \ker0x\Fcm\Message\Exception\InvalidNotificationException
+     * @return \Kerox\Fcm\Message\NotificationBuilder
+     * @throws \Kerox\Fcm\Message\Exception\InvalidNotificationException
      */
     private function fromArray(array $notificationArray): NotificationBuilder
     {

@@ -1,6 +1,5 @@
 <?php
-namespace ker0x\Fcm\Request;
-
+namespace Kerox\Fcm\Request;
 
 abstract class BaseRequest
 {

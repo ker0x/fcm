@@ -1,6 +1,6 @@
 <?php
-use ker0x\Fcm\Message\DataBuilder;
-use ker0x\Fcm\Message\Exception\InvalidDataException;
+use Kerox\Fcm\Message\DataBuilder;
+use Kerox\Fcm\Message\Exception\InvalidDataException;
 
 class DataBuilderTest extends PHPUnit_Framework_TestCase
 {

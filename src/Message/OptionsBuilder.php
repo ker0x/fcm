@@ -1,12 +1,12 @@
 <?php
-namespace ker0x\Fcm\Message;
+namespace Kerox\Fcm\Message;
 
-use ker0x\Fcm\Message\Exception\InvalidOptionsException;
+use Kerox\Fcm\Message\Exception\InvalidOptionsException;
 
 /**
  * Class OptionsBuilder
  *
- * @package \ker0x\Fcm\Message
+ * @package \Kerox\Fcm\Message
  */
 class OptionsBuilder
 {
@@ -60,7 +60,7 @@ class OptionsBuilder
 
     /**
      * @param string $collapseKey
-     * @return \ker0x\Fcm\Message\OptionsBuilder
+     * @return \Kerox\Fcm\Message\OptionsBuilder
      */
     public function setCollapseKey(string $collapseKey): OptionsBuilder
     {
@@ -79,7 +79,7 @@ class OptionsBuilder
 
     /**
      * @param bool $contentAvailable
-     * @return \ker0x\Fcm\Message\OptionsBuilder
+     * @return \Kerox\Fcm\Message\OptionsBuilder
      */
     public function setContentAvailable(bool $contentAvailable): OptionsBuilder
     {
@@ -98,7 +98,7 @@ class OptionsBuilder
 
     /**
      * @param bool $dryRun
-     * @return \ker0x\Fcm\Message\OptionsBuilder
+     * @return \Kerox\Fcm\Message\OptionsBuilder
      */
     public function setDryRun(bool $dryRun): OptionsBuilder
     {
@@ -117,8 +117,8 @@ class OptionsBuilder
 
     /**
      * @param string $priority
-     * @return \ker0x\Fcm\Message\OptionsBuilder
-     * @throws \ker0x\Fcm\Message\Exception\InvalidOptionsException
+     * @return \Kerox\Fcm\Message\OptionsBuilder
+     * @throws \Kerox\Fcm\Message\Exception\InvalidOptionsException
      */
     public function setPriority(string $priority): OptionsBuilder
     {
@@ -140,7 +140,7 @@ class OptionsBuilder
 
     /**
      * @param string $restrictedPackageName
-     * @return \ker0x\Fcm\Message\OptionsBuilder
+     * @return \Kerox\Fcm\Message\OptionsBuilder
      */
     public function setRestrictedPackageName(string $restrictedPackageName): OptionsBuilder
     {
@@ -159,8 +159,8 @@ class OptionsBuilder
 
     /**
      * @param int $timeToLive
-     * @return \ker0x\Fcm\Message\OptionsBuilder
-     * @throws \ker0x\Fcm\Message\Exception\InvalidOptionsException
+     * @return \Kerox\Fcm\Message\OptionsBuilder
+     * @throws \Kerox\Fcm\Message\Exception\InvalidOptionsException
      */
     public function setTimeToLive(int $timeToLive): OptionsBuilder
     {

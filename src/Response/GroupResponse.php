@@ -1,5 +1,5 @@
 <?php
-namespace ker0x\Fcm\Response;
+namespace Kerox\Fcm\Response;
 
 use GuzzleHttp\Psr7\Response;
 

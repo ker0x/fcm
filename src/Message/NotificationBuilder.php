@@ -1,6 +1,6 @@
 <?php
-namespace ker0x\Fcm\Message;
-use ker0x\Fcm\Message\Exception\InvalidNotificationException;
+namespace Kerox\Fcm\Message;
+use Kerox\Fcm\Message\Exception\InvalidNotificationException;
 
 /**
  * Class NotificationBuilder
@@ -95,7 +95,7 @@ class NotificationBuilder
 
     /**
      * @param string $body
-     * @return \ker0x\Fcm\Message\NotificationBuilder
+     * @return \Kerox\Fcm\Message\NotificationBuilder
      */
     public function setBody(string $body): NotificationBuilder
     {
@@ -114,7 +114,7 @@ class NotificationBuilder
 
     /**
      * @param string $sound
-     * @return \ker0x\Fcm\Message\NotificationBuilder
+     * @return \Kerox\Fcm\Message\NotificationBuilder
      */
     public function setSound(string $sound): NotificationBuilder
     {
@@ -133,7 +133,7 @@ class NotificationBuilder
 
     /**
      * @param string $badge
-     * @return \ker0x\Fcm\Message\NotificationBuilder
+     * @return \Kerox\Fcm\Message\NotificationBuilder
      */
     public function setBadge(string $badge): NotificationBuilder
     {
@@ -152,7 +152,7 @@ class NotificationBuilder
 
     /**
      * @param string $icon
-     * @return \ker0x\Fcm\Message\NotificationBuilder
+     * @return \Kerox\Fcm\Message\NotificationBuilder
      */
     public function setIcon(string $icon): NotificationBuilder
     {
@@ -171,7 +171,7 @@ class NotificationBuilder
 
     /**
      * @param string $tag
-     * @return \ker0x\Fcm\Message\NotificationBuilder
+     * @return \Kerox\Fcm\Message\NotificationBuilder
      */
     public function setTag(string $tag): NotificationBuilder
     {
@@ -190,8 +190,8 @@ class NotificationBuilder
 
     /**
      * @param string $color
-     * @return \ker0x\Fcm\Message\NotificationBuilder
-     * @throws \ker0x\Fcm\Message\Exception\InvalidNotificationException
+     * @return \Kerox\Fcm\Message\NotificationBuilder
+     * @throws \Kerox\Fcm\Message\Exception\InvalidNotificationException
      */
     public function setColor(string $color): NotificationBuilder
     {
@@ -213,7 +213,7 @@ class NotificationBuilder
 
     /**
      * @param string $clickAction
-     * @return \ker0x\Fcm\Message\NotificationBuilder
+     * @return \Kerox\Fcm\Message\NotificationBuilder
      */
     public function setClickAction(string $clickAction): NotificationBuilder
     {
@@ -232,7 +232,7 @@ class NotificationBuilder
 
     /**
      * @param string $bodyLocKey
-     * @return \ker0x\Fcm\Message\NotificationBuilder
+     * @return \Kerox\Fcm\Message\NotificationBuilder
      */
     public function setBodyLocKey(string $bodyLocKey): NotificationBuilder
     {
@@ -251,7 +251,7 @@ class NotificationBuilder
 
     /**
      * @param string $bodyLocArgs
-     * @return \ker0x\Fcm\Message\NotificationBuilder
+     * @return \Kerox\Fcm\Message\NotificationBuilder
      */
     public function setBodyLocArgs(string $bodyLocArgs): NotificationBuilder
     {
@@ -270,7 +270,7 @@ class NotificationBuilder
 
     /**
      * @param string $titleLocKey
-     * @return \ker0x\Fcm\Message\NotificationBuilder
+     * @return \Kerox\Fcm\Message\NotificationBuilder
      */
     public function setTitleLocKey(string $titleLocKey): NotificationBuilder
     {
@@ -289,7 +289,7 @@ class NotificationBuilder
 
     /**
      * @param string $titleLocArgs
-     * @return \ker0x\Fcm\Message\NotificationBuilder
+     * @return \Kerox\Fcm\Message\NotificationBuilder
      */
     public function setTitleLocArgs(string $titleLocArgs): NotificationBuilder
     {

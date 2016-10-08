@@ -1,13 +1,13 @@
 <?php
-namespace ker0x\Fcm;
+namespace Kerox\Fcm;
 
-use ker0x\Fcm\Message\Data;
-use ker0x\Fcm\Message\Notification;
-use ker0x\Fcm\Message\Options;
-use ker0x\Fcm\Request\Request;
-use ker0x\Fcm\Response\DownstreamResponse;
-use ker0x\Fcm\Response\GroupResponse;
-use ker0x\Fcm\Response\TopicResponse;
+use Kerox\Fcm\Message\Data;
+use Kerox\Fcm\Message\Notification;
+use Kerox\Fcm\Message\Options;
+use Kerox\Fcm\Request\Request;
+use Kerox\Fcm\Response\DownstreamResponse;
+use Kerox\Fcm\Response\GroupResponse;
+use Kerox\Fcm\Response\TopicResponse;
 
 class Fcm extends BaseSender
 {
@@ -22,17 +22,17 @@ class Fcm extends BaseSender
     protected $targets;
 
     /**
-     * @var null|array|\ker0x\Fcm\Message\NotificationBuilder
+     * @var null|array|\Kerox\Fcm\Message\NotificationBuilder
      */
     protected $notification;
 
     /**
-     * @var null|array|\ker0x\Fcm\Message\DataBuilder
+     * @var null|array|\Kerox\Fcm\Message\DataBuilder
      */
     protected $data;
 
     /**
-     * @var null|array|\ker0x\Fcm\Message\OptionsBuilder
+     * @var null|array|\Kerox\Fcm\Message\OptionsBuilder
      */
     protected $options;
 
@@ -49,7 +49,7 @@ class Fcm extends BaseSender
     /**
      * Setter for notification.
      *
-     * @param  array|\ker0x\Fcm\Message\NotificationBuilder $notification Notification for the push.
+     * @param  array|\Kerox\Fcm\Message\NotificationBuilder $notification Notification for the push.
      * @return $this
      */
     public function setNotification($notification)
@@ -62,7 +62,7 @@ class Fcm extends BaseSender
     /**
      * Setter for data.
      *
-     * @param  array|\ker0x\Fcm\Message\DataBuilder $data Data for the push.
+     * @param  array|\Kerox\Fcm\Message\DataBuilder $data Data for the push.
      * @return $this
      */
     public function setData($data)
@@ -75,7 +75,7 @@ class Fcm extends BaseSender
     /**
      * Setter for options.
      *
-     * @param  array|\ker0x\Fcm\Message\OptionsBuilder $options Options for the push.
+     * @param  array|\Kerox\Fcm\Message\OptionsBuilder $options Options for the push.
      * @return $this
      */
     public function setOptions($options)
@@ -89,7 +89,7 @@ class Fcm extends BaseSender
      * Send a push notification to targets.
      *
      * @param  string|array $targets Targets to send the push notification.
-     * @return \ker0x\Fcm\Response\DownstreamResponse|null
+     * @return \Kerox\Fcm\Response\DownstreamResponse|null
      */
     public function sendTo($targets)
     {
@@ -122,7 +122,7 @@ class Fcm extends BaseSender
      * Send a push notification to a topic.
      *
      * @param  $topic
-     * @return \ker0x\Fcm\Response\TopicResponse
+     * @return \Kerox\Fcm\Response\TopicResponse
      */
     public function sendToTopic($topic): TopicResponse
     {
@@ -136,7 +136,7 @@ class Fcm extends BaseSender
      * Send a push notification to a group.
      *
      * @param  string $notificationKey
-     * @return \ker0x\Fcm\Response\GroupResponse
+     * @return \Kerox\Fcm\Response\GroupResponse
      */
     public function sendToGroup(string $notificationKey): GroupResponse
     {

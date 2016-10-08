@@ -1,11 +1,9 @@
 <?php
-namespace ker0x\Fcm\Message;
-
-use ker0x\Fcm\Message\DataBuilder;
+namespace Kerox\Fcm\Message;
 
 /**
  * Class Data
- * @package ker0x\Fcm\Message
+ * @package Kerox\Fcm\Message
  */
 class Data implements BuilderInterface
 {
@@ -17,7 +15,7 @@ class Data implements BuilderInterface
 
     /**
      * Data constructor.
-     * @param array|\ker0x\Fcm\Message\DataBuilder $dataBuilder
+     * @param array|\Kerox\Fcm\Message\DataBuilder $dataBuilder
      */
     public function __construct($dataBuilder)
     {

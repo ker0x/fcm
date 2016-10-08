@@ -1,11 +1,10 @@
 <?php
-namespace ker0x\Fcm\Request;
+namespace Kerox\Fcm\Request;
 
-
-use ker0x\Fcm\Message\Data;
-use ker0x\Fcm\Message\Notification;
-use ker0x\Fcm\Message\Options;
-use ker0x\Fcm\Message\Targets;
+use Kerox\Fcm\Message\Data;
+use Kerox\Fcm\Message\Notification;
+use Kerox\Fcm\Message\Options;
+use Kerox\Fcm\Message\Targets;
 
 class Request extends BaseRequest
 {
@@ -16,17 +15,17 @@ class Request extends BaseRequest
     protected $targets;
 
     /**
-     * @var \ker0x\Fcm\Message\Notification
+     * @var \Kerox\Fcm\Message\Notification
      */
     protected $notification;
 
     /**
-     * @var \ker0x\Fcm\Message\Data
+     * @var \Kerox\Fcm\Message\Data
      */
     protected $data;
 
     /**
-     * @var \ker0x\Fcm\Message\Options
+     * @var \Kerox\Fcm\Message\Options
      */
     protected $options;
 
@@ -35,9 +34,9 @@ class Request extends BaseRequest
      *
      * @param string $apiKey
      * @param string|array $targets
-     * @param \ker0x\Fcm\Message\Notification|null $notification
-     * @param \ker0x\Fcm\Message\Data|null $data
-     * @param \ker0x\Fcm\Message\Options|null $options
+     * @param \Kerox\Fcm\Message\Notification|null $notification
+     * @param \Kerox\Fcm\Message\Data|null $data
+     * @param \Kerox\Fcm\Message\Options|null $options
      */
     public function __construct($apiKey, $targets, Notification $notification = null, Data $data = null, Options $options = null)
     {

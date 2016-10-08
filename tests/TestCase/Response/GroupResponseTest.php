@@ -1,7 +1,7 @@
 <?php
 
 use GuzzleHttp\Psr7\Response;
-use ker0x\Fcm\Response\GroupResponse;
+use Kerox\Fcm\Response\GroupResponse;
 
 class GroupResponseTest extends PHPUnit_Framework_TestCase
 {

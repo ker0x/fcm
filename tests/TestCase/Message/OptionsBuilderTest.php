@@ -1,7 +1,7 @@
 <?php
 
-use ker0x\Fcm\Message\Exception\InvalidOptionsException;
-use ker0x\Fcm\Message\OptionsBuilder;
+use Kerox\Fcm\Message\Exception\InvalidOptionsException;
+use Kerox\Fcm\Message\OptionsBuilder;
 
 class OptionsBuilderTest extends PHPUnit_Framework_TestCase
 {

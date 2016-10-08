@@ -1,5 +1,5 @@
 <?php
-namespace ker0x\Fcm\Response\Exception;
+namespace Kerox\Fcm\Response\Exception;
 
 class UnauthorizedRequestException extends \Exception
 {
