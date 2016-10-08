@@ -4,8 +4,6 @@ namespace Kerox\Fcm\Request;
 abstract class BaseRequest
 {
 
-    const API_KEY = 'AIzaSyBmXaqLuv8EIyWsVRfzft_jQOdN8-j2nzQ';
-
     /**
      * @var string
      */

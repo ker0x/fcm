@@ -3,12 +3,6 @@ use Kerox\Fcm\Message\Exception\InvalidNotificationException;
 use Kerox\Fcm\Message\Notification;
 use Kerox\Fcm\Message\NotificationBuilder;
 
-/**
- * Created by PhpStorm.
- * User: rmo
- * Date: 27/09/2016
- * Time: 01:02
- */
 class NotificationTest extends PHPUnit_Framework_TestCase
 {
     public function testNotificationFromNotificationBuilder()

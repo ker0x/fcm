@@ -2,7 +2,6 @@
 namespace Kerox\Fcm\Message;
 
 use Kerox\Fcm\Message\Exception\InvalidOptionsException;
-use Kerox\Fcm\UtilityAwareTrait;
 
 /**
  * Class Options
@@ -11,7 +10,7 @@ use Kerox\Fcm\UtilityAwareTrait;
 class Options implements BuilderInterface
 {
 
-    use UtilityAwareTrait;
+    use BuilderAwareTrait;
 
     /**
      * @var null|string

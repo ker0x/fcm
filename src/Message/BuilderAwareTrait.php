@@ -1,7 +1,7 @@
 <?php
-namespace Kerox\Fcm;
+namespace Kerox\Fcm\Message;
 
-trait UtilityAwareTrait
+trait BuilderAwareTrait
 {
 
     /**

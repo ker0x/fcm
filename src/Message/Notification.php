@@ -2,7 +2,6 @@
 namespace Kerox\Fcm\Message;
 
 use Kerox\Fcm\Message\Exception\InvalidNotificationException;
-use Kerox\Fcm\UtilityAwareTrait;
 
 /**
  * Class Notification
@@ -11,7 +10,7 @@ use Kerox\Fcm\UtilityAwareTrait;
 class Notification implements BuilderInterface
 {
 
-    use UtilityAwareTrait;
+    use BuilderAwareTrait;
 
     /**
      * @var null|string
