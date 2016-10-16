@@ -49,6 +49,16 @@ abstract class BaseResponse
         throw new ServerResponseException($response);
     }
 
+    protected function setResultFor($response, $key)
+    {
+        $result = 0;
+        if (isset($response[$key])) {
+            $result = $response[$key];
+        }
+
+        return $result;
+    }
+
     /**
      * @param array $response
      * @return mixed

@@ -36,9 +36,9 @@ class FcmTest extends AbstractTestCase
 
         $dataBuilder = new DataBuilder();
         $dataBuilder
-            ->addData('data-1', 'data-1')
-            ->addData('data-2', true)
-            ->addData('data-3', 1234);
+            ->setData('data-1', 'data-1')
+            ->setData('data-2', true)
+            ->setData('data-3', 1234);
 
         $optionsBuilder = new OptionsBuilder();
         $optionsBuilder
@@ -48,10 +48,14 @@ class FcmTest extends AbstractTestCase
             ->setContentAvailable(true)
             ->setDryRun(true);
 
+        $notification = $notificationBuilder->build();
+        $data = $dataBuilder->build();
+        $options = $optionsBuilder->build();
+
         $fcm = new Fcm($this->api_key);
-        $fcm->setNotification($notificationBuilder)
-            ->setData($dataBuilder)
-            ->setOptions($optionsBuilder);
+        $fcm->setNotification($notification)
+            ->setData($data)
+            ->setOptions($options);
 
         $response = $fcm->sendTo($this->target);
 

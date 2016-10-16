@@ -11,17 +11,17 @@ class DataTest extends AbstractTestCase
     {
         $dataBuilder = new DataBuilder();
         $dataBuilder
-            ->addData('data-1', 'data-1')
-            ->addData('data-2', true)
-            ->addData('data-3', 1234);
+            ->setData('data-1', 'data-1')
+            ->setData('data-2', true)
+            ->setData('data-3', 1234);
 
-        $data = new Data($dataBuilder);
-        $data = $data->build();
+        $data = $dataBuilder->build();
+        $data = $data->toArray();
 
         $this->assertEquals([
             'data-1' => 'data-1',
-            'data-2' => true,
-            'data-3' => 1234,
+            'data-2' => 'true',
+            'data-3' => '1234',
         ], $data);
     }
 
@@ -32,12 +32,12 @@ class DataTest extends AbstractTestCase
             'data-2' => true,
             'data-3' => 1234,
         ]);
-        $data = $data->build();
+        $data = $data->toArray();
 
         $this->assertEquals([
             'data-1' => 'data-1',
-            'data-2' => true,
-            'data-3' => 1234,
+            'data-2' => 'true',
+            'data-3' => '1234',
         ], $data);
     }
 }

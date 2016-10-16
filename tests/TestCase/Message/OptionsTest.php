@@ -19,8 +19,8 @@ class OptionsTest extends AbstractTestCase
             ->setContentAvailable(true)
             ->setDryRun(true);
 
-        $options = new Options($optionsBuilder);
-        $options = $options->build();
+        $options = $optionsBuilder->build();
+        $options = $options->toArray();
 
         $this->assertEquals([
             'collapse_key' => 'Update available',
@@ -42,7 +42,7 @@ class OptionsTest extends AbstractTestCase
             'content_available' => true,
             'collapse_key' => 'Update available',
         ]);
-        $options = $options->build();
+        $options = $options->toArray();
 
         $this->assertEquals([
             'collapse_key' => 'Update available',

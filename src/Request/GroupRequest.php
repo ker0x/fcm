@@ -30,14 +30,17 @@ class GroupRequest extends BaseRequest
      * @param string $operation
      * @param string $notificationKeyName
      * @param string $notificationKey
-     * @param array $registrationIds
+     * @param string|array $registrationIds
      */
-    public function __construct($operation, $notificationKeyName, $notificationKey, $registrationIds)
-    {
+    public function __construct(string $operation,
+                                string $notificationKeyName,
+                                $notificationKey,
+                                $registrationIds
+    ) {
         $this->operation = $operation;
         $this->notificationKeyName = $notificationKeyName;
         $this->notificationKey = $notificationKey;
-        $this->registrationIds = $registrationIds;
+        $this->registrationIds = (array)$registrationIds;
     }
 
     /**

@@ -242,7 +242,8 @@ class DownstreamResponse extends BaseResponse
      */
     private function needResultParsing(array $response): bool
     {
-        return (isset($response[self::RESULTS]) && ($this->numberTargetsFailure > 0 || $this->numberTargetsModify > 0));
+        return (($this->numberTargetsFailure > 0 || $this->numberTargetsModify > 0)
+            && isset($response[self::RESULTS]));
     }
 
     /**

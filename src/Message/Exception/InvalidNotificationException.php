@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: rmo
- * Date: 26/09/2016
- * Time: 21:35
- */
-
 namespace Kerox\Fcm\Message\Exception;
-
 
 class InvalidNotificationException extends AbstractException
 {

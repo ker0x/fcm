@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: rmo
- * Date: 27/09/2016
- * Time: 02:05
- */
-
 namespace Kerox\Fcm\Message\Exception;
-
 
 class InvalidDataException extends AbstractException
 {

@@ -11,16 +11,16 @@ class DataBuilderTest extends AbstractTestCase
     {
         $dataBuilder = new DataBuilder();
         $dataBuilder
-            ->addData('data-1', 'data-1')
-            ->addData('data-2', true)
-            ->addData('data-3', 1234);
+            ->setData('data-1', 'data-1')
+            ->setData('data-2', true)
+            ->setData('data-3', 1234);
 
-        $data = $dataBuilder->getAllData();
+        $data = $dataBuilder->getData();
 
         $this->assertEquals([
             'data-1' => 'data-1',
-            'data-2' => true,
-            'data-3' => 1234,
+            'data-2' => 'true',
+            'data-3' => '1234',
         ], $data);
     }
 
@@ -28,16 +28,16 @@ class DataBuilderTest extends AbstractTestCase
     {
         $dataBuilder = new DataBuilder();
         $dataBuilder
-            ->addData('data-1', 'data-1')
-            ->addData('data-2', true)
-            ->addData('data-3', 1234)
+            ->setData('data-1', 'data-1')
+            ->setData('data-2', true)
+            ->setData('data-3', 1234)
             ->removeData('data-1');
 
-        $data = $dataBuilder->getAllData();
+        $data = $dataBuilder->getData();
 
         $this->assertEquals([
-            'data-2' => true,
-            'data-3' => 1234,
+            'data-2' => 'true',
+            'data-3' => '1234',
         ], $data);
     }
 
@@ -45,12 +45,12 @@ class DataBuilderTest extends AbstractTestCase
     {
         $dataBuilder = new DataBuilder();
         $dataBuilder
-            ->addData('data-1', 'data-1')
-            ->addData('data-2', true)
-            ->addData('data-3', 1234)
-            ->removeAllData();
+            ->setData('data-1', 'data-1')
+            ->setData('data-2', true)
+            ->setData('data-3', 1234)
+            ->removeData();
 
-        $data = $dataBuilder->getAllData();
+        $data = $dataBuilder->getData();
 
         $this->assertEquals([], $data);
     }
@@ -60,9 +60,9 @@ class DataBuilderTest extends AbstractTestCase
         $this->expectException(InvalidDataException::class);
         $dataBuilder = new DataBuilder();
         $dataBuilder
-            ->addData('data-1', 'data-1')
-            ->addData('data-2', true)
-            ->addData('data-3', 1234);
+            ->setData('data-1', 'data-1')
+            ->setData('data-2', true)
+            ->setData('data-3', 1234);
 
         $dataBuilder->getData('data-4');
     }

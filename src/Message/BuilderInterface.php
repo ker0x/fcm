@@ -4,9 +4,9 @@ namespace Kerox\Fcm\Message;
 interface BuilderInterface
 {
     /**
-     * Get the instance as an array.
+     * Build the instance.
      *
-     * @return array
+     * @return object
      */
-    public function build(): array;
+    public function build();
 }

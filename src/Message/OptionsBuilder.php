@@ -8,7 +8,7 @@ use Kerox\Fcm\Message\Exception\InvalidOptionsException;
  *
  * @package \Kerox\Fcm\Message
  */
-class OptionsBuilder
+class OptionsBuilder implements BuilderInterface
 {
 
     /**
@@ -170,5 +170,15 @@ class OptionsBuilder
         $this->timeToLive = $timeToLive;
 
         return $this;
+    }
+
+    /**
+     * Build the options.
+     *
+     * @return \Kerox\Fcm\Message\Options
+     */
+    public function build(): Options
+    {
+        return new Options($this);
     }
 }

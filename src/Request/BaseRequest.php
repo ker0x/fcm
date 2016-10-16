@@ -27,8 +27,8 @@ abstract class BaseRequest
     protected function buildRequestHeader(): array
     {
         return [
-            'Authorization' => "key=" . $this->apiKey,
-            'Content-Type' => "application/json",
+            'Authorization' => 'key=' . $this->apiKey,
+            'Content-Type' => 'application/json',
         ];
     }
 
@@ -44,7 +44,7 @@ abstract class BaseRequest
      *
      * @return array
      */
-    public function build()
+    public function build(): array
     {
         return [
             'headers' => $this->buildRequestHeader(),

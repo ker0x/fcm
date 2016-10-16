@@ -24,8 +24,8 @@ class NotificationTest extends AbstractTestCase
             ->setSound('sound')
             ->setBody('body');
 
-        $notification = new Notification($notificationBuilder);
-        $notification = $notification->build();
+        $notification = $notificationBuilder->build();
+        $notification = $notification->toArray();
 
         $this->assertEquals([
             'title' => 'title',
@@ -59,7 +59,7 @@ class NotificationTest extends AbstractTestCase
             'body' => 'body',
             'title' => 'title',
         ]);
-        $notification = $notification->build();
+        $notification = $notification->toArray();
 
         $this->assertEquals([
             'title' => 'title',

@@ -38,8 +38,12 @@ class Request extends BaseRequest
      * @param \Kerox\Fcm\Message\Data|null $data
      * @param \Kerox\Fcm\Message\Options|null $options
      */
-    public function __construct($apiKey, $targets, Notification $notification = null, Data $data = null, Options $options = null)
-    {
+    public function __construct(string $apiKey,
+                                $targets,
+                                Notification $notification = null,
+                                Data $data = null,
+                                Options $options = null
+    ) {
         parent::__construct($apiKey);
 
         $this->targets = $targets;
@@ -85,7 +89,7 @@ class Request extends BaseRequest
      */
     protected function getNotification(): array
     {
-        $notification = $this->notification ? $this->notification->build() : null;
+        $notification = $this->notification ? $this->notification->toArray() : null;
 
         return $notification;
     }
@@ -95,7 +99,7 @@ class Request extends BaseRequest
      */
     protected function getData(): array
     {
-        $data = $this->data ? $this->data->build() : null;
+        $data = $this->data ? $this->data->toArray() : null;
 
         return $data;
     }
@@ -105,7 +109,7 @@ class Request extends BaseRequest
      */
     protected function getOptions(): array
     {
-        $options = $this->options ? $this->options->build() : null;
+        $options = $this->options ? $this->options->toArray() : null;
 
         return $options;
     }

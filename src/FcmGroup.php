@@ -18,7 +18,7 @@ class FcmGroup extends BaseSender
      *
      * @param string $apiKey
      */
-    public function __construct($apiKey)
+    public function __construct(string $apiKey)
     {
         parent::__construct($apiKey);
     }
@@ -27,10 +27,10 @@ class FcmGroup extends BaseSender
      * Create a device group.
      *
      * @param string $notificationKeyName
-     * @param array $registrationIds
+     * @param string|array $registrationIds
      * @return null|string
      */
-    public function createGroup(string $notificationKeyName, array $registrationIds)
+    public function createGroup(string $notificationKeyName, $registrationIds)
     {
         $request = new GroupRequest(self::CREATE, $notificationKeyName, null, $registrationIds);
         $response = $this->doRequest(self::URL, $request->build());
@@ -43,10 +43,10 @@ class FcmGroup extends BaseSender
      *
      * @param string $notificationKeyName
      * @param string $notificationKey
-     * @param array $registrationIds
+     * @param string|array $registrationIds
      * @return null|string
      */
-    public function addToGroup(string $notificationKeyName, string $notificationKey, array $registrationIds)
+    public function addToGroup(string $notificationKeyName, string $notificationKey, $registrationIds)
     {
         $request = new GroupRequest(self::ADD, $notificationKeyName, $notificationKey, $registrationIds);
         $response = $this->doRequest(self::URL, $request->build());
@@ -59,10 +59,10 @@ class FcmGroup extends BaseSender
      *
      * @param string $notificationKeyName
      * @param string $notificationKey
-     * @param array $registrationIds
+     * @param string|array $registrationIds
      * @return null|string
      */
-    public function removeFromGroup(string $notificationKeyName, string $notificationKey, array $registrationIds)
+    public function removeFromGroup(string $notificationKeyName, string $notificationKey, $registrationIds)
     {
         $request = new GroupRequest(self::DELETE, $notificationKeyName, $notificationKey, $registrationIds);
         $response = $this->doRequest(self::URL, $request->build());
@@ -74,7 +74,7 @@ class FcmGroup extends BaseSender
      * Return the notification key from the response.
      *
      * @param \GuzzleHttp\Psr7\Response $response
-     * @return null
+     * @return null|string
      */
     private function getNotificationKey(Response $response)
     {

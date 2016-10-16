@@ -7,7 +7,7 @@ use Kerox\Fcm\Message\Exception\InvalidNotificationException;
  * Class NotificationBuilder
  * @package Fcm\Message
  */
-class NotificationBuilder
+class NotificationBuilder implements BuilderInterface
 {
     /**
      * @var null|string
@@ -297,5 +297,15 @@ class NotificationBuilder
         $this->titleLocArgs = $titleLocArgs;
 
         return $this;
+    }
+
+    /**
+     * Build the notification.
+     *
+     * @return \Kerox\Fcm\Message\Notification
+     */
+    public function build(): Notification
+    {
+        return new Notification($this);
     }
 }

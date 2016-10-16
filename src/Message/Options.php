@@ -7,7 +7,7 @@ use Kerox\Fcm\Message\Exception\InvalidOptionsException;
  * Class Options
  * @package Kerox\Fcm\Message
  */
-class Options implements BuilderInterface
+class Options
 {
 
     use BuilderAwareTrait;
@@ -63,7 +63,7 @@ class Options implements BuilderInterface
     /**
      * @return array
      */
-    public function build(): array
+    public function toArray(): array
     {
         $options = [
             'collapse_key' => $this->collapseKey,

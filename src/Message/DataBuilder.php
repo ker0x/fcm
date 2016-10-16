@@ -7,7 +7,7 @@ use Kerox\Fcm\Message\Exception\InvalidDataException;
  * Class DataBuilder
  * @package Kerox\Fcm\Message
  */
-class DataBuilder
+class DataBuilder implements BuilderInterface
 {
 
     /**
@@ -17,66 +17,63 @@ class DataBuilder
 
     /**
      * @param string $key
-     * @param $value
-     * @return \Kerox\Fcm\Message\DataBuilder
-     */
-    public function addData(string $key, $value): DataBuilder
-    {
-        $this->data[$key] = $value;
-
-        return $this;
-    }
-
-    /**
-     * @param string $key
      * @return mixed
      * @throws \Kerox\Fcm\Message\Exception\InvalidDataException
      */
-    public function getData(string $key)
+    public function getData(string $key = null)
     {
-        if (!array_key_exists($key, $this->data)) {
-            throw InvalidDataException::invalidKey($key);
+        if ($key) {
+            if (!array_key_exists($key, $this->data)) {
+                throw InvalidDataException::invalidKey($key);
+            }
+
+            return $this->data[$key];
         }
-        return $this->data[$key];
-    }
 
-    /**
-     * @param array $data
-     * @return \Kerox\Fcm\Message\DataBuilder
-     */
-    public function setData(array $data): DataBuilder
-    {
-        $this->data = $data;
-
-        return $this;
-    }
-
-    /**
-     * @return array|null
-     */
-    public function getAllData(): array
-    {
         return $this->data;
     }
 
     /**
      * @param string $key
+     * @param $value
      * @return \Kerox\Fcm\Message\DataBuilder
      */
-    public function removeData(string $key): DataBuilder
+    public function setData(string $key, $value): DataBuilder
     {
-        unset($this->data[$key]);
+        if (is_bool($value)) {
+            $value = ($value) ? 'true' : 'false';
+        }
+        $this->data[$key] = (string)$value;
 
         return $this;
     }
 
     /**
-     * Remove all data
-     *
-     * @return void
+     * @param string $key
+     * @return \Kerox\Fcm\Message\DataBuilder
+     * @throws \Kerox\Fcm\Message\Exception\InvalidDataException
      */
-    public function removeAllData()
+    public function removeData(string $key = null): DataBuilder
     {
-        $this->data = [];
+        if ($key) {
+            if (!array_key_exists($key, $this->data)) {
+                throw InvalidDataException::invalidKey($key);
+            }
+            unset($this->data[$key]);
+        } else {
+            $this->data = [];
+        }
+
+        return $this;
+    }
+
+    /**
+     * Build the data.
+     *
+     * @return \Kerox\Fcm\Message\Data
+     */
+    public function build(): Data
+    {
+        return new Data($this);
     }
 }

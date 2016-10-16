@@ -7,7 +7,7 @@ use Kerox\Fcm\Message\Exception\InvalidNotificationException;
  * Class Notification
  * @package Kerox\Fcm\Message
  */
-class Notification implements BuilderInterface
+class Notification
 {
 
     use BuilderAwareTrait;
@@ -99,7 +99,7 @@ class Notification implements BuilderInterface
     /**
      * @return array
      */
-    public function build(): array
+    public function toArray(): array
     {
         $notification = [
             'title' => $this->title,
