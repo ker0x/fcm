@@ -3,7 +3,6 @@ namespace Kerox\Fcm;
 
 use Kerox\Fcm\Message\Data;
 use Kerox\Fcm\Message\Notification;
-use Kerox\Fcm\Message\NotificationBuilder;
 use Kerox\Fcm\Message\Options;
 use Kerox\Fcm\Request\Request;
 use Kerox\Fcm\Response\DownstreamResponse;
@@ -23,17 +22,17 @@ class Fcm extends BaseSender
     protected $targets;
 
     /**
-     * @var null|array|\Kerox\Fcm\Message\NotificationBuilder
+     * @var null|array|\Kerox\Fcm\Message\Notification
      */
     protected $notification;
 
     /**
-     * @var null|array|\Kerox\Fcm\Message\DataBuilder
+     * @var null|array|\Kerox\Fcm\Message\Data
      */
     protected $data;
 
     /**
-     * @var null|array|\Kerox\Fcm\Message\OptionsBuilder
+     * @var null|array|\Kerox\Fcm\Message\Options
      */
     protected $options;
 

@@ -37,7 +37,7 @@ abstract class BaseRequest
      *
      * @return mixed
      */
-    protected abstract function buildBody();
+    abstract protected function buildBody();
 
     /**
      * Return the request in array form

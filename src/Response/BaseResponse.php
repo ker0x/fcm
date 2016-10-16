@@ -63,5 +63,5 @@ abstract class BaseResponse
      * @param array $response
      * @return mixed
      */
-    protected abstract function parseResponse(array $response);
+    abstract protected function parseResponse(array $response);
 }

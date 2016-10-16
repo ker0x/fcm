@@ -17,12 +17,12 @@ class DataBuilder implements BuilderInterface
 
     /**
      * @param string $key
-     * @return mixed
+     * @return string|array
      * @throws \Kerox\Fcm\Message\Exception\InvalidDataException
      */
     public function getData(string $key = null)
     {
-        if ($key) {
+        if ($key !== null) {
             if (!array_key_exists($key, $this->data)) {
                 throw InvalidDataException::invalidKey($key);
             }
@@ -55,7 +55,7 @@ class DataBuilder implements BuilderInterface
      */
     public function removeData(string $key = null): DataBuilder
     {
-        if ($key) {
+        if ($key !== null) {
             if (!array_key_exists($key, $this->data)) {
                 throw InvalidDataException::invalidKey($key);
             }
