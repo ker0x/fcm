@@ -25,13 +25,23 @@ class Topics
      */
     public function toString()
     {
-        if (count($this->topics) === 1) {
+        if ($this->hasOnlyOneTopic()) {
             return '/topics/' . current($this->topics[0]);
         }
 
         return [
             'condition' => $this->buildCondition($this->topics)
         ];
+    }
+
+    /**
+     * Check the number of topic.
+     *
+     * @return bool
+     */
+    public function hasOnlyOneTopic()
+    {
+        return count($this->topics) === 1;
     }
 
     /**

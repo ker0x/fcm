@@ -4,6 +4,7 @@ namespace Kerox\Fcm;
 use Kerox\Fcm\Message\Data;
 use Kerox\Fcm\Message\Notification;
 use Kerox\Fcm\Message\Options;
+use Kerox\Fcm\Message\Topics;
 use Kerox\Fcm\Request\Request;
 use Kerox\Fcm\Response\DownstreamResponse;
 use Kerox\Fcm\Response\GroupResponse;
@@ -22,17 +23,17 @@ class Fcm extends BaseSender
     protected $targets;
 
     /**
-     * @var null|array|\Kerox\Fcm\Message\Notification
+     * @var null|\Kerox\Fcm\Message\Notification
      */
     protected $notification;
 
     /**
-     * @var null|array|\Kerox\Fcm\Message\Data
+     * @var null|\Kerox\Fcm\Message\Data
      */
     protected $data;
 
     /**
-     * @var null|array|\Kerox\Fcm\Message\Options
+     * @var null|\Kerox\Fcm\Message\Options
      */
     protected $options;
 
@@ -130,10 +131,10 @@ class Fcm extends BaseSender
     /**
      * Send a push notification to a topic.
      *
-     * @param  $topic
+     * @param  \Kerox\Fcm\Message\Topics $topic
      * @return \Kerox\Fcm\Response\TopicResponse
      */
-    public function sendToTopic($topic): TopicResponse
+    public function sendToTopic(Topics $topic): TopicResponse
     {
         $request = new Request($this->apiKey, null, $this->notification, $this->data, $this->options, $topic);
         $response = $this->doRequest(self::URL, $request->build());

@@ -1,25 +1,28 @@
 <?php
 namespace Kerox\Fcm\Test\TestCase;
 
+use Guzzle\Http\Client;
+use GuzzleHttp\Psr7\Response;
 use Kerox\Fcm\Fcm;
 use Kerox\Fcm\Message\DataBuilder;
 use Kerox\Fcm\Message\NotificationBuilder;
 use Kerox\Fcm\Message\OptionsBuilder;
-use Kerox\Fcm\Test\TestCase\AbstractTestCase;
+use Kerox\Fcm\Message\TopicsBuilder;
+use Mockery;
 
-class FcmTest extends AbstractTestCase
+class FcmDownstreamTest extends AbstractTestCase
 {
-    public $target;
-    public $api_key;
+    protected $target;
+    protected $api_key;
+    protected $notification;
+    protected $data;
+    protected $options;
 
     public function setUp()
     {
         $this->api_key = getenv('API_KEY');
         $this->target = getenv('TARGET');
-    }
 
-    public function testFcm()
-    {
         $notificationBuilder = new NotificationBuilder('Hello World');
         $notificationBuilder
             ->setTitleLocArgs('title_loc_args')
@@ -48,14 +51,17 @@ class FcmTest extends AbstractTestCase
             ->setContentAvailable(true)
             ->setDryRun(true);
 
-        $notification = $notificationBuilder->build();
-        $data = $dataBuilder->build();
-        $options = $optionsBuilder->build();
+        $this->notification = $notificationBuilder->build();
+        $this->data = $dataBuilder->build();
+        $this->options = $optionsBuilder->build();
+    }
 
+    public function testFcmSendTo()
+    {
         $fcm = new Fcm($this->api_key);
-        $fcm->setNotification($notification)
-            ->setData($data)
-            ->setOptions($options);
+        $fcm->setNotification($this->notification)
+            ->setData($this->data)
+            ->setOptions($this->options);
 
         $response = $fcm->sendTo($this->target);
 

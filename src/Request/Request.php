@@ -4,7 +4,7 @@ namespace Kerox\Fcm\Request;
 use Kerox\Fcm\Message\Data;
 use Kerox\Fcm\Message\Notification;
 use Kerox\Fcm\Message\Options;
-use Kerox\Fcm\Message\Targets;
+use Kerox\Fcm\Message\Topics;
 
 class Request extends BaseRequest
 {
@@ -30,6 +30,11 @@ class Request extends BaseRequest
     protected $options;
 
     /**
+     * @var
+     */
+    protected $topics;
+
+    /**
      * Request constructor.
      *
      * @param string $apiKey
@@ -37,12 +42,15 @@ class Request extends BaseRequest
      * @param \Kerox\Fcm\Message\Notification|null $notification
      * @param \Kerox\Fcm\Message\Data|null $data
      * @param \Kerox\Fcm\Message\Options|null $options
+     * @param \Kerox\Fcm\Message\Topics $topics
      */
-    public function __construct(string $apiKey,
-                                $targets,
-                                Notification $notification = null,
-                                Data $data = null,
-                                Options $options = null
+    public function __construct(
+        string $apiKey,
+        $targets,
+        Notification $notification = null,
+        Data $data = null,
+        Options $options = null,
+        Topics $topics = null
     ) {
         parent::__construct($apiKey);
 
@@ -50,6 +58,7 @@ class Request extends BaseRequest
         $this->notification = $notification;
         $this->data = $data;
         $this->options = $options;
+        $this->topics = $topics;
     }
 
     /**
@@ -73,7 +82,12 @@ class Request extends BaseRequest
      */
     public function getTo()
     {
-        return is_array($this->targets) ? null : $this->targets;
+        $to = is_array($this->targets) ? null : $this->targets;
+        if ($this->topics !== null && $this->topics->hasOnlyOneTopic()) {
+            $to = $this->topics->toString();
+        }
+
+        return $to;
     }
 
     /**
@@ -110,6 +124,9 @@ class Request extends BaseRequest
     protected function getOptions(): array
     {
         $options = $this->options ? $this->options->toArray() : null;
+        if ($this->topics !== null && !$this->topics->hasOnlyOneTopic()) {
+            $options = array_merge($options, $this->topics->toString());
+        }
 
         return $options;
     }
