@@ -21,25 +21,11 @@ class DownstreamResponse extends BaseResponse
     const INTERNAL_SERVER_ERROR = 'InternalServerError';
 
     /**
-     * Number of targets that have successfully received the notification
-     *
-     * @var int
-     */
-    protected $numberTargetsSuccess = 0;
-
-    /**
-     * Number of messages that could not be processed.
-     *
-     * @var int
-     */
-    protected $numberTargetsFailure = 0;
-
-    /**
      * Number of results that contain a canonical registration token.
      *
      * @var int
      */
-    protected $numberTargetsModify = 0;
+    protected $numberModify = 0;
 
     /**
      * List of targets to modify.
@@ -101,9 +87,9 @@ class DownstreamResponse extends BaseResponse
      *
      * @return int
      */
-    public function getNumberTargetsSuccess(): int
+    public function getNumberSuccess(): int
     {
-        return $this->numberTargetsSuccess;
+        return $this->numberSuccess;
     }
 
     /**
@@ -111,9 +97,9 @@ class DownstreamResponse extends BaseResponse
      *
      * @return int
      */
-    public function getNumberTargetsFailure(): int
+    public function getNumberFailure(): int
     {
-        return $this->numberTargetsFailure;
+        return $this->numberFailure;
     }
 
     /**
@@ -121,9 +107,9 @@ class DownstreamResponse extends BaseResponse
      *
      * @return int
      */
-    public function getNumberTargetsModify(): int
+    public function getNumberModify(): int
     {
-        return $this->numberTargetsModify;
+        return $this->numberModify;
     }
 
     /**
@@ -184,7 +170,9 @@ class DownstreamResponse extends BaseResponse
      */
     protected function parseResponse(array $response)
     {
-        $this->parse($response);
+        $this->setNumberSuccess($response);
+        $this->setNumberFailure($response);
+        $this->setNumberModify($response);
 
         if ($this->needResultParsing($response)) {
             $this->parseResult($response);
@@ -192,23 +180,12 @@ class DownstreamResponse extends BaseResponse
     }
 
     /**
-     * Multiple setter.
-     *
-     * @param array $response
-     * @return void
+     * @param $response
      */
-    private function parse(array $response)
+    protected function setNumberModify($response)
     {
-        if (isset($response[self::SUCCESS])) {
-            $this->numberTargetsSuccess = $response[self::SUCCESS];
-        }
-
-        if (isset($response[self::FAILURE])) {
-            $this->numberTargetsFailure = $response[self::FAILURE];
-        }
-
         if (isset($response[self::CANONICAL_IDS])) {
-            $this->numberTargetsModify = $response[self::CANONICAL_IDS];
+            $this->numberModify = $response[self::CANONICAL_IDS];
         }
     }
 
@@ -242,7 +219,7 @@ class DownstreamResponse extends BaseResponse
      */
     private function needResultParsing(array $response): bool
     {
-        return (($this->numberTargetsFailure > 0 || $this->numberTargetsModify > 0)
+        return (($this->numberFailure > 0 || $this->numberModify > 0)
             && isset($response[self::RESULTS]));
     }
 
@@ -361,9 +338,9 @@ class DownstreamResponse extends BaseResponse
      */
     public function merge(DownstreamResponse $response)
     {
-        $this->numberTargetsSuccess += $response->getNumberTargetsSuccess();
-        $this->numberTargetsFailure += $response->getNumberTargetsFailure();
-        $this->numberTargetsModify += $response->getNumberTargetsModify();
+        $this->numberSuccess += $response->getNumberSuccess();
+        $this->numberFailure += $response->getNumberFailure();
+        $this->numberModify += $response->getNumberModify();
 
         $this->targetsToDelete = array_merge($this->targetsToDelete, $response->getTargetsToDelete());
         $this->targetsToModify = array_merge($this->targetsToModify, $response->getTargetsToModify());

@@ -10,13 +10,20 @@ abstract class BaseRequest
     protected $apiKey;
 
     /**
+     * @var string
+     */
+    protected $senderId;
+
+    /**
      * BaseRequest constructor.
      *
      * @param string $apiKey
+     * @param string $senderId
      */
-    public function __construct(string $apiKey)
+    public function __construct(string $apiKey, string $senderId = null)
     {
         $this->apiKey = $apiKey;
+        $this->senderId = $senderId;
     }
 
     /**
@@ -26,10 +33,13 @@ abstract class BaseRequest
      */
     protected function buildRequestHeader(): array
     {
-        return [
+        $headers = [
             'Authorization' => 'key=' . $this->apiKey,
             'Content-Type' => 'application/json',
+            'project_id' => $this->senderId,
         ];
+
+        return array_filter($headers);
     }
 
     /**
@@ -48,7 +58,7 @@ abstract class BaseRequest
     {
         return [
             'headers' => $this->buildRequestHeader(),
-            'json' => $this->buildBody()
+            'json' => $this->buildBody(),
         ];
     }
 }

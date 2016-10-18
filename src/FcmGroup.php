@@ -14,13 +14,21 @@ class FcmGroup extends BaseSender
     const DELETE = 'delete';
 
     /**
+     * @var string
+     */
+    protected $senderId;
+
+    /**
      * FcmGroup constructor.
      *
      * @param string $apiKey
+     * @param string $senderId
      */
-    public function __construct(string $apiKey)
+    public function __construct(string $apiKey, string $senderId)
     {
         parent::__construct($apiKey);
+
+        $this->senderId = $senderId;
     }
 
     /**
@@ -32,7 +40,7 @@ class FcmGroup extends BaseSender
      */
     public function createGroup(string $notificationKeyName, $registrationIds)
     {
-        $request = new GroupRequest(self::CREATE, $notificationKeyName, null, $registrationIds);
+        $request = new GroupRequest($this->apiKey, $this->senderId, self::CREATE, $notificationKeyName, null, $registrationIds);
         $response = $this->doRequest(self::URL, $request->build());
 
         return $this->getNotificationKey($response);
@@ -48,7 +56,7 @@ class FcmGroup extends BaseSender
      */
     public function addToGroup(string $notificationKeyName, string $notificationKey, $registrationIds)
     {
-        $request = new GroupRequest(self::ADD, $notificationKeyName, $notificationKey, $registrationIds);
+        $request = new GroupRequest($this->apiKey, $this->senderId, self::ADD, $notificationKeyName, $notificationKey, $registrationIds);
         $response = $this->doRequest(self::URL, $request->build());
 
         return $this->getNotificationKey($response);
@@ -64,7 +72,7 @@ class FcmGroup extends BaseSender
      */
     public function removeFromGroup(string $notificationKeyName, string $notificationKey, $registrationIds)
     {
-        $request = new GroupRequest(self::DELETE, $notificationKeyName, $notificationKey, $registrationIds);
+        $request = new GroupRequest($this->apiKey, $this->senderId, self::DELETE, $notificationKeyName, $notificationKey, $registrationIds);
         $response = $this->doRequest(self::URL, $request->build());
 
         return $this->getNotificationKey($response);

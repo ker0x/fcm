@@ -3,6 +3,7 @@ namespace Kerox\Fcm\Test\TestCase\Message;
 
 use Kerox\Fcm\Message\Data;
 use Kerox\Fcm\Message\DataBuilder;
+use Kerox\Fcm\Message\Exception\InvalidDataException;
 use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
 class DataTest extends AbstractTestCase
@@ -39,5 +40,11 @@ class DataTest extends AbstractTestCase
             'data-2' => 'true',
             'data-3' => '1234',
         ], $data);
+    }
+
+    public function testDataFromEmptyArray()
+    {
+        $this->expectException(InvalidDataException::class);
+        $data = new Data([]);
     }
 }

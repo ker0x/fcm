@@ -101,7 +101,7 @@ class TopicResponse extends BaseResponse
      *
      * @param $response
      */
-    protected function parseError($response)
+    private function parseError($response)
     {
         if (isset($response[self::ERROR])) {
             if (in_array(self::LIMIT_RATE_TOPICS_EXCEEDED, $response)) {

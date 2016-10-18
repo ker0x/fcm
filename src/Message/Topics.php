@@ -66,7 +66,7 @@ class Topics
      */
     private function parseTopic(array $topic, string $condition): string
     {
-        $keys = ['condition', 'topic', 'openParenthesis', 'topics', 'closeParenthesis'];
+        $keys = ['condition', 'topic', 'openParenthesis', 'subCondition', 'closeParenthesis'];
 
         foreach ($keys as $key) {
             if (isset($topic[$key])) {
@@ -75,7 +75,7 @@ class Topics
                         $condition .= $this->formatTopic($topic[$key]);
                         break;
 
-                    case 'topics':
+                    case 'subCondition':
                         $condition .= $this->buildCondition($topic[$key]);
                         break;
 
@@ -90,7 +90,7 @@ class Topics
     }
 
     /**
-     *
+     * Format topic
      *
      * @param string $topic
      * @return string

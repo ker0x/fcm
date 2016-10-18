@@ -14,6 +14,16 @@ abstract class BaseResponse
     const MESSAGE_ID = 'message_id';
 
     /**
+     * @var int
+     */
+    protected $numberSuccess = 0;
+
+    /**
+     * @var int
+     */
+    protected $numberFailure = 0;
+
+    /**
      * BaseResponse constructor.
      *
      * @param \GuzzleHttp\Psr7\Response $response
@@ -49,14 +59,24 @@ abstract class BaseResponse
         throw new ServerResponseException($response);
     }
 
-    protected function setResultFor($response, $key)
+    /**
+     * @param array $response
+     */
+    protected function setNumberSuccess(array $response)
     {
-        $result = 0;
-        if (isset($response[$key])) {
-            $result = $response[$key];
+        if (isset($response[self::SUCCESS])) {
+            $this->numberSuccess = $response[self::SUCCESS];
         }
+    }
 
-        return $result;
+    /**
+     * @param array $response
+     */
+    protected function setNumberFailure(array $response)
+    {
+        if (isset($response[self::FAILURE])) {
+            $this->numberFailure = $response[self::FAILURE];
+        }
     }
 
     /**

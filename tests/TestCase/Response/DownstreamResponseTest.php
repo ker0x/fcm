@@ -64,9 +64,9 @@ class DownstreamResponseTest extends AbstractTestCase
 
         $downstreamResponse = new DownstreamResponse($response, $tokens);
 
-        $this->assertEquals(3, $downstreamResponse->getNumberTargetsSuccess());
-        $this->assertEquals(7, $downstreamResponse->getNumberTargetsFailure());
-        $this->assertEquals(3, $downstreamResponse->getNumberTargetsModify());
+        $this->assertEquals(3, $downstreamResponse->getNumberSuccess());
+        $this->assertEquals(7, $downstreamResponse->getNumberFailure());
+        $this->assertEquals(3, $downstreamResponse->getNumberModify());
 
         $this->assertCount(2, $downstreamResponse->getTargetsToDelete());
         $this->assertCount(3, $downstreamResponse->getTargetsToModify());

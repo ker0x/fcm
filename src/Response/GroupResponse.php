@@ -14,16 +14,6 @@ class GroupResponse extends BaseResponse
     protected $group;
 
     /**
-     * @var int
-     */
-    protected $numberTargetsSuccess = 0;
-
-    /**
-     * @var int
-     */
-    protected $numberTargetsFailure = 0;
-
-    /**
      * @var array
      */
     protected $targetsFailed;
@@ -42,23 +32,23 @@ class GroupResponse extends BaseResponse
     }
 
     /**
-     * Getter for numberTargetsSuccess
+     * Getter for numberSuccess
      *
      * @return int
      */
-    public function getNumberTargetsSuccess(): int
+    public function getNumberSuccess(): int
     {
-        return $this->numberTargetsSuccess;
+        return $this->numberSuccess;
     }
 
     /**
-     * Getter for numberTargetsFailure
+     * Getter for numberFailure
      *
      * @return int
      */
-    public function getNumberTargetsFailure(): int
+    public function getNumberFailure(): int
     {
-        return $this->numberTargetsFailure;
+        return $this->numberFailure;
     }
 
     /**
@@ -77,25 +67,11 @@ class GroupResponse extends BaseResponse
      */
     protected function parseResponse(array $response)
     {
-        $this->parse($response);
+        $this->setNumberSuccess($response);
+        $this->setNumberFailure($response);
 
         if ($this->needFailedParsing($response)) {
             $this->parseFailed($response);
-        }
-    }
-
-    /**
-     * @param array $response
-     * @return void
-     */
-    protected function parse($response)
-    {
-        if (isset($response[self::SUCCESS])) {
-            $this->numberTargetsSuccess = $response[self::SUCCESS];
-        }
-
-        if (isset($response[self::FAILURE])) {
-            $this->numberTargetsFailure = $response[self::FAILURE];
         }
     }
 
@@ -105,7 +81,7 @@ class GroupResponse extends BaseResponse
      */
     protected function needFailedParsing($response): bool
     {
-        return (isset($response[self::FAILED_REGISTRATION_IDS]) && $this->numberTargetsFailure > 0);
+        return (isset($response[self::FAILED_REGISTRATION_IDS]) && $this->numberFailure > 0);
     }
 
     /**

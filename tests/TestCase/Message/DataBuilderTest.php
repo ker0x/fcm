@@ -7,7 +7,7 @@ use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
 class DataBuilderTest extends AbstractTestCase
 {
-    public function testAddData()
+    public function testSetData()
     {
         $dataBuilder = new DataBuilder();
         $dataBuilder
@@ -22,6 +22,31 @@ class DataBuilderTest extends AbstractTestCase
             'data-2' => 'true',
             'data-3' => '1234',
         ], $data);
+    }
+
+    public function testGetData()
+    {
+        $dataBuilder = new DataBuilder();
+        $dataBuilder
+            ->setData('data-1', 'data-1')
+            ->setData('data-2', true)
+            ->setData('data-3', 1234);
+
+        $data = $dataBuilder->getData('data-2');
+
+        $this->assertEquals('true', $data);
+    }
+
+    public function testGetNonExistentData()
+    {
+        $this->expectException(InvalidDataException::class);
+        $dataBuilder = new DataBuilder();
+        $dataBuilder
+            ->setData('data-1', 'data-1')
+            ->setData('data-2', true)
+            ->setData('data-3', 1234);
+
+        $dataBuilder->getData('data-4');
     }
 
     public function testRemoveData()
@@ -55,7 +80,7 @@ class DataBuilderTest extends AbstractTestCase
         $this->assertEquals([], $data);
     }
 
-    public function testGetNonExistentData()
+    public function testRemoveNonExistentData()
     {
         $this->expectException(InvalidDataException::class);
         $dataBuilder = new DataBuilder();
@@ -64,6 +89,6 @@ class DataBuilderTest extends AbstractTestCase
             ->setData('data-2', true)
             ->setData('data-3', 1234);
 
-        $dataBuilder->getData('data-4');
+        $dataBuilder->removeData('data-4');
     }
 }

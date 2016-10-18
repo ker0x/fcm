@@ -24,8 +24,8 @@ class GroupResponseTest extends AbstractTestCase
 
         $groupResponse = new GroupResponse($response, $notificationKey);
 
-        $this->assertEquals(2, $groupResponse->getNumberTargetsSuccess());
-        $this->assertEquals(2, $groupResponse->getNumberTargetsFailure());
+        $this->assertEquals(2, $groupResponse->getNumberSuccess());
+        $this->assertEquals(2, $groupResponse->getNumberFailure());
         $this->assertCount(3, $groupResponse->getTargetsFailed());
     }
 }
