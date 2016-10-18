@@ -65,9 +65,9 @@ class FcmDownstreamTest extends AbstractTestCase
 
         $response = $fcm->sendTo($this->target);
 
-        $this->assertEquals(1, $response->getNumberTargetsSuccess());
-        $this->assertEquals(0, $response->getNumberTargetsFailure());
-        $this->assertEquals(0, $response->getNumberTargetsModify());
+        $this->assertEquals(1, $response->getNumberSuccess());
+        $this->assertEquals(0, $response->getNumberFailure());
+        $this->assertEquals(0, $response->getNumberModify());
     }
 
     public function tearDown()

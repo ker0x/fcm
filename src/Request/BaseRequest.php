@@ -10,14 +10,14 @@ abstract class BaseRequest
     protected $apiKey;
 
     /**
-     * @var string
+     * @var null|string
      */
     protected $senderId;
 
     /**
      * BaseRequest constructor.
      *
-     * @param string $apiKey
+     * @param null|string $apiKey
      * @param string $senderId
      */
     public function __construct(string $apiKey, string $senderId = null)
