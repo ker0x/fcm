@@ -60,6 +60,8 @@ abstract class BaseResponse
     }
 
     /**
+     * Setter for numberSuccess.
+     *
      * @param array $response
      */
     protected function setNumberSuccess(array $response)
@@ -70,6 +72,8 @@ abstract class BaseResponse
     }
 
     /**
+     * Setter for numberFailure.
+     *
      * @param array $response
      */
     protected function setNumberFailure(array $response)
@@ -80,6 +84,8 @@ abstract class BaseResponse
     }
 
     /**
+     * Parse the response.
+     *
      * @param array $response
      * @return mixed
      */

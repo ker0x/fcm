@@ -74,6 +74,7 @@ class Notification
 
     /**
      * Notification constructor.
+     *
      * @param array|\Kerox\Fcm\Message\NotificationBuilder $notificationBuilder
      */
     public function __construct($notificationBuilder)
@@ -97,6 +98,8 @@ class Notification
     }
 
     /**
+     * Return the notification as an array.
+     *
      * @return array
      */
     public function toArray(): array
@@ -120,6 +123,8 @@ class Notification
     }
 
     /**
+     * Build the notification from an array.
+     *
      * @param array $notificationArray
      * @return \Kerox\Fcm\Message\NotificationBuilder
      * @throws \Kerox\Fcm\Message\Exception\InvalidNotificationException

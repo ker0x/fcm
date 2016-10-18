@@ -83,7 +83,7 @@ class DownstreamResponse extends BaseResponse
     }
 
     /**
-     * Getter for numberTargetsSuccess.
+     * Getter for numberSuccess.
      *
      * @return int
      */
@@ -93,7 +93,7 @@ class DownstreamResponse extends BaseResponse
     }
 
     /**
-     * Getter for numberTargetsFailure.
+     * Getter for numberFailure.
      *
      * @return int
      */
@@ -103,13 +103,25 @@ class DownstreamResponse extends BaseResponse
     }
 
     /**
-     * Getter for numberTargetsModify.
+     * Getter for numberModify.
      *
      * @return int
      */
     public function getNumberModify(): int
     {
         return $this->numberModify;
+    }
+
+    /**
+     * Setter for numberModify.
+     *
+     * @param $response
+     */
+    protected function setNumberModify($response)
+    {
+        if (isset($response[self::CANONICAL_IDS])) {
+            $this->numberModify = $response[self::CANONICAL_IDS];
+        }
     }
 
     /**
@@ -180,16 +192,6 @@ class DownstreamResponse extends BaseResponse
     }
 
     /**
-     * @param $response
-     */
-    protected function setNumberModify($response)
-    {
-        if (isset($response[self::CANONICAL_IDS])) {
-            $this->numberModify = $response[self::CANONICAL_IDS];
-        }
-    }
-
-    /**
      * Parse the results of the request.
      *
      * @param array $response Response of the request.
@@ -199,14 +201,11 @@ class DownstreamResponse extends BaseResponse
     {
         foreach ($response[self::RESULTS] as $index => $result) {
             if (!$this->isSent($result)) {
-                if (!$this->needToBeModify($index, $result)) {
-                    if (!$this->needToBeDeleted($index, $result)
-                        && !$this->needToBeResent($index, $result)
-                        && !$this->checkMissingToken($result)
-                    ) {
-                        $this->needToAddError($index, $result);
-                    }
-                }
+                $this->needToBeModify($index, $result);
+                $this->needToBeDeleted($index, $result);
+                $this->needToBeResent($index, $result);
+                $this->needToAddError($index, $result);
+                $this->checkMissingToken($result);
             }
         }
     }
@@ -239,19 +238,15 @@ class DownstreamResponse extends BaseResponse
      *
      * @param int $index Index of the result.
      * @param array $result Result for a specific token.
-     * @return bool
+     * @return void
      */
-    private function needToBeModify(int $index, array $result): bool
+    private function needToBeModify(int $index, array $result)
     {
         if (isset($result[self::MESSAGE_ID]) && isset($result[self::REGISTRATION_ID])) {
             if ($this->targets[$index]) {
                 $this->targetsToModify[$this->targets[$index]] = $result[self::REGISTRATION_ID];
             }
-
-            return true;
         }
-
-        return false;
     }
 
     /**
@@ -259,9 +254,9 @@ class DownstreamResponse extends BaseResponse
      *
      * @param int $index Index of the result.
      * @param array $result Result for a specific token.
-     * @return bool
+     * @return void
      */
-    private function needToBeDeleted(int $index, array $result): bool
+    private function needToBeDeleted(int $index, array $result)
     {
         if (isset($result[self::ERROR])
             && (in_array(self::NOT_REGISTERED, $result) || in_array(self::INVALID_REGISTRATION, $result))
@@ -269,11 +264,7 @@ class DownstreamResponse extends BaseResponse
             if ($this->targets[$index]) {
                 $this->targetsToDelete[] = $this->targets[$index];
             }
-
-            return true;
         }
-
-        return false;
     }
 
     /**
@@ -281,9 +272,9 @@ class DownstreamResponse extends BaseResponse
      *
      * @param int $index Index of the result.
      * @param array $result Result for a specific token.
-     * @return bool
+     * @return void
      */
-    private function needToBeResent(int $index, array $result): bool
+    private function needToBeResent(int $index, array $result)
     {
         if (isset($result[self::ERROR])
             && (in_array(self::UNAVAILABLE, $result)
@@ -293,11 +284,7 @@ class DownstreamResponse extends BaseResponse
             if ($this->targets[$index]) {
                 $this->targetsToRetry[] = $this->targets[$index];
             }
-
-            return true;
         }
-
-        return false;
     }
 
     /**

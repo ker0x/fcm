@@ -44,6 +44,7 @@ class Options
 
     /**
      * Options constructor.
+     *
      * @param array|\Kerox\Fcm\Message\OptionsBuilder $optionsBuilder
      */
     public function __construct($optionsBuilder)
@@ -61,6 +62,8 @@ class Options
     }
 
     /**
+     * Return the options as an array.
+     *
      * @return array
      */
     public function toArray(): array
@@ -78,6 +81,8 @@ class Options
     }
 
     /**
+     * Build options from an array.
+     *
      * @param array $optionsArray
      * @return \Kerox\Fcm\Message\OptionsBuilder
      * @throws \Kerox\Fcm\Message\Exception\InvalidOptionsException

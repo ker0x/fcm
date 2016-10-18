@@ -32,7 +32,7 @@ class GroupResponse extends BaseResponse
     }
 
     /**
-     * Getter for numberSuccess
+     * Getter for numberSuccess.
      *
      * @return int
      */
@@ -42,7 +42,7 @@ class GroupResponse extends BaseResponse
     }
 
     /**
-     * Getter for numberFailure
+     * Getter for numberFailure.
      *
      * @return int
      */
@@ -52,7 +52,7 @@ class GroupResponse extends BaseResponse
     }
 
     /**
-     * Getter for targetsFailed
+     * Getter for targetsFailed.
      *
      * @return array
      */
@@ -62,6 +62,8 @@ class GroupResponse extends BaseResponse
     }
 
     /**
+     * @inheritdoc
+     *
      * @param array $response
      * @return void
      */
@@ -76,6 +78,8 @@ class GroupResponse extends BaseResponse
     }
 
     /**
+     * Check if the response has failed registration_ids
+     *
      * @param array $response
      * @return bool
      */
@@ -85,6 +89,8 @@ class GroupResponse extends BaseResponse
     }
 
     /**
+     * Return all registration_ids that failed during the request.
+     *
      * @param array $response
      * @return void
      */

@@ -17,6 +17,7 @@ class Data
 
     /**
      * Data constructor.
+     *
      * @param array|\Kerox\Fcm\Message\DataBuilder $dataBuilder
      */
     public function __construct($dataBuilder)

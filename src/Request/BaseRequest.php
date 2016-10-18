@@ -27,7 +27,7 @@ abstract class BaseRequest
     }
 
     /**
-     * Build the header for the request
+     * Build the header for the request.
      *
      * @return array
      */
@@ -43,14 +43,14 @@ abstract class BaseRequest
     }
 
     /**
-     * Build the body of the request
+     * Build the body of the request.
      *
      * @return mixed
      */
     abstract protected function buildBody();
 
     /**
-     * Return the request in array form
+     * Return the request in array.
      *
      * @return array
      */

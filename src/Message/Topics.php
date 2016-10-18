@@ -13,6 +13,7 @@ class Topics
 
     /**
      * Topics constructor.
+     *
      * @param \Kerox\Fcm\Message\TopicsBuilder $topicBuilder
      */
     public function __construct(TopicsBuilder $topicBuilder)
@@ -21,6 +22,8 @@ class Topics
     }
 
     /**
+     * Return topics as a string.
+     *
      * @return array|string
      */
     public function toString()
@@ -45,6 +48,8 @@ class Topics
     }
 
     /**
+     * Build the condition.
+     *
      * @param array $topics
      * @return string
      */
@@ -52,7 +57,9 @@ class Topics
     {
         $condition = '';
         foreach ($topics as $topic) {
-            $condition = $this->parseTopic($topic, $condition);
+            $condition .= $this->parseForCondition($topic);
+            $condition .= $this->parseForTopic($topic);
+            $condition .= $this->parseForSubCondition($topic);
         }
         $this->checkCondition($condition);
 
@@ -60,44 +67,51 @@ class Topics
     }
 
     /**
-     * @param array $topic
-     * @param string $condition
-     * @return string
+     * Parse topic for condition.
+     *
+     * @param $topic
+     * @return mixed
      */
-    private function parseTopic(array $topic, string $condition): string
+    private function parseForCondition(array $topic): string
     {
-        $keys = ['condition', 'topic', 'openParenthesis', 'subCondition', 'closeParenthesis'];
-
-        foreach ($keys as $key) {
-            if (isset($topic[$key])) {
-                switch ($key) {
-                    case 'topic':
-                        $condition .= $this->formatTopic($topic[$key]);
-                        break;
-
-                    case 'subCondition':
-                        $condition .= $this->buildCondition($topic[$key]);
-                        break;
-
-                    default:
-                        $condition .= $topic[$key];
-                        break;
-                }
-            }
+        $parsedCondition = '';
+        if (isset($topic['condition'])) {
+            $parsedCondition = $topic['condition'];
         }
 
-        return $condition;
+        return $parsedCondition;
     }
 
     /**
-     * Format topic
+     * Parse topic for topic.
      *
-     * @param string $topic
+     * @param $topic
      * @return string
      */
-    private function formatTopic(string $topic): string
+    private function parseForTopic(array $topic): string
     {
-        return "'{$topic}' in topics";
+        $parsedTopic = '';
+        if (isset($topic['topic'])) {
+            $parsedTopic = "'{$topic['topic']}' in topics";
+        }
+
+        return $parsedTopic;
+    }
+
+    /**
+     * Parse topic for sub condition.
+     *
+     * @param $topic
+     * @return string|void
+     */
+    private function parseForSubCondition(array $topic): string
+    {
+        $parsedSubCondition = '';
+        if (isset($topic['subCondition'])) {
+            $parsedSubCondition = '(' . $this->buildCondition($topic['subCondition']) . ')';
+        }
+
+        return $parsedSubCondition;
     }
 
     /**

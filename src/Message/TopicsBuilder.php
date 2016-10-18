@@ -69,11 +69,7 @@ class TopicsBuilder
     private function setSubCondition(Closure $callback, string $condition): TopicsBuilder
     {
         $subCondition = $callback()->getTopics();
-
-        $openParenthesis = '(';
-        $closeParenthesis = ')';
-
-        $this->topics[] = compact('condition', 'openParenthesis', 'subCondition', 'closeParenthesis');
+        $this->topics[] = compact('condition', 'subCondition');
 
         return $this;
     }

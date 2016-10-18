@@ -71,6 +71,7 @@ class NotificationBuilder implements BuilderInterface
 
     /**
      * NotificationBuilder constructor.
+     *
      * @param string $title
      */
     public function __construct(string $title)
@@ -79,7 +80,9 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
-     * @return string
+     * Getter for title.
+     *
+     * @return null|string
      */
     public function getTitle()
     {
@@ -87,7 +90,9 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
-     * @return mixed
+     * Getter for body.
+     *
+     * @return null|string
      */
     public function getBody()
     {
@@ -95,6 +100,8 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for body.
+     *
      * @param string $body
      * @return \Kerox\Fcm\Message\NotificationBuilder
      */
@@ -106,7 +113,9 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
-     * @return mixed
+     * Getter for sound.
+     *
+     * @return null|string
      */
     public function getSound()
     {
@@ -114,6 +123,8 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for sound.
+     *
      * @param string $sound
      * @return \Kerox\Fcm\Message\NotificationBuilder
      */
@@ -125,7 +136,9 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
-     * @return mixed
+     * Getter for badge.
+     *
+     * @return null|string
      */
     public function getBadge()
     {
@@ -133,6 +146,8 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for badge.
+     *
      * @param string $badge
      * @return \Kerox\Fcm\Message\NotificationBuilder
      */
@@ -144,7 +159,9 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
-     * @return mixed
+     * Getter for icon.
+     *
+     * @return null|string
      */
     public function getIcon()
     {
@@ -152,6 +169,8 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for icon.
+     *
      * @param string $icon
      * @return \Kerox\Fcm\Message\NotificationBuilder
      */
@@ -163,7 +182,9 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
-     * @return mixed
+     * Getter for tag.
+     *
+     * @return null|string
      */
     public function getTag()
     {
@@ -171,6 +192,8 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for tag.
+     *
      * @param string $tag
      * @return \Kerox\Fcm\Message\NotificationBuilder
      */
@@ -182,7 +205,9 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
-     * @return mixed
+     * Getter for color.
+     *
+     * @return null|string
      */
     public function getColor()
     {
@@ -190,6 +215,8 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for color.
+     *
      * @param string $color
      * @return \Kerox\Fcm\Message\NotificationBuilder
      * @throws \Kerox\Fcm\Message\Exception\InvalidNotificationException
@@ -205,7 +232,9 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
-     * @return mixed
+     * Getter for clickAction.
+     *
+     * @return null|string
      */
     public function getClickAction()
     {
@@ -213,6 +242,8 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for clickAction.
+     *
      * @param string $clickAction
      * @return \Kerox\Fcm\Message\NotificationBuilder
      */
@@ -224,7 +255,9 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
-     * @return mixed
+     * Getter for bodyLocKey.
+     *
+     * @return null|string
      */
     public function getBodyLocKey()
     {
@@ -232,6 +265,8 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for bodyLocKey.
+     *
      * @param string $bodyLocKey
      * @return \Kerox\Fcm\Message\NotificationBuilder
      */
@@ -243,7 +278,9 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
-     * @return mixed
+     * Getter for bodyLocArgs.
+     *
+     * @return null|string
      */
     public function getBodyLocArgs()
     {
@@ -251,6 +288,8 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for bodyLocArgs.
+     *
      * @param string $bodyLocArgs
      * @return \Kerox\Fcm\Message\NotificationBuilder
      */
@@ -262,7 +301,9 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
-     * @return mixed
+     * Getter for titleLocKey.
+     *
+     * @return null|string
      */
     public function getTitleLocKey()
     {
@@ -270,6 +311,8 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for titleLocKey.
+     *
      * @param string $titleLocKey
      * @return \Kerox\Fcm\Message\NotificationBuilder
      */
@@ -281,7 +324,9 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
-     * @return mixed
+     * Getter for titleLocArgs.
+     *
+     * @return null|string
      */
     public function getTitleLocArgs()
     {
@@ -289,6 +334,8 @@ class NotificationBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for titleLocArgs.
+     *
      * @param string $titleLocArgs
      * @return \Kerox\Fcm\Message\NotificationBuilder
      */

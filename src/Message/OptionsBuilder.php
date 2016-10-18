@@ -51,6 +51,8 @@ class OptionsBuilder implements BuilderInterface
     protected $timeToLive;
 
     /**
+     * Getter for collapseKey.
+     *
      * @return mixed
      */
     public function getCollapseKey()
@@ -59,6 +61,8 @@ class OptionsBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for collapseKey.
+     *
      * @param string $collapseKey
      * @return \Kerox\Fcm\Message\OptionsBuilder
      */
@@ -70,6 +74,8 @@ class OptionsBuilder implements BuilderInterface
     }
 
     /**
+     * Getter for contentAvailable.
+     *
      * @return bool
      */
     public function isContentAvailable()
@@ -78,6 +84,8 @@ class OptionsBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for contentAvailable.
+     *
      * @param bool $contentAvailable
      * @return \Kerox\Fcm\Message\OptionsBuilder
      */
@@ -89,6 +97,8 @@ class OptionsBuilder implements BuilderInterface
     }
 
     /**
+     * Getter for dryRun.
+     *
      * @return bool
      */
     public function isDryRun()
@@ -97,6 +107,8 @@ class OptionsBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for dryRun.
+     *
      * @param bool $dryRun
      * @return \Kerox\Fcm\Message\OptionsBuilder
      */
@@ -108,6 +120,8 @@ class OptionsBuilder implements BuilderInterface
     }
 
     /**
+     * Getter for priority.
+     *
      * @return mixed
      */
     public function getPriority()
@@ -116,6 +130,8 @@ class OptionsBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for priority.
+     *
      * @param string $priority
      * @return \Kerox\Fcm\Message\OptionsBuilder
      * @throws \Kerox\Fcm\Message\Exception\InvalidOptionsException
@@ -131,6 +147,8 @@ class OptionsBuilder implements BuilderInterface
     }
 
     /**
+     * Getter for restrictedPackageName.
+     *
      * @return mixed
      */
     public function getRestrictedPackageName()
@@ -139,6 +157,8 @@ class OptionsBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for restrictedPackageName.
+     *
      * @param string $restrictedPackageName
      * @return \Kerox\Fcm\Message\OptionsBuilder
      */
@@ -150,6 +170,8 @@ class OptionsBuilder implements BuilderInterface
     }
 
     /**
+     * Getter for timeToLive.
+     *
      * @return mixed
      */
     public function getTimeToLive()
@@ -158,6 +180,8 @@ class OptionsBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for timeToLive.
+     *
      * @param int $timeToLive
      * @return \Kerox\Fcm\Message\OptionsBuilder
      * @throws \Kerox\Fcm\Message\Exception\InvalidOptionsException

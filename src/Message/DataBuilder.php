@@ -11,12 +11,16 @@ class DataBuilder implements BuilderInterface
 {
 
     /**
+     * Array of data
+     *
      * @var null|array
      */
     protected $data = [];
 
     /**
-     * @param string $key
+     * Getter for data.
+     *
+     * @param null|string $key
      * @return string|array
      * @throws \Kerox\Fcm\Message\Exception\InvalidDataException
      */
@@ -34,6 +38,8 @@ class DataBuilder implements BuilderInterface
     }
 
     /**
+     * Setter for data.
+     *
      * @param string $key
      * @param $value
      * @return \Kerox\Fcm\Message\DataBuilder
@@ -49,7 +55,9 @@ class DataBuilder implements BuilderInterface
     }
 
     /**
-     * @param string $key
+     * Remove all data or only the one specified by $key
+     *
+     * @param null|string $key
      * @return \Kerox\Fcm\Message\DataBuilder
      * @throws \Kerox\Fcm\Message\Exception\InvalidDataException
      */

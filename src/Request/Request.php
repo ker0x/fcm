@@ -15,22 +15,22 @@ class Request extends BaseRequest
     protected $targets;
 
     /**
-     * @var \Kerox\Fcm\Message\Notification
+     * @var null|\Kerox\Fcm\Message\Notification
      */
     protected $notification;
 
     /**
-     * @var \Kerox\Fcm\Message\Data
+     * @var null|\Kerox\Fcm\Message\Data
      */
     protected $data;
 
     /**
-     * @var \Kerox\Fcm\Message\Options
+     * @var null|\Kerox\Fcm\Message\Options
      */
     protected $options;
 
     /**
-     * @var
+     * @var null|\Kerox\Fcm\Message\Topics
      */
     protected $topics;
 
@@ -39,10 +39,10 @@ class Request extends BaseRequest
      *
      * @param string $apiKey
      * @param string|array $targets
-     * @param \Kerox\Fcm\Message\Notification|null $notification
-     * @param \Kerox\Fcm\Message\Data|null $data
-     * @param \Kerox\Fcm\Message\Options|null $options
-     * @param \Kerox\Fcm\Message\Topics $topics
+     * @param null|\Kerox\Fcm\Message\Notification $notification
+     * @param null|\Kerox\Fcm\Message\Data $data
+     * @param null|\Kerox\Fcm\Message\Options $options
+     * @param null|\Kerox\Fcm\Message\Topics $topics
      */
     public function __construct(
         string $apiKey,
@@ -62,6 +62,8 @@ class Request extends BaseRequest
     }
 
     /**
+     * @inheritdoc
+     *
      * @return array
      */
     protected function buildBody(): array
@@ -78,6 +80,8 @@ class Request extends BaseRequest
     }
 
     /**
+     * Return target if target is a string or topics if there is only one.
+     *
      * @return string|null
      */
     public function getTo()
@@ -91,6 +95,8 @@ class Request extends BaseRequest
     }
 
     /**
+     * Return targets if targets is an array
+     *
      * @return array|null
      */
     protected function getRegistrationIds()
@@ -99,6 +105,8 @@ class Request extends BaseRequest
     }
 
     /**
+     * Return notification as an array.
+     *
      * @return array
      */
     protected function getNotification(): array
@@ -109,6 +117,8 @@ class Request extends BaseRequest
     }
 
     /**
+     * Return data as an array.
+     *
      * @return array
      */
     protected function getData(): array
@@ -119,6 +129,8 @@ class Request extends BaseRequest
     }
 
     /**
+     * Return options as an array and merge topics as condition if there is more than one.
+     *
      * @return array
      */
     protected function getOptions(): array
