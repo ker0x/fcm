@@ -11,13 +11,7 @@ use Kerox\Fcm\Message\Exception\InvalidOptionsException;
 class OptionsBuilder implements BuilderInterface
 {
 
-    /**
-     *
-     */
     const NORMAL = 'normal';
-    /**
-     *
-     */
     const HIGH = 'high';
 
     /**

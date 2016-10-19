@@ -1,6 +1,10 @@
 <?php
 namespace Kerox\Fcm\Response\Exception;
 
+/**
+ * Class InvalidRequestException
+ * @package Kerox\Fcm\Response\Exception
+ */
 class InvalidRequestException extends \Exception
 {
 

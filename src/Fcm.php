@@ -10,6 +10,10 @@ use Kerox\Fcm\Response\DownstreamResponse;
 use Kerox\Fcm\Response\GroupResponse;
 use Kerox\Fcm\Response\TopicResponse;
 
+/**
+ * Class Fcm
+ * @package Kerox\Fcm
+ */
 class Fcm extends BaseSender
 {
 

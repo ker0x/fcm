@@ -9,6 +9,7 @@ use Kerox\Fcm\Message\Exception\InvalidNotificationException;
  */
 class NotificationBuilder implements BuilderInterface
 {
+
     /**
      * @var null|string
      */

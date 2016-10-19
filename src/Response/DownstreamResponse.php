@@ -3,6 +3,10 @@ namespace Kerox\Fcm\Response;
 
 use GuzzleHttp\Psr7\Response;
 
+/**
+ * Class DownstreamResponse
+ * @package Kerox\Fcm\Response
+ */
 class DownstreamResponse extends BaseResponse
 {
 

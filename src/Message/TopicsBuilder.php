@@ -3,6 +3,10 @@ namespace Kerox\Fcm\Message;
 
 use Closure;
 
+/**
+ * Class TopicsBuilder
+ * @package Kerox\Fcm\Message
+ */
 class TopicsBuilder
 {
 

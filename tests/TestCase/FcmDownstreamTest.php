@@ -1,14 +1,10 @@
 <?php
 namespace Kerox\Fcm\Test\TestCase;
 
-use Guzzle\Http\Client;
-use GuzzleHttp\Psr7\Response;
 use Kerox\Fcm\Fcm;
 use Kerox\Fcm\Message\DataBuilder;
 use Kerox\Fcm\Message\NotificationBuilder;
 use Kerox\Fcm\Message\OptionsBuilder;
-use Kerox\Fcm\Message\TopicsBuilder;
-use Mockery;
 
 class FcmDownstreamTest extends AbstractTestCase
 {

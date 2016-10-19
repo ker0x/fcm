@@ -4,6 +4,10 @@ namespace Kerox\Fcm;
 use GuzzleHttp\Psr7\Response;
 use Kerox\Fcm\Request\GroupRequest;
 
+/**
+ * Class FcmGroup
+ * @package Kerox\Fcm
+ */
 class FcmGroup extends BaseSender
 {
 

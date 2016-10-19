@@ -1,8 +1,13 @@
 <?php
 namespace Kerox\Fcm\Message;
 
+/**
+ * Interface BuilderInterface
+ * @package Kerox\Fcm\Message
+ */
 interface BuilderInterface
 {
+
     /**
      * Build the instance.
      *

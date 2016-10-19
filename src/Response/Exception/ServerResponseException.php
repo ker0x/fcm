@@ -1,6 +1,10 @@
 <?php
 namespace Kerox\Fcm\Response\Exception;
 
+/**
+ * Class ServerResponseException
+ * @package Kerox\Fcm\Response\Exception
+ */
 class ServerResponseException extends \Exception
 {
 

@@ -8,6 +8,7 @@ use Kerox\Fcm\Response\Exception\UnauthorizedRequestException;
 
 abstract class BaseResponse
 {
+
     const SUCCESS = 'success';
     const FAILURE = 'failure';
     const ERROR = 'error';

@@ -1,8 +1,13 @@
 <?php
 namespace Kerox\Fcm\Message\Exception;
 
+/**
+ * Class InvalidOptionsException
+ * @package Kerox\Fcm\Message\Exception
+ */
 class InvalidOptionsException extends AbstractException
 {
+
     public static function invalidTimeToLive($value)
     {
         return new static("Time to live must be between 0 and 2419200. Current value is: {$value}");

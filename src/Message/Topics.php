@@ -74,12 +74,11 @@ class Topics
      */
     private function parseForCondition(array $topic): string
     {
-        $parsedCondition = '';
         if (isset($topic['condition'])) {
             $parsedCondition = $topic['condition'];
         }
 
-        return $parsedCondition;
+        return $parsedCondition ?? '';
     }
 
     /**
@@ -90,12 +89,11 @@ class Topics
      */
     private function parseForTopic(array $topic): string
     {
-        $parsedTopic = '';
         if (isset($topic['topic'])) {
             $parsedTopic = "'{$topic['topic']}' in topics";
         }
 
-        return $parsedTopic;
+        return $parsedTopic ?? '';
     }
 
     /**
@@ -106,12 +104,11 @@ class Topics
      */
     private function parseForSubCondition(array $topic): string
     {
-        $parsedSubCondition = '';
         if (isset($topic['subCondition'])) {
             $parsedSubCondition = '(' . $this->buildCondition($topic['subCondition']) . ')';
         }
 
-        return $parsedSubCondition;
+        return $parsedSubCondition ?? '';
     }
 
     /**
