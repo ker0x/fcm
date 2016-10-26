@@ -17,7 +17,6 @@
 
         <!-- Prevent coverage reports from looking in tests and vendors -->
         <blacklist>
-            <directory suffix=".php">./demo</directory>
             <directory suffix=".php">./docs</directory>
             <directory suffix=".php">./vendor</directory>
             <directory suffix=".php">./tests</directory>

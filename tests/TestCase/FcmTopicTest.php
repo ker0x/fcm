@@ -70,6 +70,26 @@ class FcmTopicTest extends AbstractTestCase
         $this->assertNull($response->getError());
     }
 
+    public function testFcmSendToManyTopics()
+    {
+        $topicBuilder = new TopicsBuilder('myTopic');
+        $topicBuilder->andTopic(function () {
+            return (new TopicsBuilder('yourTopic'))->orTopic('theirTopic');
+        });
+        $topic = $topicBuilder->build();
+
+        $fcm = new Fcm($this->api_key);
+        $fcm->setNotification($this->notification)
+            ->setData($this->data)
+            ->setOptions($this->options);
+
+        $response = $fcm->sendToTopic($topic);
+
+        $this->assertTrue($response->isSuccess());
+        $this->assertFalse($response->shouldRetry());
+        $this->assertNull($response->getError());
+    }
+
     public function tearDown()
     {
         unset($this->target, $this->api_key);
