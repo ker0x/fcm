@@ -1,10 +1,12 @@
 <?php
+namespace Kerox\Fcm\Test\TestCase\Message;
 
-use ker0x\Fcm\Message\Exception\InvalidOptionsException;
-use ker0x\Fcm\Message\Options;
-use ker0x\Fcm\Message\OptionsBuilder;
+use Kerox\Fcm\Message\Exception\InvalidOptionsException;
+use Kerox\Fcm\Message\Options;
+use Kerox\Fcm\Message\OptionsBuilder;
+use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
-class OptionsTest extends PHPUnit_Framework_TestCase
+class OptionsTest extends AbstractTestCase
 {
     public function testOptionsFromOptionsBuilder()
     {
@@ -17,8 +19,8 @@ class OptionsTest extends PHPUnit_Framework_TestCase
             ->setContentAvailable(true)
             ->setDryRun(true);
 
-        $options = new Options($optionsBuilder);
-        $options = $options->build();
+        $options = $optionsBuilder->build();
+        $options = $options->toArray();
 
         $this->assertEquals([
             'collapse_key' => 'Update available',
@@ -40,7 +42,7 @@ class OptionsTest extends PHPUnit_Framework_TestCase
             'content_available' => true,
             'collapse_key' => 'Update available',
         ]);
-        $options = $options->build();
+        $options = $options->toArray();
 
         $this->assertEquals([
             'collapse_key' => 'Update available',

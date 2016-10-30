@@ -1,9 +1,13 @@
 <?php
-namespace ker0x\Fcm;
+namespace Kerox\Fcm;
 
 use GuzzleHttp\Psr7\Response;
-use ker0x\Fcm\Request\GroupRequest;
+use Kerox\Fcm\Request\GroupRequest;
 
+/**
+ * Class FcmGroup
+ * @package Kerox\Fcm
+ */
 class FcmGroup extends BaseSender
 {
 
@@ -14,25 +18,33 @@ class FcmGroup extends BaseSender
     const DELETE = 'delete';
 
     /**
+     * @var string
+     */
+    protected $senderId;
+
+    /**
      * FcmGroup constructor.
      *
      * @param string $apiKey
+     * @param string $senderId
      */
-    public function __construct($apiKey)
+    public function __construct(string $apiKey, string $senderId)
     {
         parent::__construct($apiKey);
+
+        $this->senderId = $senderId;
     }
 
     /**
      * Create a device group.
      *
      * @param string $notificationKeyName
-     * @param array $registrationIds
+     * @param string|array $registrationIds
      * @return null|string
      */
-    public function createGroup(string $notificationKeyName, array $registrationIds)
+    public function createGroup(string $notificationKeyName, $registrationIds)
     {
-        $request = new GroupRequest(self::CREATE, $notificationKeyName, null, $registrationIds);
+        $request = new GroupRequest($this->apiKey, $this->senderId, self::CREATE, $notificationKeyName, null, $registrationIds);
         $response = $this->doRequest(self::URL, $request->build());
 
         return $this->getNotificationKey($response);
@@ -43,12 +55,12 @@ class FcmGroup extends BaseSender
      *
      * @param string $notificationKeyName
      * @param string $notificationKey
-     * @param array $registrationIds
+     * @param string|array $registrationIds
      * @return null|string
      */
-    public function addToGroup(string $notificationKeyName, string $notificationKey, array $registrationIds)
+    public function addToGroup(string $notificationKeyName, string $notificationKey, $registrationIds)
     {
-        $request = new GroupRequest(self::ADD, $notificationKeyName, $notificationKey, $registrationIds);
+        $request = new GroupRequest($this->apiKey, $this->senderId, self::ADD, $notificationKeyName, $notificationKey, $registrationIds);
         $response = $this->doRequest(self::URL, $request->build());
 
         return $this->getNotificationKey($response);
@@ -59,12 +71,12 @@ class FcmGroup extends BaseSender
      *
      * @param string $notificationKeyName
      * @param string $notificationKey
-     * @param array $registrationIds
+     * @param string|array $registrationIds
      * @return null|string
      */
-    public function removeFromGroup(string $notificationKeyName, string $notificationKey, array $registrationIds)
+    public function removeFromGroup(string $notificationKeyName, string $notificationKey, $registrationIds)
     {
-        $request = new GroupRequest(self::DELETE, $notificationKeyName, $notificationKey, $registrationIds);
+        $request = new GroupRequest($this->apiKey, $this->senderId, self::DELETE, $notificationKeyName, $notificationKey, $registrationIds);
         $response = $this->doRequest(self::URL, $request->build());
 
         return $this->getNotificationKey($response);
@@ -74,7 +86,7 @@ class FcmGroup extends BaseSender
      * Return the notification key from the response.
      *
      * @param \GuzzleHttp\Psr7\Response $response
-     * @return null
+     * @return null|string
      */
     private function getNotificationKey(Response $response)
     {

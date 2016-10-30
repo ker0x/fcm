@@ -1,13 +1,13 @@
 <?php
-namespace ker0x\Fcm\Message;
+namespace Kerox\Fcm\Message;
 
-use ker0x\Fcm\Message\DataBuilder;
+use Kerox\Fcm\Message\Exception\InvalidDataException;
 
 /**
  * Class Data
- * @package ker0x\Fcm\Message
+ * @package Kerox\Fcm\Message
  */
-class Data implements BuilderInterface
+class Data
 {
 
     /**
@@ -17,21 +17,45 @@ class Data implements BuilderInterface
 
     /**
      * Data constructor.
-     * @param array|\ker0x\Fcm\Message\DataBuilder $dataBuilder
+     *
+     * @param array|\Kerox\Fcm\Message\DataBuilder $dataBuilder
      */
     public function __construct($dataBuilder)
     {
-        if ($dataBuilder instanceof DataBuilder) {
-            $dataBuilder = $dataBuilder->getAllData();
+        if (is_array($dataBuilder)) {
+            $dataBuilder = $this->fromArray($dataBuilder);
         }
-        $this->data = $dataBuilder;
+        $this->data = $dataBuilder->getData();
     }
 
     /**
+     * Return data as an array.
+     *
      * @return array
      */
-    public function build(): array
+    public function toArray(): array
     {
         return $this->data;
+    }
+
+    /**
+     * Build data from an array.
+     *
+     * @param array $dataArray Array of data for the notification.
+     * @return \Kerox\Fcm\Message\DataBuilder
+     * @throws \Kerox\Fcm\Message\Exception\InvalidDataException
+     */
+    private function fromArray(array $dataArray): DataBuilder
+    {
+        if (empty($dataArray)) {
+            throw InvalidDataException::arrayEmpty();
+        }
+
+        $dataBuilder = new DataBuilder();
+        foreach ($dataArray as $key => $value) {
+            $dataBuilder->setData($key, $value);
+        }
+
+        return $dataBuilder;
     }
 }

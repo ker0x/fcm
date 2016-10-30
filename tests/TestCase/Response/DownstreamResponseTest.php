@@ -1,12 +1,14 @@
 <?php
+namespace Kerox\Fcm\Test\TestCase\Response;
 
 use GuzzleHttp\Psr7\Response;
-use ker0x\Fcm\Response\DownstreamResponse;
-use ker0x\Fcm\Response\Exception\InvalidRequestException;
-use ker0x\Fcm\Response\Exception\ServerResponseException;
-use ker0x\Fcm\Response\Exception\UnauthorizedRequestException;
+use Kerox\Fcm\Response\DownstreamResponse;
+use Kerox\Fcm\Response\Exception\InvalidRequestException;
+use Kerox\Fcm\Response\Exception\ServerResponseException;
+use Kerox\Fcm\Response\Exception\UnauthorizedRequestException;
+use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
-class DownstreamResponseTest extends PHPUnit_Framework_TestCase
+class DownstreamResponseTest extends AbstractTestCase
 {
     public $tokens;
 
@@ -62,9 +64,9 @@ class DownstreamResponseTest extends PHPUnit_Framework_TestCase
 
         $downstreamResponse = new DownstreamResponse($response, $tokens);
 
-        $this->assertEquals(3, $downstreamResponse->getNumberTargetsSuccess());
-        $this->assertEquals(7, $downstreamResponse->getNumberTargetsFailure());
-        $this->assertEquals(3, $downstreamResponse->getNumberTargetsModify());
+        $this->assertEquals(3, $downstreamResponse->getNumberSuccess());
+        $this->assertEquals(7, $downstreamResponse->getNumberFailure());
+        $this->assertEquals(3, $downstreamResponse->getNumberModify());
 
         $this->assertCount(2, $downstreamResponse->getTargetsToDelete());
         $this->assertCount(3, $downstreamResponse->getTargetsToModify());

@@ -1,10 +1,12 @@
 <?php
+namespace Kerox\Fcm\Test\TestCase\Response;
 
 use GuzzleHttp\Psr7\Response;
-use ker0x\Fcm\Message\TopicsBuilder;
-use ker0x\Fcm\Response\TopicResponse;
+use Kerox\Fcm\Message\TopicsBuilder;
+use Kerox\Fcm\Response\TopicResponse;
+use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
-class TopicResponseTest extends PHPUnit_Framework_TestCase
+class TopicResponseTest extends AbstractTestCase
 {
     public function testResponseWithSuccess()
     {

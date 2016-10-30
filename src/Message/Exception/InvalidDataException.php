@@ -1,16 +1,13 @@
 <?php
+namespace Kerox\Fcm\Message\Exception;
+
 /**
- * Created by PhpStorm.
- * User: rmo
- * Date: 27/09/2016
- * Time: 02:05
+ * Class InvalidDataException
+ * @package Kerox\Fcm\Message\Exception
  */
-
-namespace ker0x\Fcm\Message\Exception;
-
-
 class InvalidDataException extends AbstractException
 {
+
     public static function invalidKey($key)
     {
         return new static("{$key} does not exist in array data.");

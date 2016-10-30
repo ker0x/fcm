@@ -1,15 +1,12 @@
 <?php
-use ker0x\Fcm\Message\Exception\InvalidNotificationException;
-use ker0x\Fcm\Message\Notification;
-use ker0x\Fcm\Message\NotificationBuilder;
+namespace Kerox\Fcm\Test\TestCase\Message;
 
-/**
- * Created by PhpStorm.
- * User: rmo
- * Date: 27/09/2016
- * Time: 01:02
- */
-class NotificationTest extends PHPUnit_Framework_TestCase
+use Kerox\Fcm\Message\Exception\InvalidNotificationException;
+use Kerox\Fcm\Message\Notification;
+use Kerox\Fcm\Message\NotificationBuilder;
+use Kerox\Fcm\Test\TestCase\AbstractTestCase;
+
+class NotificationTest extends AbstractTestCase
 {
     public function testNotificationFromNotificationBuilder()
     {
@@ -27,8 +24,8 @@ class NotificationTest extends PHPUnit_Framework_TestCase
             ->setSound('sound')
             ->setBody('body');
 
-        $notification = new Notification($notificationBuilder);
-        $notification = $notification->build();
+        $notification = $notificationBuilder->build();
+        $notification = $notification->toArray();
 
         $this->assertEquals([
             'title' => 'title',
@@ -62,7 +59,7 @@ class NotificationTest extends PHPUnit_Framework_TestCase
             'body' => 'body',
             'title' => 'title',
         ]);
-        $notification = $notification->build();
+        $notification = $notification->toArray();
 
         $this->assertEquals([
             'title' => 'title',

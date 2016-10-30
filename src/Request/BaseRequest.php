@@ -1,11 +1,12 @@
 <?php
-namespace ker0x\Fcm\Request;
+namespace Kerox\Fcm\Request;
 
-
+/**
+ * Class BaseRequest
+ * @package Kerox\Fcm\Request
+ */
 abstract class BaseRequest
 {
-
-    const API_KEY = 'AIzaSyBmXaqLuv8EIyWsVRfzft_jQOdN8-j2nzQ';
 
     /**
      * @var string
@@ -13,45 +14,55 @@ abstract class BaseRequest
     protected $apiKey;
 
     /**
+     * @var null|string
+     */
+    protected $senderId;
+
+    /**
      * BaseRequest constructor.
      *
-     * @param string $apiKey
+     * @param null|string $apiKey
+     * @param string $senderId
      */
-    public function __construct(string $apiKey)
+    public function __construct(string $apiKey, string $senderId = null)
     {
         $this->apiKey = $apiKey;
+        $this->senderId = $senderId;
     }
 
     /**
-     * Build the header for the request
+     * Build the header for the request.
      *
      * @return array
      */
     protected function buildRequestHeader(): array
     {
-        return [
-            'Authorization' => "key=" . $this->apiKey,
-            'Content-Type' => "application/json",
+        $headers = [
+            'Authorization' => 'key=' . $this->apiKey,
+            'Content-Type' => 'application/json',
+            'project_id' => $this->senderId,
         ];
+
+        return array_filter($headers);
     }
 
     /**
-     * Build the body of the request
+     * Build the body of the request.
      *
      * @return mixed
      */
-    protected abstract function buildBody();
+    abstract protected function buildBody();
 
     /**
-     * Return the request in array form
+     * Return the request in array.
      *
      * @return array
      */
-    public function build()
+    public function build(): array
     {
         return [
             'headers' => $this->buildRequestHeader(),
-            'json' => $this->buildBody()
+            'json' => $this->buildBody(),
         ];
     }
 }

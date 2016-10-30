@@ -1,9 +1,11 @@
 <?php
+namespace Kerox\Fcm\Test\TestCase\Response;
 
 use GuzzleHttp\Psr7\Response;
-use ker0x\Fcm\Response\GroupResponse;
+use Kerox\Fcm\Response\GroupResponse;
+use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
-class GroupResponseTest extends PHPUnit_Framework_TestCase
+class GroupResponseTest extends AbstractTestCase
 {
     public function testResponseWithMixedResults()
     {
@@ -22,8 +24,8 @@ class GroupResponseTest extends PHPUnit_Framework_TestCase
 
         $groupResponse = new GroupResponse($response, $notificationKey);
 
-        $this->assertEquals(2, $groupResponse->getNumberTargetsSuccess());
-        $this->assertEquals(2, $groupResponse->getNumberTargetsFailure());
+        $this->assertEquals(2, $groupResponse->getNumberSuccess());
+        $this->assertEquals(2, $groupResponse->getNumberFailure());
         $this->assertCount(3, $groupResponse->getTargetsFailed());
     }
 }

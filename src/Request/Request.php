@@ -1,12 +1,15 @@
 <?php
-namespace ker0x\Fcm\Request;
+namespace Kerox\Fcm\Request;
 
+use Kerox\Fcm\Message\Data;
+use Kerox\Fcm\Message\Notification;
+use Kerox\Fcm\Message\Options;
+use Kerox\Fcm\Message\Topics;
 
-use ker0x\Fcm\Message\Data;
-use ker0x\Fcm\Message\Notification;
-use ker0x\Fcm\Message\Options;
-use ker0x\Fcm\Message\Targets;
-
+/**
+ * Class Request
+ * @package Kerox\Fcm\Request
+ */
 class Request extends BaseRequest
 {
 
@@ -16,40 +19,55 @@ class Request extends BaseRequest
     protected $targets;
 
     /**
-     * @var \ker0x\Fcm\Message\Notification
+     * @var null|\Kerox\Fcm\Message\Notification
      */
     protected $notification;
 
     /**
-     * @var \ker0x\Fcm\Message\Data
+     * @var null|\Kerox\Fcm\Message\Data
      */
     protected $data;
 
     /**
-     * @var \ker0x\Fcm\Message\Options
+     * @var null|\Kerox\Fcm\Message\Options
      */
     protected $options;
+
+    /**
+     * @var null|\Kerox\Fcm\Message\Topics
+     */
+    protected $topics;
 
     /**
      * Request constructor.
      *
      * @param string $apiKey
      * @param string|array $targets
-     * @param \ker0x\Fcm\Message\Notification|null $notification
-     * @param \ker0x\Fcm\Message\Data|null $data
-     * @param \ker0x\Fcm\Message\Options|null $options
+     * @param null|\Kerox\Fcm\Message\Notification $notification
+     * @param null|\Kerox\Fcm\Message\Data $data
+     * @param null|\Kerox\Fcm\Message\Options $options
+     * @param null|\Kerox\Fcm\Message\Topics $topics
      */
-    public function __construct($apiKey, $targets, Notification $notification = null, Data $data = null, Options $options = null)
-    {
+    public function __construct(
+        string $apiKey,
+        $targets,
+        Notification $notification = null,
+        Data $data = null,
+        Options $options = null,
+        Topics $topics = null
+    ) {
         parent::__construct($apiKey);
 
         $this->targets = $targets;
         $this->notification = $notification;
         $this->data = $data;
         $this->options = $options;
+        $this->topics = $topics;
     }
 
     /**
+     * @inheritdoc
+     *
      * @return array
      */
     protected function buildBody(): array
@@ -66,14 +84,23 @@ class Request extends BaseRequest
     }
 
     /**
+     * Return target if target is a string or topics if there is only one.
+     *
      * @return string|null
      */
     public function getTo()
     {
-        return is_array($this->targets) ? null : $this->targets;
+        $to = is_array($this->targets) ? null : $this->targets;
+        if ($this->topics !== null && $this->topics->hasOnlyOneTopic()) {
+            $to = $this->topics->toString();
+        }
+
+        return $to;
     }
 
     /**
+     * Return targets if targets is an array
+     *
      * @return array|null
      */
     protected function getRegistrationIds()
@@ -82,31 +109,40 @@ class Request extends BaseRequest
     }
 
     /**
+     * Return notification as an array.
+     *
      * @return array
      */
     protected function getNotification(): array
     {
-        $notification = $this->notification ? $this->notification->build() : null;
+        $notification = $this->notification ? $this->notification->toArray() : null;
 
         return $notification;
     }
 
     /**
+     * Return data as an array.
+     *
      * @return array
      */
     protected function getData(): array
     {
-        $data = $this->data ? $this->data->build() : null;
+        $data = $this->data ? $this->data->toArray() : null;
 
         return $data;
     }
 
     /**
+     * Return options as an array and merge topics as condition if there is more than one.
+     *
      * @return array
      */
     protected function getOptions(): array
     {
-        $options = $this->options ? $this->options->build() : null;
+        $options = $this->options ? $this->options->toArray() : null;
+        if ($this->topics !== null && !$this->topics->hasOnlyOneTopic()) {
+            $options = array_merge($options, $this->topics->toString());
+        }
 
         return $options;
     }

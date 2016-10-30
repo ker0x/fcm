@@ -1,48 +1,88 @@
 <?php
-namespace ker0x\Fcm\Message;
+namespace Kerox\Fcm\Message;
 
 use Closure;
 
+/**
+ * Class TopicsBuilder
+ * @package Kerox\Fcm\Message
+ */
 class TopicsBuilder
 {
-    protected $topic;
 
+    /**
+     * @var array
+     */
     protected $topics = [];
 
+    /**
+     * TopicsBuilder constructor.
+     * @param string $topic
+     */
     public function __construct(string $topic)
     {
         $this->topics[] = compact('topic');
     }
 
-    public function getAllTopic(): string
-    {
-        return array_column($this->topics, 'topic');
-    }
-
+    /**
+     * @return array
+     */
     public function getTopics(): array
     {
         return $this->topics;
     }
 
-    public function andTopic($topic)
+    /**
+     * @param $topic
+     * @return \Kerox\Fcm\Message\TopicsBuilder
+     */
+    public function andTopic($topic): TopicsBuilder
     {
-        $this->setCondition($topic, 'and');
+        return $this->setCondition($topic, ' && ');
+    }
+
+    /**
+     * @param $topic
+     * @return \Kerox\Fcm\Message\TopicsBuilder
+     */
+    public function orTopic($topic): TopicsBuilder
+    {
+        return $this->setCondition($topic, ' || ');
+    }
+
+    /**
+     * @param $topic
+     * @param string $condition
+     * @return \Kerox\Fcm\Message\TopicsBuilder
+     */
+    private function setCondition($topic, string $condition): TopicsBuilder
+    {
+        if ($topic instanceof Closure) {
+            return $this->setSubCondition($topic, $condition);
+        }
+        $this->topics[] = compact('condition', 'topic');
 
         return $this;
     }
 
-    public function orTopic($topic)
+    /**
+     * @param \Closure $callback
+     * @param string $condition
+     * @return \Kerox\Fcm\Message\TopicsBuilder
+     */
+    private function setSubCondition(Closure $callback, string $condition): TopicsBuilder
     {
-        $this->setCondition($topic, 'or');
+        $subCondition = $callback()->getTopics();
+        $this->topics[] = compact('condition', 'subCondition');
 
         return $this;
     }
 
-    private function setCondition($topic, $condition)
+    /**
+     * @return \Kerox\Fcm\Message\Topics
+     */
+    public function build(): Topics
     {
-        $conditionBuilder = new ConditionsBuilder();
-        $this->topics[] = $conditionBuilder->build($topic, $condition);
-
-        return $this;
+        return new Topics($this);
     }
 }

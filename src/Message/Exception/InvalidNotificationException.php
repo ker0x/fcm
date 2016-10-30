@@ -1,16 +1,13 @@
 <?php
+namespace Kerox\Fcm\Message\Exception;
+
 /**
- * Created by PhpStorm.
- * User: rmo
- * Date: 26/09/2016
- * Time: 21:35
+ * Class InvalidNotificationException
+ * @package Kerox\Fcm\Message\Exception
  */
-
-namespace ker0x\Fcm\Message\Exception;
-
-
 class InvalidNotificationException extends AbstractException
 {
+
     public static function invalidColor()
     {
         return new static("The color must be expressed in #rrggbb format.");

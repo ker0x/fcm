@@ -1,17 +1,16 @@
 <?php
-namespace ker0x\Fcm\Message;
+namespace Kerox\Fcm\Message;
 
-use ker0x\Fcm\Message\Exception\InvalidOptionsException;
-use ker0x\Fcm\UtilityAwareTrait;
+use Kerox\Fcm\Message\Exception\InvalidOptionsException;
 
 /**
  * Class Options
- * @package ker0x\Fcm\Message
+ * @package Kerox\Fcm\Message
  */
-class Options implements BuilderInterface
+class Options
 {
 
-    use UtilityAwareTrait;
+    use BuilderAwareTrait;
 
     /**
      * @var null|string
@@ -45,7 +44,8 @@ class Options implements BuilderInterface
 
     /**
      * Options constructor.
-     * @param array|\ker0x\Fcm\Message\OptionsBuilder $optionsBuilder
+     *
+     * @param array|\Kerox\Fcm\Message\OptionsBuilder $optionsBuilder
      */
     public function __construct($optionsBuilder)
     {
@@ -62,9 +62,11 @@ class Options implements BuilderInterface
     }
 
     /**
+     * Return the options as an array.
+     *
      * @return array
      */
-    public function build(): array
+    public function toArray(): array
     {
         $options = [
             'collapse_key' => $this->collapseKey,
@@ -79,9 +81,11 @@ class Options implements BuilderInterface
     }
 
     /**
+     * Build options from an array.
+     *
      * @param array $optionsArray
-     * @return \ker0x\Fcm\Message\OptionsBuilder
-     * @throws \ker0x\Fcm\Message\Exception\InvalidOptionsException
+     * @return \Kerox\Fcm\Message\OptionsBuilder
+     * @throws \Kerox\Fcm\Message\Exception\InvalidOptionsException
      */
     private function fromArray(array $optionsArray): OptionsBuilder
     {

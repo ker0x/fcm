@@ -1,29 +1,35 @@
 {
-    "name": "ker0x/fcm",
-    "type": "library",
-    "require": {
-        "guzzlehttp/guzzle": "^6.2"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^5.5",
-        "satooshi/php-coveralls": "^1.0",
-        "squizlabs/php_codesniffer": "^2.7"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Romain Monteil",
-            "email": "rmo@emakina.fr"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "ker0x\\Fcm\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "ker0x\\Fcm\\Test\\": "tests"
-        }
+  "name": "kerox/fcm",
+  "type": "library",
+  "description": "A PHP library to send push notification through Firebase Cloud Messaging",
+  "keywords": ["fcm", "push", "notification", "firebase cloud messaging"],
+  "homepage": "https://github.com/ker0x/fcm",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Romain Monteil",
+      "homepage": "http://kerox.fr",
+      "email": "monteil.romain@gmail.com",
+      "role": "Author"
     }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "guzzlehttp/guzzle": "^6.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.5",
+    "satooshi/php-coveralls": "^1.0",
+    "squizlabs/php_codesniffer": "^2.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "Kerox\\Fcm\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Kerox\\Fcm\\Test\\": "tests"
+    }
+  }
 }

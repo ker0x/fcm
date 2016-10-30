@@ -1,14 +1,19 @@
 <?php
-namespace ker0x\Fcm;
+namespace Kerox\Fcm;
 
-use ker0x\Fcm\Message\Data;
-use ker0x\Fcm\Message\Notification;
-use ker0x\Fcm\Message\Options;
-use ker0x\Fcm\Request\Request;
-use ker0x\Fcm\Response\DownstreamResponse;
-use ker0x\Fcm\Response\GroupResponse;
-use ker0x\Fcm\Response\TopicResponse;
+use Kerox\Fcm\Message\Data;
+use Kerox\Fcm\Message\Notification;
+use Kerox\Fcm\Message\Options;
+use Kerox\Fcm\Message\Topics;
+use Kerox\Fcm\Request\Request;
+use Kerox\Fcm\Response\DownstreamResponse;
+use Kerox\Fcm\Response\GroupResponse;
+use Kerox\Fcm\Response\TopicResponse;
 
+/**
+ * Class Fcm
+ * @package Kerox\Fcm
+ */
 class Fcm extends BaseSender
 {
 
@@ -22,17 +27,17 @@ class Fcm extends BaseSender
     protected $targets;
 
     /**
-     * @var null|array|\ker0x\Fcm\Message\NotificationBuilder
+     * @var null|\Kerox\Fcm\Message\Notification
      */
     protected $notification;
 
     /**
-     * @var null|array|\ker0x\Fcm\Message\DataBuilder
+     * @var null|\Kerox\Fcm\Message\Data
      */
     protected $data;
 
     /**
-     * @var null|array|\ker0x\Fcm\Message\OptionsBuilder
+     * @var null|\Kerox\Fcm\Message\Options
      */
     protected $options;
 
@@ -49,12 +54,15 @@ class Fcm extends BaseSender
     /**
      * Setter for notification.
      *
-     * @param  array|\ker0x\Fcm\Message\NotificationBuilder $notification Notification for the push.
+     * @param  array|\Kerox\Fcm\Message\Notification $notification Notification for the push.
      * @return $this
      */
     public function setNotification($notification)
     {
-        $this->notification = new Notification($notification);
+        if (is_array($notification)) {
+            $notification = new Notification($notification);
+        }
+        $this->notification = $notification;
 
         return $this;
     }
@@ -62,12 +70,15 @@ class Fcm extends BaseSender
     /**
      * Setter for data.
      *
-     * @param  array|\ker0x\Fcm\Message\DataBuilder $data Data for the push.
+     * @param  array|\Kerox\Fcm\Message\Data $data Data for the push.
      * @return $this
      */
     public function setData($data)
     {
-        $this->data = new Data($data);
+        if (is_array($data)) {
+            $data = new Data($data);
+        }
+        $this->data = $data;
 
         return $this;
     }
@@ -75,12 +86,15 @@ class Fcm extends BaseSender
     /**
      * Setter for options.
      *
-     * @param  array|\ker0x\Fcm\Message\OptionsBuilder $options Options for the push.
+     * @param  array|\Kerox\Fcm\Message\Options $options Options for the push.
      * @return $this
      */
     public function setOptions($options)
     {
-        $this->options = new Options($options);
+        if (is_array($options)) {
+            $options = new Options($options);
+        }
+        $this->options = $options;
 
         return $this;
     }
@@ -89,7 +103,7 @@ class Fcm extends BaseSender
      * Send a push notification to targets.
      *
      * @param  string|array $targets Targets to send the push notification.
-     * @return \ker0x\Fcm\Response\DownstreamResponse|null
+     * @return \Kerox\Fcm\Response\DownstreamResponse|null
      */
     public function sendTo($targets)
     {
@@ -121,10 +135,10 @@ class Fcm extends BaseSender
     /**
      * Send a push notification to a topic.
      *
-     * @param  $topic
-     * @return \ker0x\Fcm\Response\TopicResponse
+     * @param  \Kerox\Fcm\Message\Topics $topic
+     * @return \Kerox\Fcm\Response\TopicResponse
      */
-    public function sendToTopic($topic): TopicResponse
+    public function sendToTopic(Topics $topic): TopicResponse
     {
         $request = new Request($this->apiKey, null, $this->notification, $this->data, $this->options, $topic);
         $response = $this->doRequest(self::URL, $request->build());
@@ -136,7 +150,7 @@ class Fcm extends BaseSender
      * Send a push notification to a group.
      *
      * @param  string $notificationKey
-     * @return \ker0x\Fcm\Response\GroupResponse
+     * @return \Kerox\Fcm\Response\GroupResponse
      */
     public function sendToGroup(string $notificationKey): GroupResponse
     {

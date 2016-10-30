@@ -1,6 +1,10 @@
 <?php
-namespace ker0x\Fcm\Request;
+namespace Kerox\Fcm\Request;
 
+/**
+ * Class GroupRequest
+ * @package Kerox\Fcm\Request
+ */
 class GroupRequest extends BaseRequest
 {
 
@@ -27,17 +31,27 @@ class GroupRequest extends BaseRequest
     /**
      * GroupRequest constructor.
      *
+     * @param string $apiKey
+     * @param string $senderId
      * @param string $operation
      * @param string $notificationKeyName
      * @param string $notificationKey
-     * @param array $registrationIds
+     * @param string|array $registrationIds
      */
-    public function __construct($operation, $notificationKeyName, $notificationKey, $registrationIds)
-    {
+    public function __construct(
+        string $apiKey,
+        string $senderId,
+        string $operation,
+        string $notificationKeyName,
+        $notificationKey,
+        $registrationIds
+    ) {
+        parent::__construct($apiKey, $senderId);
+
         $this->operation = $operation;
         $this->notificationKeyName = $notificationKeyName;
         $this->notificationKey = $notificationKey;
-        $this->registrationIds = $registrationIds;
+        $this->registrationIds = (array)$registrationIds;
     }
 
     /**

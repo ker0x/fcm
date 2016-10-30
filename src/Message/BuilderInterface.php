@@ -1,12 +1,17 @@
 <?php
-namespace ker0x\Fcm\Message;
+namespace Kerox\Fcm\Message;
 
+/**
+ * Interface BuilderInterface
+ * @package Kerox\Fcm\Message
+ */
 interface BuilderInterface
 {
+
     /**
-     * Get the instance as an array.
+     * Build the instance.
      *
-     * @return array
+     * @return object
      */
-    public function build(): array;
+    public function build();
 }

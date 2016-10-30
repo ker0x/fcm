@@ -1,8 +1,12 @@
 <?php
-namespace ker0x\Fcm\Response;
+namespace Kerox\Fcm\Response;
 
 use GuzzleHttp\Psr7\Response;
 
+/**
+ * Class GroupResponse
+ * @package Kerox\Fcm\Response
+ */
 class GroupResponse extends BaseResponse
 {
 
@@ -12,16 +16,6 @@ class GroupResponse extends BaseResponse
      * @var string
      */
     protected $group;
-
-    /**
-     * @var int
-     */
-    protected $numberTargetsSuccess = 0;
-
-    /**
-     * @var int
-     */
-    protected $numberTargetsFailure = 0;
 
     /**
      * @var array
@@ -42,27 +36,27 @@ class GroupResponse extends BaseResponse
     }
 
     /**
-     * Getter for numberTargetsSuccess
+     * Return the number of messages that were processed without an error.
      *
      * @return int
      */
-    public function getNumberTargetsSuccess(): int
+    public function getNumberSuccess(): int
     {
-        return $this->numberTargetsSuccess;
+        return $this->numberSuccess;
     }
 
     /**
-     * Getter for numberTargetsFailure
+     * Return the number of messages that could not be processed.
      *
      * @return int
      */
-    public function getNumberTargetsFailure(): int
+    public function getNumberFailure(): int
     {
-        return $this->numberTargetsFailure;
+        return $this->numberFailure;
     }
 
     /**
-     * Getter for targetsFailed
+     * Return a lists of registration tokens that failed to receive the message.
      *
      * @return array
      */
@@ -72,12 +66,15 @@ class GroupResponse extends BaseResponse
     }
 
     /**
+     * @inheritdoc
+     *
      * @param array $response
      * @return void
      */
     protected function parseResponse(array $response)
     {
-        $this->parse($response);
+        $this->setNumberSuccess($response);
+        $this->setNumberFailure($response);
 
         if ($this->needFailedParsing($response)) {
             $this->parseFailed($response);
@@ -85,30 +82,19 @@ class GroupResponse extends BaseResponse
     }
 
     /**
-     * @param array $response
-     * @return void
-     */
-    protected function parse($response)
-    {
-        if (isset($response[self::SUCCESS])) {
-            $this->numberTargetsSuccess = $response[self::SUCCESS];
-        }
-
-        if (isset($response[self::FAILURE])) {
-            $this->numberTargetsFailure = $response[self::FAILURE];
-        }
-    }
-
-    /**
+     * Check if the response has failed registration_ids
+     *
      * @param array $response
      * @return bool
      */
     protected function needFailedParsing($response): bool
     {
-        return (isset($response[self::FAILED_REGISTRATION_IDS]) && $this->numberTargetsFailure > 0);
+        return (isset($response[self::FAILED_REGISTRATION_IDS]) && $this->numberFailure > 0);
     }
 
     /**
+     * Return all registration_ids that failed during the request.
+     *
      * @param array $response
      * @return void
      */

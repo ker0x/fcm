@@ -1,23 +1,16 @@
 <?php
-namespace ker0x\Fcm\Message;
+namespace Kerox\Fcm\Message;
 
-use ker0x\Fcm\Message\Exception\InvalidOptionsException;
+use Kerox\Fcm\Message\Exception\InvalidOptionsException;
 
 /**
  * Class OptionsBuilder
- *
- * @package \ker0x\Fcm\Message
+ * @package \Kerox\Fcm\Message
  */
-class OptionsBuilder
+class OptionsBuilder implements BuilderInterface
 {
 
-    /**
-     *
-     */
     const NORMAL = 'normal';
-    /**
-     *
-     */
     const HIGH = 'high';
 
     /**
@@ -51,6 +44,8 @@ class OptionsBuilder
     protected $timeToLive;
 
     /**
+     * Getter for collapseKey.
+     *
      * @return mixed
      */
     public function getCollapseKey()
@@ -59,8 +54,10 @@ class OptionsBuilder
     }
 
     /**
+     * Setter for collapseKey.
+     *
      * @param string $collapseKey
-     * @return \ker0x\Fcm\Message\OptionsBuilder
+     * @return \Kerox\Fcm\Message\OptionsBuilder
      */
     public function setCollapseKey(string $collapseKey): OptionsBuilder
     {
@@ -70,6 +67,8 @@ class OptionsBuilder
     }
 
     /**
+     * Getter for contentAvailable.
+     *
      * @return bool
      */
     public function isContentAvailable()
@@ -78,8 +77,10 @@ class OptionsBuilder
     }
 
     /**
+     * Setter for contentAvailable.
+     *
      * @param bool $contentAvailable
-     * @return \ker0x\Fcm\Message\OptionsBuilder
+     * @return \Kerox\Fcm\Message\OptionsBuilder
      */
     public function setContentAvailable(bool $contentAvailable): OptionsBuilder
     {
@@ -89,6 +90,8 @@ class OptionsBuilder
     }
 
     /**
+     * Getter for dryRun.
+     *
      * @return bool
      */
     public function isDryRun()
@@ -97,8 +100,10 @@ class OptionsBuilder
     }
 
     /**
+     * Setter for dryRun.
+     *
      * @param bool $dryRun
-     * @return \ker0x\Fcm\Message\OptionsBuilder
+     * @return \Kerox\Fcm\Message\OptionsBuilder
      */
     public function setDryRun(bool $dryRun): OptionsBuilder
     {
@@ -108,6 +113,8 @@ class OptionsBuilder
     }
 
     /**
+     * Getter for priority.
+     *
      * @return mixed
      */
     public function getPriority()
@@ -116,9 +123,11 @@ class OptionsBuilder
     }
 
     /**
+     * Setter for priority.
+     *
      * @param string $priority
-     * @return \ker0x\Fcm\Message\OptionsBuilder
-     * @throws \ker0x\Fcm\Message\Exception\InvalidOptionsException
+     * @return \Kerox\Fcm\Message\OptionsBuilder
+     * @throws \Kerox\Fcm\Message\Exception\InvalidOptionsException
      */
     public function setPriority(string $priority): OptionsBuilder
     {
@@ -131,6 +140,8 @@ class OptionsBuilder
     }
 
     /**
+     * Getter for restrictedPackageName.
+     *
      * @return mixed
      */
     public function getRestrictedPackageName()
@@ -139,8 +150,10 @@ class OptionsBuilder
     }
 
     /**
+     * Setter for restrictedPackageName.
+     *
      * @param string $restrictedPackageName
-     * @return \ker0x\Fcm\Message\OptionsBuilder
+     * @return \Kerox\Fcm\Message\OptionsBuilder
      */
     public function setRestrictedPackageName(string $restrictedPackageName): OptionsBuilder
     {
@@ -150,6 +163,8 @@ class OptionsBuilder
     }
 
     /**
+     * Getter for timeToLive.
+     *
      * @return mixed
      */
     public function getTimeToLive()
@@ -158,9 +173,11 @@ class OptionsBuilder
     }
 
     /**
+     * Setter for timeToLive.
+     *
      * @param int $timeToLive
-     * @return \ker0x\Fcm\Message\OptionsBuilder
-     * @throws \ker0x\Fcm\Message\Exception\InvalidOptionsException
+     * @return \Kerox\Fcm\Message\OptionsBuilder
+     * @throws \Kerox\Fcm\Message\Exception\InvalidOptionsException
      */
     public function setTimeToLive(int $timeToLive): OptionsBuilder
     {
@@ -170,5 +187,15 @@ class OptionsBuilder
         $this->timeToLive = $timeToLive;
 
         return $this;
+    }
+
+    /**
+     * Build the options.
+     *
+     * @return \Kerox\Fcm\Message\Options
+     */
+    public function build(): Options
+    {
+        return new Options($this);
     }
 }

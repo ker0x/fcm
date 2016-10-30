@@ -1,9 +1,13 @@
 <?php
-namespace ker0x\Fcm;
+namespace Kerox\Fcm;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Class BaseSender
+ * @package Kerox\Fcm
+ */
 abstract class BaseSender
 {
 

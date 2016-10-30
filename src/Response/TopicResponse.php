@@ -1,9 +1,12 @@
 <?php
-namespace ker0x\Fcm\Response;
-
+namespace Kerox\Fcm\Response;
 
 use GuzzleHttp\Psr7\Response;
 
+/**
+ * Class TopicResponse
+ * @package Kerox\Fcm\Response
+ */
 class TopicResponse extends BaseResponse
 {
 
@@ -89,6 +92,7 @@ class TopicResponse extends BaseResponse
      * Check if the topic was successfully sent.
      *
      * @param $response
+     * @return void
      */
     private function parseSuccess($response)
     {
@@ -101,8 +105,9 @@ class TopicResponse extends BaseResponse
      * Parse the response of the request if topic couldn't be sent.
      *
      * @param $response
+     * @return void
      */
-    protected function parseError($response)
+    private function parseError($response)
     {
         if (isset($response[self::ERROR])) {
             if (in_array(self::LIMIT_RATE_TOPICS_EXCEEDED, $response)) {
