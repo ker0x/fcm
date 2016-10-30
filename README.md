@@ -1,10 +1,10 @@
 [![Build](https://img.shields.io/travis/ker0x/fcm/master.svg?style=flat-square)](https://travis-ci.org/ker0x/fcm)
 [![Coverage](https://img.shields.io/coveralls/ker0x/fcm/master.svg?style=flat-square)](https://coveralls.io/github/ker0x/fcm)
 [![Code Quality](https://img.shields.io/scrutinizer/g/ker0x/fcm.svg?style=flat-square)](https://scrutinizer-ci.com/g/ker0x/fcm/)
-[![Total Downloads](https://img.shields.io/packagist/dt/ker0x/fcm.svg?style=flat-square)](https://packagist.org/packages/ker0x/fcm)
-[![Latest Stable Version](https://img.shields.io/packagist/v/ker0x/fcm.svg?style=flat-square)](https://packagist.org/packages/ker0x/fcm)
+[![Total Downloads](https://img.shields.io/packagist/dt/kerox/fcm.svg?style=flat-square)](https://packagist.org/packages/ker0x/fcm)
+[![Latest Stable Version](https://img.shields.io/packagist/v/kerox/fcm.svg?style=flat-square)](https://packagist.org/packages/ker0x/fcm)
 [![Documentation Status](https://readthedocs.org/projects/fcm/badge/?version=latest&style=flat-square)](http://fcm.readthedocs.org/en/latest/?badge=latest)
-[![License](https://img.shields.io/packagist/l/ker0x/fcm.svg?style=flat-square)](https://packagist.org/packages/ker0x/fcm)
+[![License](https://img.shields.io/packagist/l/kerox/fcm.svg?style=flat-square)](https://packagist.org/packages/ker0x/fcm)
 
 # FCM PHP library
 

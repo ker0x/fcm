@@ -22,7 +22,7 @@ abstract class BaseRequest
      * BaseRequest constructor.
      *
      * @param null|string $apiKey
-     * @param string $senderId
+     * @param null|string $senderId
      */
     public function __construct(string $apiKey, string $senderId = null)
     {
