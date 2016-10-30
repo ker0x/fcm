@@ -111,9 +111,9 @@ class Request extends BaseRequest
     /**
      * Return notification as an array.
      *
-     * @return array
+     * @return array|null
      */
-    protected function getNotification(): array
+    protected function getNotification()
     {
         $notification = $this->notification ? $this->notification->toArray() : null;
 
@@ -123,9 +123,9 @@ class Request extends BaseRequest
     /**
      * Return data as an array.
      *
-     * @return array
+     * @return array|null
      */
-    protected function getData(): array
+    protected function getData()
     {
         $data = $this->data ? $this->data->toArray() : null;
 
@@ -135,9 +135,9 @@ class Request extends BaseRequest
     /**
      * Return options as an array and merge topics as condition if there is more than one.
      *
-     * @return array
+     * @return array|null
      */
-    protected function getOptions(): array
+    protected function getOptions()
     {
         $options = $this->options ? $this->options->toArray() : null;
         if ($this->topics !== null && !$this->topics->hasOnlyOneTopic()) {
