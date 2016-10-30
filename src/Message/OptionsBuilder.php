@@ -5,7 +5,6 @@ use Kerox\Fcm\Message\Exception\InvalidOptionsException;
 
 /**
  * Class OptionsBuilder
- *
  * @package \Kerox\Fcm\Message
  */
 class OptionsBuilder implements BuilderInterface

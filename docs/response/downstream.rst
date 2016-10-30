@@ -13,51 +13,53 @@ To get the response of a downstream request, just save the return of the ``sendT
 
 You have seven methods available to read downstream response:
 
-- ``getNumberSuccess()`` return the number of messages that were processed without an error.
+- ``getNumberSuccess()``: Return the number of messages that were processed without an error.
 
 .. code:: php
 
     $response->getNumberSuccess();
 
-- ``getNumberFailure()`` return the number of messages that could not be processed.
+
+- ``getNumberFailure()``: Return the number of messages that could not be processed.
 
 .. code:: php
 
     $response->getNumberFailure();
 
 
-- ``getNumberModify()`` return the number of results that contain a canonical registration token.
+- ``getNumberModify()``: Return the number of results that contain a canonical registration token.
 
 .. code:: php
 
     $response->getNumberModify();
 
 
-- ``getTargetsToDelete()`` return an array of tokens that you should remove in your database.
+- ``getTargetsToDelete()``: Return an array of tokens that you should remove in your database.
 
 .. code:: php
 
     $response->getTargetsToDelete();
 
 
-- ``getTargetsToModify()`` return an array of tokens (key : old token, value : new token) that you should change in your database.
+- ``getTargetsToModify()``: Return an array of tokens (key : old token, value : new token) that you should change in your database.
 
 .. code:: php
 
     $response->getTargetsToModify();
 
 
-- ``getTargetsToRetry()`` return an array of tokens you should try to resend the message.
+- ``getTargetsToRetry()``: Return an array of tokens you should try to resend the message.
 
 .. code:: php
 
     $response->getTargetsToRetry();
 
 
-- ``getTargetsWithError()`` return an array of tokens that could not be processed with their error.
+- ``getTargetsWithError()``: Return an array of tokens that could not be processed with their error.
 
 .. code:: php
 
     $response->getTargetsWithError();
+
 
 For more details on downstream response, refer to the `FCM documentation <https://firebase.google.com/docs/cloud-messaging/http-server-ref#interpret-downstream>`__

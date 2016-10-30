@@ -92,6 +92,7 @@ class TopicResponse extends BaseResponse
      * Check if the topic was successfully sent.
      *
      * @param $response
+     * @return void
      */
     private function parseSuccess($response)
     {
@@ -104,6 +105,7 @@ class TopicResponse extends BaseResponse
      * Parse the response of the request if topic couldn't be sent.
      *
      * @param $response
+     * @return void
      */
     private function parseError($response)
     {

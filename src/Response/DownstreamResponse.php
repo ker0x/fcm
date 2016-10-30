@@ -87,7 +87,7 @@ class DownstreamResponse extends BaseResponse
     }
 
     /**
-     * Getter for numberSuccess.
+     * Return the number of messages that were processed without an error.
      *
      * @return int
      */
@@ -97,7 +97,7 @@ class DownstreamResponse extends BaseResponse
     }
 
     /**
-     * Getter for numberFailure.
+     * Return the number of messages that could not be processed.
      *
      * @return int
      */
@@ -107,7 +107,7 @@ class DownstreamResponse extends BaseResponse
     }
 
     /**
-     * Getter for numberModify.
+     * Return the number of results that contain a canonical registration token.
      *
      * @return int
      */
@@ -129,7 +129,7 @@ class DownstreamResponse extends BaseResponse
     }
 
     /**
-     * Getter for targetsToModify.
+     * Return an array of tokens (key : old token, value : new token) that you should change in your database.
      *
      * @return array
      */
@@ -139,7 +139,7 @@ class DownstreamResponse extends BaseResponse
     }
 
     /**
-     * Getter for targetsToDelete.
+     * Return an array of tokens that you should remove in your database.
      *
      * @return array
      */
@@ -149,7 +149,7 @@ class DownstreamResponse extends BaseResponse
     }
 
     /**
-     * Getter for targetsToRetry.
+     * Return an array of tokens you should try to resend the message.
      *
      * @return array
      */
@@ -159,7 +159,7 @@ class DownstreamResponse extends BaseResponse
     }
 
     /**
-     * Getter for targetsWithError.
+     * Return an array of tokens that could not be processed with their error.
      *
      * @return array
      */
@@ -169,7 +169,7 @@ class DownstreamResponse extends BaseResponse
     }
 
     /**
-     * Getter for hasMissingToken.
+     * Return true if no tokens are provided.
      *
      * @return bool
      */

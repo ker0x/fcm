@@ -6,6 +6,10 @@ use Kerox\Fcm\Message\Notification;
 use Kerox\Fcm\Message\Options;
 use Kerox\Fcm\Message\Topics;
 
+/**
+ * Class Request
+ * @package Kerox\Fcm\Request
+ */
 class Request extends BaseRequest
 {
 

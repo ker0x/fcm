@@ -36,7 +36,7 @@ class GroupResponse extends BaseResponse
     }
 
     /**
-     * Getter for numberSuccess.
+     * Return the number of messages that were processed without an error.
      *
      * @return int
      */
@@ -46,7 +46,7 @@ class GroupResponse extends BaseResponse
     }
 
     /**
-     * Getter for numberFailure.
+     * Return the number of messages that could not be processed.
      *
      * @return int
      */
@@ -56,7 +56,7 @@ class GroupResponse extends BaseResponse
     }
 
     /**
-     * Getter for targetsFailed.
+     * Return a lists of registration tokens that failed to receive the message.
      *
      * @return array
      */

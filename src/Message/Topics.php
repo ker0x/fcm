@@ -3,6 +3,10 @@ namespace Kerox\Fcm\Message;
 
 use Kerox\Fcm\Message\Exception\InvalidTopicsException;
 
+/**
+ * Class Topics
+ * @package Kerox\Fcm\Message
+ */
 class Topics
 {
 

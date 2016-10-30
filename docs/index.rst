@@ -10,14 +10,14 @@ Contents:
 
 .. toctree::
    :caption: Getting Started
-   :maxdepth: 2
+   :maxdepth: 1
 
       Introduction <introduction>
       Installation <installation>
 
 .. toctree::
    :caption: Builder
-   :maxdepth: 2
+   :maxdepth: 1
 
       Notification Builder <builder/notification>
       Data Builder <builder/data>
@@ -26,14 +26,14 @@ Contents:
 
 .. toctree::
    :caption: Sender
-   :maxdepth: 2
+   :maxdepth: 1
 
       Fcm <sender/fcm>
       FcmGroup <sender/group>
 
 .. toctree::
    :caption: Response
-   :maxdepth: 2
+   :maxdepth: 1
 
       Downstream Response <response/downstream>
       Topic Response <response/topic>
@@ -41,7 +41,7 @@ Contents:
 
 .. toctree::
    :caption: Examples
-   :maxdepth: 2
+   :maxdepth: 1
 
       Basic Example <examples/basic>
       Advanced Example <examples/advanced>

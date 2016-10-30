@@ -1,6 +1,10 @@
 <?php
 namespace Kerox\Fcm\Request;
 
+/**
+ * Class GroupRequest
+ * @package Kerox\Fcm\Request
+ */
 class GroupRequest extends BaseRequest
 {
 
