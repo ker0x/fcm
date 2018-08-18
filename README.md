@@ -1,20 +1,17 @@
 [![Build](https://img.shields.io/travis/ker0x/fcm/master.svg?style=flat-square)](https://travis-ci.org/ker0x/fcm)
 [![Coverage](https://img.shields.io/coveralls/ker0x/fcm/master.svg?style=flat-square)](https://coveralls.io/github/ker0x/fcm)
 [![Code Quality](https://img.shields.io/scrutinizer/g/ker0x/fcm.svg?style=flat-square)](https://scrutinizer-ci.com/g/ker0x/fcm/)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.0-8892BF.svg?style=flat-square)](https://php.net)
 [![Total Downloads](https://img.shields.io/packagist/dt/kerox/fcm.svg?style=flat-square)](https://packagist.org/packages/ker0x/fcm)
 [![Latest Stable Version](https://img.shields.io/packagist/v/kerox/fcm.svg?style=flat-square)](https://packagist.org/packages/ker0x/fcm)
 [![Documentation Status](https://readthedocs.org/projects/fcm/badge/?version=latest&style=flat-square)](http://fcm.readthedocs.org/en/latest/?badge=latest)
 [![License](https://img.shields.io/packagist/l/kerox/fcm.svg?style=flat-square)](https://packagist.org/packages/ker0x/fcm)
 
-# FCM PHP library
+# PHP library for Firebase Cloud Messaging
 
 A PHP libray to send push notification with [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/)
 
 > Note: This is a portage as a standalone library, with some enhancements, of the great plugin [Laravel-FCM](https://github.com/brozot/Laravel-FCM) by [Nicolas Brosy](https://github.com/brozot)
-
-## Requirements
-
-* PHP >= 7.0
 
 ## Documentation
 
