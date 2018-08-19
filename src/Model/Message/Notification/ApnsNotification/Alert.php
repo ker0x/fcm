@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Kerox\Fcm\Model\Message\Notification\ApnsNotification;
 
 use Kerox\Fcm\Model\Message\AbstractNotification;

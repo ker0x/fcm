@@ -7,6 +7,7 @@ namespace Kerox\Fcm\Model;
 use Kerox\Fcm\Helper\ValidatorTrait;
 use Kerox\Fcm\Model\Message\Android;
 use Kerox\Fcm\Model\Message\Apns;
+use Kerox\Fcm\Model\Message\Notification;
 use Kerox\Fcm\Model\Message\Webpush;
 
 /**
@@ -22,7 +23,7 @@ class Message implements \JsonSerializable
     protected $data = [];
 
     /**
-     * @var string
+     * @var \Kerox\Fcm\Model\Message\Notification
      */
     protected $notification;
 
@@ -59,7 +60,7 @@ class Message implements \JsonSerializable
     /**
      * Message constructor.
      *
-     * @param \Kerox\Fcm\Model\Notification|string $message
+     * @param \Kerox\Fcm\Model\Message\Notification|string $message
      *
      * @throws \Exception
      */

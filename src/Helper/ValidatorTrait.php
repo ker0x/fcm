@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Kerox\Fcm\Helper;
 
 use InvalidArgumentException;
-use Kerox\Fcm\Model\Message;
 
 trait ValidatorTrait
 {

@@ -55,7 +55,7 @@ class ApnsNotification implements JsonSerializable
     {
         if (!\is_string($alert) && !$alert instanceof Alert) {
             throw new InvalidArgumentException(
-                sprintf('alert must be a string or an instance of %s', Alert::class)
+                sprintf('alert must be a string or an instance of %s.', Alert::class)
             );
         }
 
@@ -83,7 +83,7 @@ class ApnsNotification implements JsonSerializable
      */
     public function setBadge(bool $badge): self
     {
-        $this->badge = (int)$badge;
+        $this->badge = (int) $badge;
 
         return $this;
     }
@@ -95,7 +95,7 @@ class ApnsNotification implements JsonSerializable
      */
     public function setContentAvailable(bool $contentAvailable): self
     {
-        $this->contentAvailable = (int)$contentAvailable;
+        $this->contentAvailable = (int) $contentAvailable;
 
         return $this;
     }
@@ -142,7 +142,6 @@ class ApnsNotification implements JsonSerializable
     }
 
     /**
-     *
      * @return array
      */
     public function jsonSerialize(): array

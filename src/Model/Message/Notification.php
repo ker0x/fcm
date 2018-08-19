@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Kerox\Fcm\Model;
-
-use Kerox\Fcm\Model\Message\AbstractNotification;
+namespace Kerox\Fcm\Model\Message;
 
 /**
  * Class Notification.
@@ -24,7 +22,7 @@ class Notification extends AbstractNotification
     /**
      * @param string $body
      *
-     * @return \Kerox\Fcm\Model\Notification
+     * @return \Kerox\Fcm\Model\Message\Notification
      */
     public function setBody(string $body): self
     {

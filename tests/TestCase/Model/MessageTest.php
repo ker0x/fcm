@@ -6,12 +6,12 @@ use Kerox\Fcm\Model\Message;
 use Kerox\Fcm\Model\Message\Android;
 use Kerox\Fcm\Model\Message\Apns;
 use Kerox\Fcm\Model\Message\Condition;
+use Kerox\Fcm\Model\Message\Notification;
 use Kerox\Fcm\Model\Message\Notification\AndroidNotification;
 use Kerox\Fcm\Model\Message\Notification\ApnsNotification;
 use Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert;
 use Kerox\Fcm\Model\Message\Notification\WebpushNotification;
 use Kerox\Fcm\Model\Message\Webpush;
-use Kerox\Fcm\Model\Notification;
 use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
 class MessageTest extends AbstractTestCase
