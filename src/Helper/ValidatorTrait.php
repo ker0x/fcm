@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Kerox\Fcm\Helper;
 
 use InvalidArgumentException;
+use Kerox\Fcm\Model\Message;
 
 trait ValidatorTrait
 {
@@ -83,7 +84,7 @@ trait ValidatorTrait
     public function isValidTopicName(string $topic): void
     {
         if (!preg_match('/^[a-zA-Z0-9-_.~%]+$/', $topic)) {
-            throw new InvalidArgumentException('The topic name is invalid.');
+            throw new InvalidArgumentException(sprintf('%s is an invalid topic name.', $topic));
         }
     }
 }

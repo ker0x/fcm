@@ -5,7 +5,7 @@ namespace Kerox\Fcm\Test\TestCase;
 use Kerox\Fcm\Api\Send;
 use Kerox\Fcm\Fcm;
 
-class FcmTest extends \AbstractTest
+class FcmTest extends AbstractTestCase
 {
     /**
      * @var \Kerox\Fcm\Fcm

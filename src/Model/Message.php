@@ -16,17 +16,13 @@ class Message implements \JsonSerializable
 {
     use ValidatorTrait;
 
-    public const TARGET_TYPE_TOKEN = 'token';
-    public const TARGET_TYPE_TOPIC = 'topic';
-    public const TARGET_TYPE_CONDITION = 'condition';
-
     /**
      * @var array
      */
     protected $data = [];
 
     /**
-     * @var \Kerox\Fcm\Model\Notification|string
+     * @var string
      */
     protected $notification;
 
@@ -56,7 +52,7 @@ class Message implements \JsonSerializable
     protected $topic;
 
     /**
-     * @var \Kerox\Fcm\Model\Message\Condition
+     * @var null|string
      */
     protected $condition;
 
@@ -69,17 +65,17 @@ class Message implements \JsonSerializable
      */
     public function __construct($message)
     {
-        if (\is_string($message)) {
-            $notification = new Notification($message);
-        } elseif ($message instanceof Notification) {
-            $notification = $message;
-        } else {
+        if (!\is_string($message) && !$message instanceof Notification) {
             throw new \InvalidArgumentException(
                 sprintf('$message must be a string or an instance of %s.', Notification::class)
             );
         }
 
-        $this->notification = $notification;
+        if (\is_string($message)) {
+            $message = new Notification($message);
+        }
+
+        $this->notification = $message;
     }
 
     /**
@@ -128,27 +124,6 @@ class Message implements \JsonSerializable
     public function setApns(Apns $apns): self
     {
         $this->apns = $apns;
-
-        return $this;
-    }
-
-    /**
-     * @param string|\Kerox\Fcm\Model\Message\Condition $target
-     * @param string                                    $type
-     *
-     * @return \Kerox\Fcm\Model\Message
-     */
-    public function setTarget($target, string $type = self::TARGET_TYPE_TOKEN): self
-    {
-        $this->token = $this->topic = $this->condition = null;
-
-        if ($type === self::TARGET_TYPE_TOKEN) {
-            $this->token = $target;
-        } elseif ($type === self::TARGET_TYPE_TOPIC) {
-            $this->topic = $target;
-        } elseif ($type === self::TARGET_TYPE_CONDITION) {
-            $this->condition = $target;
-        }
 
         return $this;
     }

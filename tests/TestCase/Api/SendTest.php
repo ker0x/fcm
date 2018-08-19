@@ -43,10 +43,6 @@ class SendTest extends AbstractTestCase
 
     public function setUp()
     {
-        $this->oauthToken = getenv('OAUTH_TOKEN');
-        $this->projectId = getenv('PROJECT_ID');
-        $this->token = getenv('TOKEN');
-
         $bodyResponse = file_get_contents(__DIR__ . '/../../Mocks/Response/Send/basic.json');
         $mockedResponse = new MockHandler([
             new Response(200, [], $bodyResponse),
@@ -62,108 +58,12 @@ class SendTest extends AbstractTestCase
 
     public function testSendMessage()
     {
-        $message = $this->getMessage();
+        $message = new Message('Breaking News');
+        $message->setToken('4321dcba');
 
         $response = $this->sendApi->message($message, true);
-    }
 
-    private function getMessage()
-    {
-        $notification = (new Notification('Breaking News'))->setBody('New news story available.');
-
-        $message = new Message($notification);
-        $message->setData(['story_id' => 'story_12345']);
-        $message->setAndroid(
-            (new Android())
-                ->setCollapseKey('collapse_key')
-                ->setPriority(Android::PRIORITY_NORMAL)
-                ->setTtl('3.000000001s')
-                ->setRestrictedPackageName('fcm')
-                ->setData(['story_id' => 'story_12345'])
-                ->setNotification(
-                    (new AndroidNotification)
-                        ->setTitle('New Breaking')
-                        ->setBody('Check out the Top Story')
-                        ->setIcon('icon')
-                        ->setColor('#FFFFFF')
-                        ->setSound('sound')
-                        ->setTag('tag')
-                        ->setClickAction('TOP_STORY_ACTIVITY')
-                        ->setBodyLocKey('body_loc_key')
-                        ->setBodyLocArgs('body_loc_args')
-                        ->setTitleLocKey('title_loc_key')
-                        ->setTitleLocArgs('title_loc_args')
-                )
-        );
-        $message->setWebpush(
-            (new Webpush())
-                ->setHeaders([
-                    'name' => 'wrench',
-                    'mass' => '1.3kg',
-                    'count' => '3',
-                ])
-                ->setData([
-                    'name' => 'wrench',
-                    'mass' => '1.3kg',
-                    'count' => '3',
-                ])
-                ->setNotification(
-                    (new WebpushNotification())
-                        ->setTitle('New Breaking')
-                        ->setBody('Check out the Top Story')
-                        ->setPermission(WebpushNotification::PERMISSION_GRANTED)
-                        ->setActions(['action 1'])
-                        ->setBadge('https://example.com/badge')
-                        ->setData([
-                            'name' => 'wrench',
-                            'mass' => '1.3kg',
-                            'count' => '3',
-                        ])
-                        ->setDir(WebpushNotification::DIR_LTR)
-                        ->setLang('fr-FR')
-                        ->setTag('tag')
-                        ->setIcon('https://example.com/icon')
-                        ->setImage('https://example.com/image')
-                        ->setRenotify(false)
-                        ->setRequireInteraction(false)
-                        ->setSilent(true)
-                        ->setTimestamp(new \DateTime())
-                        ->setVibrate([200, 300, 200])
-                        ->setSticky(true)
-                )
-                ->setFcmOptions([
-                    'link' => 'https://example.com'
-                ])
-        );
-        $message->setApns(
-            (new Apns())
-                ->setHeaders([
-                    'name' => 'wrench',
-                    'mass' => '1.3kg',
-                    'count' => '3',
-                ])
-                ->setPayload(
-                    (new ApnsNotification())
-                        ->setAlert(
-                            (new Alert())
-                                ->setTitle('New Breaking')
-                                ->setBody('Check out the Top Story')
-                                ->setTitleLocKey('title-loc-key')
-                                ->setTitleLocArgs(['title-loc-args'])
-                                ->setActionLocKey('action-loc-key')
-                                ->setLocKey('loc-key')
-                                ->setLocArgs(['loc-key'])
-                                ->setLaunchImage('launch-image.jpg')
-                        )
-                        ->setBadge(true)
-                        ->setSound('sound')
-                        ->setContentAvailable(true)
-                        ->setCategory('category')
-                        ->setThreadId('thread-id')
-                )
-        );
-        $message->setCondition((new Condition)->and('Topic A', function () {
-            return (new Condition)->or('Topic B', 'Topic C');
-        }));
+        $this->assertEquals('projects/myproject-b5ae1/messages/0:1500415314455276%31bd1c9631bd1c96', $response->getName());
+        $this->assertEquals('0:1500415314455276%31bd1c9631bd1c96', $response->getMessageId());
     }
 }

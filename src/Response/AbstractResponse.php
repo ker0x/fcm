@@ -25,7 +25,7 @@ abstract class AbstractResponse
     {
         $this->response = $response;
 
-        $this->parseResponse(json_decode($response->getBody(), true));
+        $this->parseResponse(json_decode($response->getBody()->__toString(), true));
     }
 
     /**

@@ -17,7 +17,7 @@ class ApnsNotification implements JsonSerializable
     use UtilityTrait;
 
     /**
-     * @var null|string
+     * @var null|string|\Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert
      */
     protected $alert;
 
