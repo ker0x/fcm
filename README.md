@@ -42,7 +42,30 @@ You will then need to:
 * run `composer install` to get these dependencies added to your vendor directory
 * add the autoloader to your application with this line: `require('vendor/autoload.php');`
 
+## Basic usage
+
+```php
+use Kerox\Fcm\Api\Send;
+use Kerox\Fcm\Model\Message;
+use Kerox\Fcm\Model\Message\Notification;
+
+// Create a notification
+$notification = new Notification('Hello World');
+$notification->setBody('My awesome Hello World!');
+
+// Create the message
+$message = new Message($notification);
+$message->setData([
+    'data-1' => 'Lorem ipsum',
+    'data-2' => '1234',
+    'data-3' => 'true'
+]);
+$message->setToken('1');
+
+// Send the message and get the response
+$response = $fcm->send()->message($message);
+```
 
 ## Documentation
 
-The documentation is available [here](http://fcm.readthedocs.org/en/latest/)
+The documentation is available [here](https://github.com/ker0x/fcm/wiki)
