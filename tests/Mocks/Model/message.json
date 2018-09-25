@@ -1,0 +1,110 @@
+{
+  "data": {
+    "story_id": "story_12345"
+  },
+  "notification": {
+    "title": "Breaking News",
+    "body": "New news story available."
+  },
+  "android": {
+    "collapse_key": "collapse_key",
+    "priority": "normal",
+    "ttl": "3.000000001s",
+    "restricted_package_name": "fcm",
+    "data": {
+      "story_id": "story_12345"
+    },
+    "notification": {
+      "title": "New Breaking",
+      "body": "Check out the Top Story",
+      "icon": "icon",
+      "color": "#FFFFFF",
+      "sound": "sound",
+      "tag": "tag",
+      "click_action": "TOP_STORY_ACTIVITY",
+      "body_loc_key": "body_loc_key",
+      "body_loc_args": [
+        "body_loc_args"
+      ],
+      "title_loc_key": "title_loc_key",
+      "title_loc_args": [
+        "title_loc_args"
+      ]
+    }
+  },
+  "webpush": {
+    "headers": {
+      "name": "wrench",
+      "mass": "1.3kg",
+      "count": "3"
+    },
+    "data": {
+      "name": "wrench",
+      "mass": "1.3kg",
+      "count": "3"
+    },
+    "notification": {
+      "title": "New Breaking",
+      "body": "Check out the Top Story",
+      "permission": "granted",
+      "actions": [
+        "action 1"
+      ],
+      "badge": "https://example.com/badge",
+      "data": {
+        "name": "wrench",
+        "mass": "1.3kg",
+        "count": "3"
+      },
+      "dir": "ltr",
+      "lang": "fr-FR",
+      "tag": "tag",
+      "icon": "https://example.com/icon",
+      "image": "https://example.com/image",
+      "renotify": true,
+      "requireInteraction": true,
+      "silent": true,
+      "timestamp": 1534377600,
+      "vibrate": [
+        300,
+        200,
+        300
+      ],
+      "sticky": true
+    },
+    "fcm_options": {
+      "link": "https://example.com"
+    }
+  },
+  "apns": {
+    "headers": {
+      "name": "wrench",
+      "mass": "1.3kg",
+      "count": "3"
+    },
+    "payload": {
+      "aps": {
+        "alert": {
+          "title": "New Breaking",
+          "body": "Check out the Top Story",
+          "title-loc-key": "title-loc-key",
+          "title-loc-args": [
+            "title-loc-args"
+          ],
+          "action-loc-key": "action-loc-key",
+          "loc-key": "loc-key",
+          "loc-args": [
+            "loc-args"
+          ],
+          "launch-image": "launch-image.jpg"
+        },
+        "sound": "sound",
+        "badge": 1,
+        "content-available": 1,
+        "category": "category",
+        "thread-id": "thread-id"
+      }
+    }
+  },
+  "condition": "'TopicA' in topics && ('TopicB' in topics || 'TopicC' in topics)"
+}

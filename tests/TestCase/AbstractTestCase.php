@@ -1,9 +1,9 @@
 <?php
 namespace Kerox\Fcm\Test\TestCase;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class AbstractTestCase extends PHPUnit_Framework_TestCase
+class AbstractTestCase extends TestCase
 {
     //
 }
