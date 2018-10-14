@@ -21,7 +21,7 @@ class Send extends AbstractApi
      */
     public function message(Message $message, bool $validateOnly = false): SendResponse
     {
-        $uri = sprintf('projects/%s/messages:send', $this->projectId);
+        $uri = sprintf('%s/messages:send', $this->projectId);
 
         $request = new SendRequest($this->oauthToken, $message, $validateOnly);
         $response = $this->client->post($uri, $request->build());
