@@ -12,47 +12,47 @@ use Kerox\Fcm\Model\Message\AbstractNotification;
 class AndroidNotification extends AbstractNotification
 {
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $icon;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $color;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $sound;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $tag;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $clickAction;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $bodyLocKey;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $bodyLocArgs;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $titleLocKey;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $titleLocArgs;
 

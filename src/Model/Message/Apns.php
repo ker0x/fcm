@@ -17,7 +17,7 @@ class Apns implements \JsonSerializable
     protected $headers = [];
 
     /**
-     * @var null|\Kerox\Fcm\Model\Message\Notification\ApnsNotification
+     * @var \Kerox\Fcm\Model\Message\Notification\ApnsNotification|null
      */
     protected $payload;
 

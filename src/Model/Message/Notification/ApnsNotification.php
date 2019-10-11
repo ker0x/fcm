@@ -17,32 +17,32 @@ class ApnsNotification implements JsonSerializable
     use UtilityTrait;
 
     /**
-     * @var null|string|\Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert
+     * @var string|\Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert|null
      */
     protected $alert;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $sound;
 
     /**
-     * @var null|string
+     * @var int|null
      */
     protected $badge = 1;
 
     /**
-     * @var null|string
+     * @var int|null
      */
     protected $contentAvailable = 0;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $category;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $threadId;
 
@@ -53,7 +53,11 @@ class ApnsNotification implements JsonSerializable
      */
     public function setAlert($alert): self
     {
-        if (!\is_string($alert) && !$alert instanceof Alert) {
+        if (\is_string($alert)) {
+            $alert = (new Alert())->setBody($alert);
+        }
+
+        if (!$alert instanceof Alert) {
             throw new InvalidArgumentException(
                 sprintf('alert must be a string or an instance of %s.', Alert::class)
             );
@@ -65,7 +69,7 @@ class ApnsNotification implements JsonSerializable
     }
 
     /**
-     * @param mixed $sound
+     * @param string $sound
      *
      * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification
      */

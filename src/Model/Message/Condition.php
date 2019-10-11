@@ -49,7 +49,7 @@ class Condition
     }
 
     /**
-     * @param $topic
+     * @param mixed $topic
      *
      * @return string
      */

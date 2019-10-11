@@ -12,7 +12,7 @@ use Kerox\Fcm\Model\Message\AbstractNotification;
 class Alert extends AbstractNotification
 {
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $titleLocKey;
 
@@ -22,12 +22,12 @@ class Alert extends AbstractNotification
     protected $titleLocArgs = [];
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $actionLocKey;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $locKey;
 
@@ -37,7 +37,7 @@ class Alert extends AbstractNotification
     protected $locArgs = [];
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $launchImage;
 
@@ -66,7 +66,7 @@ class Alert extends AbstractNotification
     }
 
     /**
-     * @param mixed $titleLocKey
+     * @param string $titleLocKey
      *
      * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert
      */

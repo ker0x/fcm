@@ -9,8 +9,8 @@ trait UtilityTrait
     /**
      * Enhanced version of array_filter which allow to filter recursively.
      *
-     * @param array          $array
-     * @param callable|array $callback
+     * @param array $array
+     * @param mixed $callback
      *
      * @return array
      */

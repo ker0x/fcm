@@ -33,22 +33,22 @@ class SendResponse extends AbstractResponse
     ];
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $name;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $errorCode;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $errorMessage;
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -56,14 +56,14 @@ class SendResponse extends AbstractResponse
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getMessageId(): ?string
     {
         if ($this->name !== null) {
             $parts = explode('/', $this->name);
 
-            return end($parts);
+            return end($parts) ?: null;
         }
 
         return null;
@@ -78,7 +78,7 @@ class SendResponse extends AbstractResponse
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getErrorCode(): ?string
     {
@@ -86,7 +86,7 @@ class SendResponse extends AbstractResponse
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getErrorMessage(): ?string
     {
