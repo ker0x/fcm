@@ -12,12 +12,12 @@ use JsonSerializable;
 abstract class AbstractNotification implements NotificationInterface, JsonSerializable
 {
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $title;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $body;
 

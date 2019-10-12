@@ -30,7 +30,7 @@ class WebpushNotification extends AbstractNotification
     protected $actions = [];
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $badge;
 
@@ -45,22 +45,22 @@ class WebpushNotification extends AbstractNotification
     protected $dir = self::DIR_AUTO;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $lang;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $tag;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $icon;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $image;
 
@@ -80,7 +80,7 @@ class WebpushNotification extends AbstractNotification
     protected $silent = false;
 
     /**
-     * @var null|int
+     * @var int|null
      */
     protected $timestamp;
 

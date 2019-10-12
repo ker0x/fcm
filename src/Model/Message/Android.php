@@ -15,7 +15,7 @@ class Android implements \JsonSerializable
     public const PRIORITY_HIGH = 'high';
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $collapseKey;
 
@@ -25,12 +25,12 @@ class Android implements \JsonSerializable
     protected $priority = self::PRIORITY_NORMAL;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $ttl;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $restrictedPackageName;
 
@@ -40,7 +40,7 @@ class Android implements \JsonSerializable
     protected $data = [];
 
     /**
-     * @var null|\Kerox\Fcm\Model\Message\Notification\AndroidNotification
+     * @var \Kerox\Fcm\Model\Message\Notification\AndroidNotification|null
      */
     protected $notification;
 

@@ -43,17 +43,17 @@ class Message implements \JsonSerializable
     protected $apns;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $token;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $topic;
 
     /**
-     * @var null|string
+     * @var string|null
      */
     protected $condition;
 
@@ -66,14 +66,14 @@ class Message implements \JsonSerializable
      */
     public function __construct($message)
     {
-        if (!\is_string($message) && !$message instanceof Notification) {
+        if (\is_string($message)) {
+            $message = new Notification($message);
+        }
+
+        if (!$message instanceof Notification) {
             throw new \InvalidArgumentException(
                 sprintf('$message must be a string or an instance of %s.', Notification::class)
             );
-        }
-
-        if (\is_string($message)) {
-            $message = new Notification($message);
         }
 
         $this->notification = $message;
