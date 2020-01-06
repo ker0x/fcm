@@ -28,10 +28,6 @@ abstract class AbstractApi
 
     /**
      * AbstractApi constructor.
-     *
-     * @param string                      $oauthToken
-     * @param string                      $projectId
-     * @param \GuzzleHttp\ClientInterface $client
      */
     public function __construct(string $oauthToken, string $projectId, ClientInterface $client)
     {

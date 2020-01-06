@@ -13,12 +13,6 @@ use Kerox\Fcm\Response\SendResponse;
  */
 class Send extends AbstractApi
 {
-    /**
-     * @param \Kerox\Fcm\Model\Message $message
-     * @param bool                     $validateOnly
-     *
-     * @return \Kerox\Fcm\Response\SendResponse
-     */
     public function message(Message $message, bool $validateOnly = false): SendResponse
     {
         $uri = sprintf('%s/messages:send', $this->projectId);

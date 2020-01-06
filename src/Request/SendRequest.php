@@ -23,10 +23,6 @@ class SendRequest extends AbstractRequest
 
     /**
      * SendRequest constructor.
-     *
-     * @param string                   $oauthToken
-     * @param \Kerox\Fcm\Model\Message $message
-     * @param bool                     $validateOnly
      */
     public function __construct(string $oauthToken, Message $message, bool $validateOnly)
     {
@@ -38,8 +34,6 @@ class SendRequest extends AbstractRequest
 
     /**
      * Build the body of the request.
-     *
-     * @return array
      */
     protected function buildBody(): array
     {

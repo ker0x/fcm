@@ -95,8 +95,6 @@ class WebpushNotification extends AbstractNotification
     protected $sticky = false;
 
     /**
-     * @param string $title
-     *
      * @return \Kerox\Fcm\Model\Message\Notification\WebpushNotification
      */
     public function setTitle(string $title): self
@@ -107,8 +105,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param string $body
-     *
      * @return \Kerox\Fcm\Model\Message\Notification\WebpushNotification
      */
     public function setBody(string $body): self
@@ -119,8 +115,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param string $permission
-     *
      * @return WebpushNotification
      */
     public function setPermission(string $permission): self
@@ -131,8 +125,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param array $actions
-     *
      * @return WebpushNotification
      */
     public function setActions(array $actions): self
@@ -143,8 +135,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param string $badge
-     *
      * @return WebpushNotification
      */
     public function setBadge(string $badge): self
@@ -169,8 +159,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param string $dir
-     *
      * @return WebpushNotification
      */
     public function setDir(string $dir): self
@@ -181,8 +169,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param string $lang
-     *
      * @return WebpushNotification
      */
     public function setLang(string $lang): self
@@ -195,8 +181,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param string $tag
-     *
      * @return WebpushNotification
      */
     public function setTag(string $tag): self
@@ -207,8 +191,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param string $icon
-     *
      * @return WebpushNotification
      */
     public function setIcon(string $icon): self
@@ -221,8 +203,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param string $image
-     *
      * @return WebpushNotification
      */
     public function setImage(string $image): self
@@ -235,8 +215,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param bool $renotify
-     *
      * @return WebpushNotification
      */
     public function setRenotify(bool $renotify): self
@@ -247,8 +225,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param bool $requireInteraction
-     *
      * @return WebpushNotification
      */
     public function setRequireInteraction(bool $requireInteraction): self
@@ -259,8 +235,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param bool $silent
-     *
      * @return WebpushNotification
      */
     public function setSilent(bool $silent): self
@@ -271,8 +245,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param \DateTime $dateTime
-     *
      * @return WebpushNotification
      */
     public function setTimestamp(\DateTime $dateTime): self
@@ -283,8 +255,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param array $vibratePattern
-     *
      * @return WebpushNotification
      */
     public function setVibrate(array $vibratePattern): self
@@ -297,8 +267,6 @@ class WebpushNotification extends AbstractNotification
     }
 
     /**
-     * @param bool $sticky
-     *
      * @return WebpushNotification
      */
     public function setSticky(bool $sticky): self
@@ -308,9 +276,6 @@ class WebpushNotification extends AbstractNotification
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         $array = parent::toArray();

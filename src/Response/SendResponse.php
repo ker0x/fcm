@@ -35,29 +35,23 @@ class SendResponse extends AbstractResponse
     /**
      * @var string|null
      */
-    protected $name;
+    private $name;
 
     /**
      * @var string|null
      */
-    protected $errorCode;
+    private $errorCode;
 
     /**
      * @var string|null
      */
-    protected $errorMessage;
+    private $errorMessage;
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMessageId(): ?string
     {
         if ($this->name !== null) {
@@ -69,25 +63,16 @@ class SendResponse extends AbstractResponse
         return null;
     }
 
-    /**
-     * @return bool
-     */
     public function hasError(): bool
     {
         return $this->errorCode !== null;
     }
 
-    /**
-     * @return string|null
-     */
     public function getErrorCode(): ?string
     {
         return $this->errorCode;
     }
 
-    /**
-     * @return string|null
-     */
     public function getErrorMessage(): ?string
     {
         return $this->errorMessage;
@@ -95,8 +80,6 @@ class SendResponse extends AbstractResponse
 
     /**
      * Parse the response.
-     *
-     * @param array $response
      *
      * @return mixed
      */

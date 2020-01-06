@@ -6,6 +6,7 @@ namespace Kerox\Fcm\Model\Message;
 
 use Kerox\Fcm\Helper\ValidatorTrait;
 use Kerox\Fcm\Model\Message\Notification\WebpushNotification;
+use Kerox\Fcm\Model\Message\Options\WebpushOptions;
 
 class Webpush implements \JsonSerializable
 {
@@ -14,27 +15,25 @@ class Webpush implements \JsonSerializable
     /**
      * @var array
      */
-    protected $headers = [];
+    private $headers = [];
 
     /**
      * @var array
      */
-    protected $data = [];
+    private $data = [];
 
     /**
      * @var \Kerox\Fcm\Model\Message\Notification\WebpushNotification
      */
-    protected $notification;
+    private $notification;
 
     /**
-     * @var array
+     * @var \Kerox\Fcm\Model\Message\Options\WebpushOptions|null
      */
-    protected $fcmOptions = [];
+    private $options;
 
     /**
-     * @param array $headers
-     *
-     * @return Webpush
+     * @return \Kerox\Fcm\Model\Message\Webpush
      */
     public function setHeaders(array $headers): self
     {
@@ -46,9 +45,7 @@ class Webpush implements \JsonSerializable
     }
 
     /**
-     * @param array $data
-     *
-     * @return Webpush
+     * @return \Kerox\Fcm\Model\Message\Webpush
      */
     public function setData(array $data): self
     {
@@ -60,9 +57,7 @@ class Webpush implements \JsonSerializable
     }
 
     /**
-     * @param \Kerox\Fcm\Model\Message\Notification\WebpushNotification $notification
-     *
-     * @return Webpush
+     * @return \Kerox\Fcm\Model\Message\Webpush
      */
     public function setNotification(WebpushNotification $notification): self
     {
@@ -72,35 +67,38 @@ class Webpush implements \JsonSerializable
     }
 
     /**
-     * @param array $fcmOptions
+     * @param \Kerox\Fcm\Model\Message\Options\WebpushOptions|array $options
      *
-     * @return Webpush
+     * @return \Kerox\Fcm\Model\Message\Webpush
      */
-    public function setFcmOptions(array $fcmOptions): self
+    public function setOptions($options): self
     {
-        $this->fcmOptions = $fcmOptions;
+        if (\is_array($options)) {
+            trigger_error(sprintf(
+                'Using array to set options is deprecated since version 2.1 and will be remove in version 3.0, use class %s instead.',
+                WebpushOptions::class
+            ), \E_USER_WARNING);
+
+            $options = WebpushOptions::fromArray($options);
+        }
+
+        $this->options = $options;
 
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         $array = [
             'headers' => $this->headers,
             'data' => $this->data,
             'notification' => $this->notification,
-            'fcm_options' => $this->fcmOptions,
+            'fcm_options' => $this->options,
         ];
 
         return array_filter($array);
     }
 
-    /**
-     * @return array
-     */
     public function jsonSerialize(): array
     {
         return $this->toArray();

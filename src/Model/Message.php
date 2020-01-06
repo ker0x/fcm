@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Kerox\Fcm\Model;
 
+use Kerox\Fcm\Helper\UtilityTrait;
 use Kerox\Fcm\Helper\ValidatorTrait;
 use Kerox\Fcm\Model\Message\Android;
 use Kerox\Fcm\Model\Message\Apns;
 use Kerox\Fcm\Model\Message\Notification;
+use Kerox\Fcm\Model\Message\Options;
 use Kerox\Fcm\Model\Message\Webpush;
 
 /**
@@ -15,37 +17,48 @@ use Kerox\Fcm\Model\Message\Webpush;
  */
 class Message implements \JsonSerializable
 {
+    use UtilityTrait;
     use ValidatorTrait;
-
-    /**
-     * @var array
-     */
-    protected $data = [];
-
-    /**
-     * @var \Kerox\Fcm\Model\Message\Notification
-     */
-    protected $notification;
-
-    /**
-     * @var \Kerox\Fcm\Model\Message\Android
-     */
-    protected $android;
-
-    /**
-     * @var \Kerox\Fcm\Model\Message\Webpush
-     */
-    protected $webpush;
-
-    /**
-     * @var \Kerox\Fcm\Model\Message\Apns
-     */
-    protected $apns;
 
     /**
      * @var string|null
      */
-    protected $token;
+    private $name;
+
+    /**
+     * @var array
+     */
+    private $data = [];
+
+    /**
+     * @var \Kerox\Fcm\Model\Message\Notification
+     */
+    private $notification;
+
+    /**
+     * @var \Kerox\Fcm\Model\Message\Android
+     */
+    private $android;
+
+    /**
+     * @var \Kerox\Fcm\Model\Message\Webpush
+     */
+    private $webpush;
+
+    /**
+     * @var \Kerox\Fcm\Model\Message\Apns
+     */
+    private $apns;
+
+    /**
+     * @var string|null
+     */
+    private $token;
+
+    /**
+     * @var \Kerox\Fcm\Model\Message\Options|null
+     */
+    private $options;
 
     /**
      * @var string|null
@@ -71,17 +84,20 @@ class Message implements \JsonSerializable
         }
 
         if (!$message instanceof Notification) {
-            throw new \InvalidArgumentException(
-                sprintf('$message must be a string or an instance of %s.', Notification::class)
-            );
+            throw new \InvalidArgumentException(sprintf('$message must be a string or an instance of %s.', Notification::class));
         }
 
         $this->notification = $message;
     }
 
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
     /**
-     * @param array $data
-     *
      * @return \Kerox\Fcm\Model\Message
      */
     public function setData(array $data): self
@@ -94,8 +110,6 @@ class Message implements \JsonSerializable
     }
 
     /**
-     * @param \Kerox\Fcm\Model\Message\Android $android
-     *
      * @return \Kerox\Fcm\Model\Message
      */
     public function setAndroid(Android $android): self
@@ -106,8 +120,6 @@ class Message implements \JsonSerializable
     }
 
     /**
-     * @param \Kerox\Fcm\Model\Message\Webpush $webpush
-     *
      * @return \Kerox\Fcm\Model\Message
      */
     public function setWebpush(Webpush $webpush): self
@@ -118,8 +130,6 @@ class Message implements \JsonSerializable
     }
 
     /**
-     * @param \Kerox\Fcm\Model\Message\Apns $apns
-     *
      * @return \Kerox\Fcm\Model\Message
      */
     public function setApns(Apns $apns): self
@@ -129,9 +139,14 @@ class Message implements \JsonSerializable
         return $this;
     }
 
+    public function setOptions(Options $options): self
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+
     /**
-     * @param string $token
-     *
      * @return \Kerox\Fcm\Model\Message
      */
     public function setToken(string $token): self
@@ -143,8 +158,6 @@ class Message implements \JsonSerializable
     }
 
     /**
-     * @param string $topic
-     *
      * @return \Kerox\Fcm\Model\Message
      */
     public function setTopic(string $topic): self
@@ -158,8 +171,6 @@ class Message implements \JsonSerializable
     }
 
     /**
-     * @param string $condition
-     *
      * @return \Kerox\Fcm\Model\Message
      */
     public function setCondition(string $condition): self
@@ -170,17 +181,16 @@ class Message implements \JsonSerializable
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         $array = [
+            'name' => $this->name,
             'data' => $this->data,
             'notification' => $this->notification,
             'android' => $this->android,
             'webpush' => $this->webpush,
             'apns' => $this->apns,
+            'fcm_options' => $this->options,
             'token' => $this->token,
             'topic' => $this->topic,
             'condition' => $this->condition,
@@ -189,9 +199,6 @@ class Message implements \JsonSerializable
         return array_filter($array);
     }
 
-    /**
-     * @return array
-     */
     public function jsonSerialize(): array
     {
         return $this->toArray();

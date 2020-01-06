@@ -18,8 +18,6 @@ abstract class AbstractResponse
 
     /**
      * BaseResponse constructor.
-     *
-     * @param \Psr\Http\Message\ResponseInterface $response
      */
     public function __construct(ResponseInterface $response)
     {
@@ -31,15 +29,10 @@ abstract class AbstractResponse
     /**
      * Parse the response.
      *
-     * @param array $response
-     *
      * @return mixed
      */
     abstract protected function parseResponse(array $response);
 
-    /**
-     * @return \Psr\Http\Message\ResponseInterface
-     */
     public function getResponse(): ResponseInterface
     {
         return $this->response;

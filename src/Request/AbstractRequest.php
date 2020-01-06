@@ -16,8 +16,6 @@ abstract class AbstractRequest
 
     /**
      * BaseRequest constructor.
-     *
-     * @param string $oauthToken
      */
     public function __construct(string $oauthToken)
     {
@@ -26,8 +24,6 @@ abstract class AbstractRequest
 
     /**
      * Build the header for the request.
-     *
-     * @return array
      */
     protected function buildHeaders(): array
     {
@@ -48,8 +44,6 @@ abstract class AbstractRequest
 
     /**
      * Return the request in array.
-     *
-     * @return array
      */
     public function build(): array
     {

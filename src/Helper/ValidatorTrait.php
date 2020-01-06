@@ -9,8 +9,6 @@ use InvalidArgumentException;
 trait ValidatorTrait
 {
     /**
-     * @param array $data
-     *
      * @throws \InvalidArgumentException
      */
     public function isValidData(array $data): void
@@ -23,8 +21,6 @@ trait ValidatorTrait
     }
 
     /**
-     * @param string $ttl
-     *
      * @throws \InvalidArgumentException
      */
     public function isValidTtl(string $ttl): void
@@ -35,8 +31,6 @@ trait ValidatorTrait
     }
 
     /**
-     * @param string $lang
-     *
      * @throws \InvalidArgumentException
      */
     public function isValidLang(string $lang): void
@@ -47,8 +41,6 @@ trait ValidatorTrait
     }
 
     /**
-     * @param array $vibratePattern
-     *
      * @throws \InvalidArgumentException
      */
     public function isValidVibratePattern(array $vibratePattern): void
@@ -61,8 +53,6 @@ trait ValidatorTrait
     }
 
     /**
-     * @param string $url
-     *
      * @throws \InvalidArgumentException
      */
     protected function isValidUrl(string $url): void
@@ -76,8 +66,6 @@ trait ValidatorTrait
     }
 
     /**
-     * @param string $topic
-     *
      * @throws \InvalidArgumentException
      */
     public function isValidTopicName(string $topic): void

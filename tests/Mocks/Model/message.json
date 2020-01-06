@@ -29,7 +29,40 @@
       "title_loc_key": "title_loc_key",
       "title_loc_args": [
         "title_loc_args"
-      ]
+      ],
+      "channel_id": "1234",
+      "ticker": "ticker",
+      "sticky": true,
+      "event_time": "2019-10-12T19:00:00.012345678Z",
+      "local_only": true,
+      "notification_priority": "PRIORITY_HIGH",
+      "default_sound": true,
+      "default_vibrate_timings": true,
+      "default_light_settings": true,
+      "vibrate_timings": [
+        "1.0s",
+        "1.5s",
+        "2.0s",
+        "2.5s",
+        "3.0s",
+        "3.5s"
+      ],
+      "visibility": "PUBLIC",
+      "notification_count": 1,
+      "light_settings": {
+        "color": {
+          "red": 0.1,
+          "green": 0.2,
+          "blue": 0.3,
+          "alpha": 0.4
+        },
+        "light_on_duration": "3.5s",
+        "light_off_duration": "3.5s"
+      },
+      "image": "https://example.com/image.jpg"
+    },
+    "fcm_options": {
+      "analytics_label": "android"
     }
   },
   "webpush": {
@@ -73,6 +106,7 @@
       "sticky": true
     },
     "fcm_options": {
+      "analytics_label": "webpush",
       "link": "https://example.com"
     }
   },
@@ -85,26 +119,44 @@
     "payload": {
       "aps": {
         "alert": {
-          "title": "New Breaking",
+          "title": "Breaking News",
           "body": "Check out the Top Story",
+          "subtitle": "Unbelievable",
+          "launch-image": "launch-image.jpg",
           "title-loc-key": "title-loc-key",
           "title-loc-args": [
             "title-loc-args"
           ],
-          "action-loc-key": "action-loc-key",
+          "subtitle-loc-key": "subtitle-loc-key",
+          "subtitle-loc-args": [
+            "subtitle-loc-args"
+          ],
           "loc-key": "loc-key",
           "loc-args": [
             "loc-args"
           ],
-          "launch-image": "launch-image.jpg"
+          "action-loc-key": "action-loc-key"
         },
-        "sound": "sound",
         "badge": 1,
-        "content-available": 1,
+        "sound": {
+          "critical": 1,
+          "name": "default",
+          "volume": 0.5
+        },
+        "thread-id": "thread-id",
         "category": "category",
-        "thread-id": "thread-id"
+        "content-available": 1,
+        "mutable-content": 1,
+        "target-content-id": "target-content-id"
       }
+    },
+    "fcm_options": {
+      "analytics_label": "apns",
+      "image": "https://example.com/image.jpg"
     }
+  },
+  "fcm_options": {
+    "analytics_label": "fcm"
   },
   "condition": "'TopicA' in topics && ('TopicB' in topics || 'TopicC' in topics)"
 }

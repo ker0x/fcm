@@ -9,8 +9,5 @@ namespace Kerox\Fcm\Model\Message;
  */
 interface NotificationInterface
 {
-    /**
-     * @param string $body
-     */
     public function setBody(string $body);
 }
