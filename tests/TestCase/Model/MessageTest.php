@@ -8,15 +8,22 @@ use Kerox\Fcm\Model\Message\Apns;
 use Kerox\Fcm\Model\Message\Condition;
 use Kerox\Fcm\Model\Message\Notification;
 use Kerox\Fcm\Model\Message\Notification\AndroidNotification;
+use Kerox\Fcm\Model\Message\Notification\AndroidNotification\Color;
+use Kerox\Fcm\Model\Message\Notification\AndroidNotification\LightSettings;
 use Kerox\Fcm\Model\Message\Notification\ApnsNotification;
 use Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert;
+use Kerox\Fcm\Model\Message\Notification\ApnsNotification\Sound;
 use Kerox\Fcm\Model\Message\Notification\WebpushNotification;
+use Kerox\Fcm\Model\Message\Options;
+use Kerox\Fcm\Model\Message\Options\AndroidOptions;
+use Kerox\Fcm\Model\Message\Options\ApnsOptions;
+use Kerox\Fcm\Model\Message\Options\WebpushOptions;
 use Kerox\Fcm\Model\Message\Webpush;
 use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 
 class MessageTest extends AbstractTestCase
 {
-    public function testMessage()
+    public function testMessage(): void
     {
         $expectedJson = file_get_contents(__DIR__ . '/../../Mocks/Model/message.json');
 
@@ -28,7 +35,9 @@ class MessageTest extends AbstractTestCase
                     ->setPriority(Android::PRIORITY_NORMAL)
                     ->setTtl('3.000000001s')
                     ->setRestrictedPackageName('fcm')
-                    ->setData(['story_id' => 'story_12345'])
+                    ->setData([
+                        'story_id' => 'story_12345',
+                    ])
                     ->setNotification(
                         (new AndroidNotification)
                             ->setTitle('New Breaking')
@@ -42,8 +51,40 @@ class MessageTest extends AbstractTestCase
                             ->setBodyLocArgs('body_loc_args')
                             ->setTitleLocKey('title_loc_key')
                             ->setTitleLocArgs('title_loc_args')
+                            ->setChannelId('1234')
+                            ->setTicker('ticker')
+                            ->setSticky(true)
+                            ->setEventTime('2019-10-12T19:00:00.012345678Z')
+                            ->setLocalOnly(true)
+                            ->setNotificationPriority(AndroidNotification::PRIORITY_HIGH)
+                            ->setDefaultSound(true)
+                            ->setDefaultVibrateTimings(true)
+                            ->setDefaultLightSettings(true)
+                            ->setVibrateTimings([
+                                '1.0s',
+                                '1.5s',
+                                '2.0s',
+                                '2.5s',
+                                '3.0s',
+                                '3.5s',
+                            ])
+                            ->setVisibility(AndroidNotification::VISIBILITY_PUBLIC)
+                            ->setNotificationCount(1)
+                            ->setLightSettings(
+                                new LightSettings(
+                                    new Color(0.1, 0.2, 0.3, 0.4),
+                                    '3.5s',
+                                    '3.5s'
+                                )
+                            )
+                            ->setImage('https://example.com/image.jpg')
                     )
-            )->setWebpush(
+                    ->setOptions(
+                        (new AndroidOptions())
+                            ->setAnalyticsLabel('android')
+                    )
+            )
+            ->setWebpush(
                 (new Webpush())
                     ->setHeaders([
                         'name' => 'wrench',
@@ -60,7 +101,9 @@ class MessageTest extends AbstractTestCase
                             ->setTitle('New Breaking')
                             ->setBody('Check out the Top Story')
                             ->setPermission(WebpushNotification::PERMISSION_GRANTED)
-                            ->setActions(['action 1'])
+                            ->setActions([
+                                'action 1',
+                            ])
                             ->setBadge('https://example.com/badge')
                             ->setData([
                                 'name' => 'wrench',
@@ -76,13 +119,20 @@ class MessageTest extends AbstractTestCase
                             ->setRequireInteraction(true)
                             ->setSilent(true)
                             ->setTimestamp(new \DateTime('2018-08-16 00:00:00'))
-                            ->setVibrate([300, 200, 300])
+                            ->setVibrate([
+                                300,
+                                200,
+                                300,
+                            ])
                             ->setSticky(true)
                     )
-                    ->setFcmOptions([
-                        'link' => 'https://example.com',
-                    ])
-            )->setApns(
+                    ->setOptions(
+                        (new WebpushOptions)
+                            ->setAnalyticsLabel('webpush')
+                            ->setLink('https://example.com')
+                    )
+            )
+            ->setApns(
                 (new Apns())
                     ->setHeaders([
                         'name' => 'wrench',
@@ -93,24 +143,49 @@ class MessageTest extends AbstractTestCase
                         (new ApnsNotification())
                             ->setAlert(
                                 (new Alert())
-                                    ->setTitle('New Breaking')
+                                    ->setTitle('Breaking News')
                                     ->setBody('Check out the Top Story')
-                                    ->setTitleLocKey('title-loc-key')
-                                    ->setTitleLocArgs(['title-loc-args'])
-                                    ->setActionLocKey('action-loc-key')
-                                    ->setLocKey('loc-key')
-                                    ->setLocArgs(['loc-args'])
+                                    ->setSubTitle('Unbelievable')
                                     ->setLaunchImage('launch-image.jpg')
+                                    ->setTitleLocKey('title-loc-key')
+                                    ->setTitleLocArgs([
+                                        'title-loc-args',
+                                    ])
+                                    ->setSubTitleLocKey('subtitle-loc-key')
+                                    ->setSubTitleLocArgs([
+                                        'subtitle-loc-args',
+                                    ])
+                                    ->setLocKey('loc-key')
+                                    ->setLocArgs([
+                                        'loc-args',
+                                    ])
+                                    ->setActionLocKey('action-loc-key')
                             )
                             ->setBadge(true)
-                            ->setSound('sound')
+                            ->setSound(
+                                (new Sound())
+                                    ->isCritical()
+                                    ->setVolume(0.5)
+                            )
                             ->setContentAvailable(true)
+                            ->isMutableContent()
                             ->setCategory('category')
                             ->setThreadId('thread-id')
+                            ->setTargetContentId('target-content-id')
                     )
-            )->setCondition((new Condition)->and('TopicA', function () {
+                    ->setOptions(
+                        (new ApnsOptions())
+                            ->setAnalyticsLabel('apns')
+                            ->setImage('https://example.com/image.jpg')
+                    )
+            )
+            ->setCondition((new Condition)->and('TopicA', static function () {
                 return (new Condition)->or('TopicB', 'TopicC');
-            }));
+            }))
+            ->setOptions(
+                (new Options())
+                    ->setAnalyticsLabel('fcm')
+            );
 
         $this->assertJsonStringEqualsJsonString($expectedJson, json_encode($message));
     }

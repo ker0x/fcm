@@ -45,9 +45,11 @@ You will then need to:
 ## Basic usage
 
 ```php
-use Kerox\Fcm\Api\Send;
+use Kerox\Fcm\Fcm;
 use Kerox\Fcm\Model\Message;
 use Kerox\Fcm\Model\Message\Notification;
+
+$fcm = new Fcm('<oauth_token>', '<project_id>');
 
 // Create a notification
 $notification = new Notification('Hello World');

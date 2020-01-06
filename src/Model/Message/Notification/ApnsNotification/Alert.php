@@ -14,36 +14,49 @@ class Alert extends AbstractNotification
     /**
      * @var string|null
      */
-    protected $titleLocKey;
+    private $subTitle;
+
+    /**
+     * @var string|null
+     */
+    private $launchImage;
+
+    /**
+     * @var string|null
+     */
+    private $titleLocKey;
 
     /**
      * @var array
      */
-    protected $titleLocArgs = [];
+    private $titleLocArgs = [];
 
     /**
      * @var string|null
      */
-    protected $actionLocKey;
-
-    /**
-     * @var string|null
-     */
-    protected $locKey;
+    private $subTitleLocKey;
 
     /**
      * @var array
      */
-    protected $locArgs = [];
+    private $subTitleLocArgs = [];
 
     /**
      * @var string|null
      */
-    protected $launchImage;
+    private $locKey;
 
     /**
-     * @param string $title
-     *
+     * @var array
+     */
+    private $locArgs = [];
+
+    /**
+     * @var string|null
+     */
+    private $actionLocKey;
+
+    /**
      * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert
      */
     public function setTitle(string $title): self
@@ -54,8 +67,6 @@ class Alert extends AbstractNotification
     }
 
     /**
-     * @param string $body
-     *
      * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert
      */
     public function setBody(string $body): self
@@ -66,8 +77,16 @@ class Alert extends AbstractNotification
     }
 
     /**
-     * @param string $titleLocKey
-     *
+     * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert
+     */
+    public function setSubTitle(string $subTitle): self
+    {
+        $this->subTitle = $subTitle;
+
+        return $this;
+    }
+
+    /**
      * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert
      */
     public function setTitleLocKey(string $titleLocKey): self
@@ -90,7 +109,29 @@ class Alert extends AbstractNotification
     }
 
     /**
-     * @param string $actionLocKey
+     * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert
+     */
+    public function setSubTitleLocKey(string $subTitleLocKey): self
+    {
+        $this->subTitleLocKey = $subTitleLocKey;
+
+        return $this;
+    }
+
+    /**
+     * @param string[] $subTitleLocArgs
+     *
+     * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert
+     */
+    public function setSubTitleLocArgs(array $subTitleLocArgs): self
+    {
+        $this->subTitleLocArgs = $subTitleLocArgs;
+
+        return $this;
+    }
+
+    /**
+     * @deprecated since 2.1 and will be removed in 3.0
      *
      * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert
      */
@@ -102,8 +143,6 @@ class Alert extends AbstractNotification
     }
 
     /**
-     * @param string $locKey
-     *
      * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert
      */
     public function setLocKey(string $locKey): self
@@ -126,8 +165,6 @@ class Alert extends AbstractNotification
     }
 
     /**
-     * @param string $launchImage
-     *
      * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert
      */
     public function setLaunchImage(string $launchImage): self
@@ -137,19 +174,19 @@ class Alert extends AbstractNotification
         return $this;
     }
 
-    /**
-     * @return array
-     */
     public function toArray(): array
     {
         $json = parent::toArray();
         $json += [
+            'subtitle' => $this->subTitle,
+            'launch-image' => $this->launchImage,
             'title-loc-key' => $this->titleLocKey,
             'title-loc-args' => $this->titleLocArgs,
-            'action-loc-key' => $this->actionLocKey,
+            'subtitle-loc-key' => $this->subTitleLocKey,
+            'subtitle-loc-args' => $this->subTitleLocArgs,
             'loc-key' => $this->locKey,
             'loc-args' => $this->locArgs,
-            'launch-image' => $this->launchImage,
+            'action-loc-key' => $this->actionLocKey,
         ];
 
         return array_filter($json);

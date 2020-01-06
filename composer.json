@@ -26,7 +26,7 @@
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^2.5",
     "phpstan/phpstan": "^0.11.16",
-    "phpunit/phpunit": "^6.2.0"
+    "phpunit/phpunit": "^7.5"
   },
   "autoload": {
     "psr-4": {
@@ -40,8 +40,8 @@
   },
   "scripts": {
     "php-stan": "vendor/bin/phpstan --level=max --memory-limit=\"-1\" --no-progress analyze",
-    "php-cs-fixer": "php-cs-fixer fix --diff --verbose --config=.php_cs",
-    "test": "phpunit"
+    "php-cs-fixer": "vendor/bin/php-cs-fixer fix --diff --verbose --config=.php_cs",
+    "test": "vendor/bin/phpunit"
   },
   "config": {
     "optimize-autoloader": true,

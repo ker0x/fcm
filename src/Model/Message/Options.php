@@ -6,28 +6,24 @@ namespace Kerox\Fcm\Model\Message;
 
 use JsonSerializable;
 
-/**
- * Class AbstractNotification.
- */
-abstract class AbstractNotification implements NotificationInterface, JsonSerializable
+class Options implements JsonSerializable
 {
     /**
      * @var string|null
      */
-    protected $title;
+    private $analyticsLabel;
 
-    /**
-     * @var string|null
-     */
-    protected $body;
+    public function setAnalyticsLabel(string $analyticsLabel): self
+    {
+        $this->analyticsLabel = $analyticsLabel;
 
-    abstract public function setBody(string $body);
+        return $this;
+    }
 
     public function toArray(): array
     {
         $array = [
-            'title' => $this->title,
-            'body' => $this->body,
+            'analytics_label' => $this->analyticsLabel,
         ];
 
         return array_filter($array);

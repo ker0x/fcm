@@ -17,17 +17,15 @@ class Condition
     /**
      * @var string
      */
-    protected $preSeparator = '(';
+    private $preSeparator = '(';
 
     /**
      * @var string
      */
-    protected $postSeparator = ')';
+    private $postSeparator = ')';
 
     /**
      * @param mixed ...$topics
-     *
-     * @return string
      */
     public function and(...$topics): string
     {
@@ -38,8 +36,6 @@ class Condition
 
     /**
      * @param mixed ...$topics
-     *
-     * @return string
      */
     public function or(...$topics): string
     {
@@ -50,8 +46,6 @@ class Condition
 
     /**
      * @param mixed $topic
-     *
-     * @return string
      */
     public function not($topic): string
     {
@@ -66,11 +60,6 @@ class Condition
         return '!' . $this->preSeparator . $topic . $this->postSeparator;
     }
 
-    /**
-     * @param array $topics
-     *
-     * @return array
-     */
     private function parseTopics(array $topics): array
     {
         foreach ($topics as $key => $topic) {
@@ -88,11 +77,6 @@ class Condition
         return $topics;
     }
 
-    /**
-     * @param string $topic
-     *
-     * @return string
-     */
     private function formatTopic(string $topic): string
     {
         return sprintf("'%s' in topics", $topic);

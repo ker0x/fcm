@@ -11,8 +11,6 @@ class Notification extends AbstractNotification
 {
     /**
      * Notification constructor.
-     *
-     * @param string $title
      */
     public function __construct(string $title)
     {
@@ -20,8 +18,6 @@ class Notification extends AbstractNotification
     }
 
     /**
-     * @param string $body
-     *
      * @return \Kerox\Fcm\Model\Message\Notification
      */
     public function setBody(string $body): self

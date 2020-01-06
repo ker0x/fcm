@@ -33,10 +33,6 @@ class Fcm
 
     /**
      * Fcm constructor.
-     *
-     * @param string                           $oauthToken
-     * @param string                           $projectId
-     * @param \GuzzleHttp\ClientInterface|null $client
      */
     public function __construct(string $oauthToken, string $projectId, ?ClientInterface $client = null)
     {

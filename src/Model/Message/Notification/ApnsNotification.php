@@ -5,46 +5,56 @@ declare(strict_types=1);
 namespace Kerox\Fcm\Model\Message\Notification;
 
 use InvalidArgumentException;
-use JsonSerializable;
 use Kerox\Fcm\Helper\UtilityTrait;
 use Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert;
+use Kerox\Fcm\Model\Message\Notification\ApnsNotification\Sound;
 
 /**
  * Class ApnsNotification.
  */
-class ApnsNotification implements JsonSerializable
+class ApnsNotification implements \JsonSerializable
 {
     use UtilityTrait;
 
     /**
      * @var string|\Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert|null
      */
-    protected $alert;
+    private $alert;
+
+    /**
+     * @var \Kerox\Fcm\Model\Message\Notification\ApnsNotification\Sound|string
+     */
+    private $sound = Sound::DEFAULT_NAME;
+
+    /**
+     * @var int
+     */
+    private $badge = 1;
+
+    /**
+     * @var int
+     */
+    private $contentAvailable = 0;
 
     /**
      * @var string|null
      */
-    protected $sound;
-
-    /**
-     * @var int|null
-     */
-    protected $badge = 1;
-
-    /**
-     * @var int|null
-     */
-    protected $contentAvailable = 0;
+    private $category;
 
     /**
      * @var string|null
      */
-    protected $category;
+    private $threadId;
+
+    /**
+     * @var int
+     */
+    private $mutableContent = 0;
 
     /**
      * @var string|null
      */
-    protected $threadId;
+    private $targetContentId;
 
     /**
      * @param string|\Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert $alert
@@ -58,9 +68,7 @@ class ApnsNotification implements JsonSerializable
         }
 
         if (!$alert instanceof Alert) {
-            throw new InvalidArgumentException(
-                sprintf('alert must be a string or an instance of %s.', Alert::class)
-            );
+            throw new InvalidArgumentException(sprintf('alert must be a string or an instance of %s.', Alert::class));
         }
 
         $this->alert = $alert;
@@ -69,11 +77,11 @@ class ApnsNotification implements JsonSerializable
     }
 
     /**
-     * @param string $sound
+     * @param \Kerox\Fcm\Model\Message\Notification\ApnsNotification\Sound|string $sound
      *
      * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification
      */
-    public function setSound(string $sound): self
+    public function setSound($sound): self
     {
         $this->sound = $sound;
 
@@ -81,8 +89,6 @@ class ApnsNotification implements JsonSerializable
     }
 
     /**
-     * @param bool $badge
-     *
      * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification
      */
     public function setBadge(bool $badge): self
@@ -93,8 +99,6 @@ class ApnsNotification implements JsonSerializable
     }
 
     /**
-     * @param bool $contentAvailable
-     *
      * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification
      */
     public function setContentAvailable(bool $contentAvailable): self
@@ -105,8 +109,6 @@ class ApnsNotification implements JsonSerializable
     }
 
     /**
-     * @param string $category
-     *
      * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification
      */
     public function setCategory(string $category): self
@@ -117,8 +119,6 @@ class ApnsNotification implements JsonSerializable
     }
 
     /**
-     * @param string $threadId
-     *
      * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification
      */
     public function setThreadId(string $threadId): self
@@ -129,25 +129,41 @@ class ApnsNotification implements JsonSerializable
     }
 
     /**
-     * @return array
+     * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification
      */
+    public function isMutableContent(bool $mutableContent = true): self
+    {
+        $this->mutableContent = (int) $mutableContent;
+
+        return $this;
+    }
+
+    /**
+     * @return \Kerox\Fcm\Model\Message\Notification\ApnsNotification
+     */
+    public function setTargetContentId(string $targetContentId): self
+    {
+        $this->targetContentId = $targetContentId;
+
+        return $this;
+    }
+
     public function toArray(): array
     {
         $json = [
             'alert' => $this->alert,
-            'sound' => $this->sound,
             'badge' => $this->badge,
-            'content-available' => $this->contentAvailable,
-            'category' => $this->category,
+            'sound' => $this->sound,
             'thread-id' => $this->threadId,
+            'category' => $this->category,
+            'content-available' => $this->contentAvailable,
+            'mutable-content' => $this->mutableContent,
+            'target-content-id' => $this->targetContentId,
         ];
 
         return $this->arrayFilter(['aps' => $json]);
     }
 
-    /**
-     * @return array
-     */
     public function jsonSerialize(): array
     {
         return $this->toArray();
