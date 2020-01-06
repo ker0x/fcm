@@ -1,0 +1,10 @@
+{
+  "name": "fcm",
+  "data": {
+    "story_id": "story_12345"
+  },
+  "notification": {
+    "title": "Breaking News"
+  },
+  "topic": "TopicA"
+}

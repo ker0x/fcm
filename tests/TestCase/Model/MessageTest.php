@@ -25,10 +25,11 @@ class MessageTest extends AbstractTestCase
 {
     public function testMessage(): void
     {
-        $expectedJson = file_get_contents(__DIR__ . '/../../Mocks/Model/message.json');
-
         $message = (new Message((new Notification('Breaking News'))->setBody('New news story available.')))
-            ->setData(['story_id' => 'story_12345'])
+            ->setName('fcm')
+            ->setData([
+                'story_id' => 'story_12345'
+            ])
             ->setAndroid(
                 (new Android())
                     ->setCollapseKey('collapse_key')
@@ -165,6 +166,7 @@ class MessageTest extends AbstractTestCase
                             ->setSound(
                                 (new Sound())
                                     ->isCritical()
+                                    ->setName(Sound::DEFAULT_NAME)
                                     ->setVolume(0.5)
                             )
                             ->setContentAvailable(true)
@@ -185,8 +187,30 @@ class MessageTest extends AbstractTestCase
             ->setOptions(
                 (new Options())
                     ->setAnalyticsLabel('fcm')
-            );
+            )
+        ;
 
-        $this->assertJsonStringEqualsJsonString($expectedJson, json_encode($message));
+        $this->assertJsonStringEqualsJsonFile(__DIR__ . '/../../Mocks/Model/message.json', json_encode($message));
+    }
+
+    public function testMessageWithTopic(): void
+    {
+        $message = (new Message('Breaking News'))
+            ->setName('fcm')
+            ->setData([
+                'story_id' => 'story_12345'
+            ])
+            ->setTopic('TopicA')
+        ;
+
+        $this->assertJsonStringEqualsJsonFile(__DIR__ . '/../../Mocks/Model/message_with_topic.json', json_encode($message));
+    }
+
+    public function testInvalidMessage(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$message must be a string or an instance of "Kerox\Fcm\Model\Message\Notification".');
+
+        (new Message(1234));
     }
 }

@@ -84,7 +84,7 @@ class Message implements \JsonSerializable
         }
 
         if (!$message instanceof Notification) {
-            throw new \InvalidArgumentException(sprintf('$message must be a string or an instance of %s.', Notification::class));
+            throw new \InvalidArgumentException(sprintf('$message must be a string or an instance of "%s".', Notification::class));
         }
 
         $this->notification = $message;
