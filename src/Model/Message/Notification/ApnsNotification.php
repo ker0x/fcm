@@ -68,7 +68,7 @@ class ApnsNotification implements \JsonSerializable
         }
 
         if (!$alert instanceof Alert) {
-            throw new InvalidArgumentException(sprintf('alert must be a string or an instance of %s.', Alert::class));
+            throw new InvalidArgumentException(sprintf('alert must be a string or an instance of "%s".', Alert::class));
         }
 
         $this->alert = $alert;

@@ -71,7 +71,7 @@ class ConditionTest extends AbstractTestCase
     public function testConditionAndWithInvalidTopics(): void
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Topic A is an invalid topic name.');
+        $this->expectExceptionMessage('"Topic A" is an invalid topic name.');
 
         (new Condition)->and('Topic A', 'TopicB', 'TopicC');
     }

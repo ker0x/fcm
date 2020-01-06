@@ -75,7 +75,7 @@ class Webpush implements \JsonSerializable
     {
         if (\is_array($options)) {
             trigger_error(sprintf(
-                'Using array to set options is deprecated since version 2.1 and will be remove in version 3.0, use class %s instead.',
+                'Using array to set options is deprecated since version 2.1 and will be remove in version 3.0, use class "%s" instead.',
                 WebpushOptions::class
             ), \E_USER_WARNING);
 

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Kerox\Fcm\Helper;
 
-use InvalidArgumentException;
-
 trait ValidatorTrait
 {
     /**
@@ -15,7 +13,7 @@ trait ValidatorTrait
     {
         foreach ($data as $key => $value) {
             if (!\is_string($key) || !\is_string($value)) {
-                throw new InvalidArgumentException('Array must only contain string for key and value.');
+                throw new \InvalidArgumentException('Array must only contain string for key and value.');
             }
         }
     }
@@ -26,7 +24,7 @@ trait ValidatorTrait
     public function isValidTtl(string $ttl): void
     {
         if (!preg_match('/^\d+(\.\d{1,9})?s$/', $ttl)) {
-            throw new InvalidArgumentException('Invalid TTL format.');
+            throw new \InvalidArgumentException('Invalid TTL format.');
         }
     }
 
@@ -36,7 +34,7 @@ trait ValidatorTrait
     public function isValidLang(string $lang): void
     {
         if (!preg_match('/^[a-z]{2}-[A-Z]{2}$/', $lang)) {
-            throw new InvalidArgumentException('Invalid lang format.');
+            throw new \InvalidArgumentException('Invalid lang format.');
         }
     }
 
@@ -47,7 +45,7 @@ trait ValidatorTrait
     {
         foreach ($vibratePattern as $pattern) {
             if (!\is_int($pattern)) {
-                throw new InvalidArgumentException('Vibrate pattern must only contain integer.');
+                throw new \InvalidArgumentException('Vibrate pattern must only contain integer.');
             }
         }
     }
@@ -61,7 +59,7 @@ trait ValidatorTrait
             '/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)$/',
             $url
         )) {
-            throw new InvalidArgumentException(sprintf('%s is not a valid url.', $url));
+            throw new \InvalidArgumentException(sprintf('"%s" is not a valid url.', $url));
         }
     }
 
@@ -71,7 +69,7 @@ trait ValidatorTrait
     public function isValidTopicName(string $topic): void
     {
         if (!preg_match('/^[a-zA-Z0-9-_.~%]+$/', $topic)) {
-            throw new InvalidArgumentException(sprintf('%s is an invalid topic name.', $topic));
+            throw new \InvalidArgumentException(sprintf('"%s" is an invalid topic name.', $topic));
         }
     }
 }
