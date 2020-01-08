@@ -14,4 +14,11 @@ class ApnsNotificationTest extends AbstractTestCase
 
         (new ApnsNotification())->setAlert(true);
     }
+
+    public function testApnsNotificationWithStringAlert(): void
+    {
+        $apnsNotification = (new ApnsNotification())->setAlert('Breaking News');
+
+        $this->assertJsonStringEqualsJsonFile(__DIR__ . '/../../../../Mocks/Model/basic_apns_notification.json', json_encode($apnsNotification));
+    }
 }

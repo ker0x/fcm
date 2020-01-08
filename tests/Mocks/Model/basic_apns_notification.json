@@ -1,0 +1,11 @@
+{
+  "aps": {
+    "alert": {
+      "title": "Breaking News"
+    },
+    "badge": 1,
+    "sound": "default",
+    "content-available": 0,
+    "mutable-content": 0
+  }
+}

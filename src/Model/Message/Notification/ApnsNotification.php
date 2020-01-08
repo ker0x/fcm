@@ -64,7 +64,7 @@ class ApnsNotification implements \JsonSerializable
     public function setAlert($alert): self
     {
         if (\is_string($alert)) {
-            $alert = (new Alert())->setBody($alert);
+            $alert = (new Alert())->setTitle($alert);
         }
 
         if (!$alert instanceof Alert) {
