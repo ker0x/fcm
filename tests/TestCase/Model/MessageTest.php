@@ -98,7 +98,7 @@ class MessageTest extends AbstractTestCase
                         'count' => '3',
                     ])
                     ->setNotification(
-                        (new WebpushNotification())
+                        (new WebpushNotification)
                             ->setTitle('New Breaking')
                             ->setBody('Check out the Top Story')
                             ->setPermission(WebpushNotification::PERMISSION_GRANTED)
@@ -134,16 +134,16 @@ class MessageTest extends AbstractTestCase
                     )
             )
             ->setApns(
-                (new Apns())
+                (new Apns)
                     ->setHeaders([
                         'name' => 'wrench',
                         'mass' => '1.3kg',
                         'count' => '3',
                     ])
                     ->setPayload(
-                        (new ApnsNotification())
+                        (new ApnsNotification)
                             ->setAlert(
-                                (new Alert())
+                                (new Alert)
                                     ->setTitle('Breaking News')
                                     ->setBody('Check out the Top Story')
                                     ->setSubTitle('Unbelievable')
@@ -164,7 +164,7 @@ class MessageTest extends AbstractTestCase
                             )
                             ->setBadge(true)
                             ->setSound(
-                                (new Sound())
+                                (new Sound)
                                     ->isCritical()
                                     ->setName(Sound::DEFAULT_NAME)
                                     ->setVolume(0.5)
@@ -176,7 +176,7 @@ class MessageTest extends AbstractTestCase
                             ->setTargetContentId('target-content-id')
                     )
                     ->setOptions(
-                        (new ApnsOptions())
+                        (new ApnsOptions)
                             ->setAnalyticsLabel('apns')
                             ->setImage('https://example.com/image.jpg')
                     )
@@ -185,7 +185,7 @@ class MessageTest extends AbstractTestCase
                 return (new Condition)->or('TopicB', 'TopicC');
             }))
             ->setOptions(
-                (new Options())
+                (new Options)
                     ->setAnalyticsLabel('fcm')
             )
         ;

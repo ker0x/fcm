@@ -58,7 +58,7 @@ class Color implements \JsonSerializable
     private function isValidValue(float $value): float
     {
         if ($value < 0 || $value > 1) {
-            throw new \InvalidArgumentException('Value must be between 0 and 1.');
+            throw new \InvalidArgumentException('RGBA value must be between 0 and 1.');
         }
 
         return $value;
