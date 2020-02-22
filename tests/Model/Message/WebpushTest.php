@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Kerox\Fcm\Test\TestCase\Model\Message;
+namespace Tests\Kerox\Fcm\Model\Message;
 
 use Kerox\Fcm\Model\Message\Webpush;
-use Kerox\Fcm\Test\TestCase\AbstractTestCase;
 use PHPUnit\Framework\Error\Warning;
+use PHPUnit\Framework\TestCase;
 
-class WebpushTest extends AbstractTestCase
+class WebpushTest extends TestCase
 {
     public function testDeprecationWarning(): void
     {

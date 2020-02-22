@@ -34,17 +34,17 @@
   },
   "autoload": {
     "psr-4": {
-      "Kerox\\Fcm\\": "src"
+      "Kerox\\Fcm\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Kerox\\Fcm\\Test\\": "tests"
+      "Tests\\Kerox\\Fcm\\": "tests/"
     }
   },
   "scripts": {
     "php-cs-fixer": "vendor/bin/php-cs-fixer fix --diff --verbose --config=.php_cs",
-    "php-stan": "vendor/bin/phpstan --level=max --memory-limit=\"-1\" --no-progress analyze",
-    "test": "vendor/bin/phpunit"
+    "phpstan": "vendor/bin/phpstan --level=max --memory-limit=\"-1\" --no-progress analyze",
+    "phpunit": "vendor/bin/phpunit --coverage-text --coverage-clover=build/coverage.xml"
   }
 }

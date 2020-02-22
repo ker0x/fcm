@@ -1,6 +1,8 @@
 <?php
 
-namespace Kerox\Fcm\Test\TestCase\Model;
+declare(strict_types=1);
+
+namespace Tests\Kerox\Fcm\Model;
 
 use Kerox\Fcm\Model\Message;
 use Kerox\Fcm\Model\Message\Android;
@@ -19,16 +21,16 @@ use Kerox\Fcm\Model\Message\Options\AndroidOptions;
 use Kerox\Fcm\Model\Message\Options\ApnsOptions;
 use Kerox\Fcm\Model\Message\Options\WebpushOptions;
 use Kerox\Fcm\Model\Message\Webpush;
-use Kerox\Fcm\Test\TestCase\AbstractTestCase;
+use PHPUnit\Framework\TestCase;
 
-class MessageTest extends AbstractTestCase
+class MessageTest extends TestCase
 {
     public function testMessage(): void
     {
         $message = (new Message((new Notification('Breaking News'))->setBody('New news story available.')))
             ->setName('fcm')
             ->setData([
-                'story_id' => 'story_12345'
+                'story_id' => 'story_12345',
             ])
             ->setAndroid(
                 (new Android())
@@ -40,7 +42,7 @@ class MessageTest extends AbstractTestCase
                         'story_id' => 'story_12345',
                     ])
                     ->setNotification(
-                        (new AndroidNotification)
+                        (new AndroidNotification())
                             ->setTitle('New Breaking')
                             ->setBody('Check out the Top Story')
                             ->setIcon('icon')
@@ -98,7 +100,7 @@ class MessageTest extends AbstractTestCase
                         'count' => '3',
                     ])
                     ->setNotification(
-                        (new WebpushNotification)
+                        (new WebpushNotification())
                             ->setTitle('New Breaking')
                             ->setBody('Check out the Top Story')
                             ->setPermission(WebpushNotification::PERMISSION_GRANTED)
@@ -128,22 +130,22 @@ class MessageTest extends AbstractTestCase
                             ->setSticky(true)
                     )
                     ->setOptions(
-                        (new WebpushOptions)
+                        (new WebpushOptions())
                             ->setAnalyticsLabel('webpush')
                             ->setLink('https://example.com')
                     )
             )
             ->setApns(
-                (new Apns)
+                (new Apns())
                     ->setHeaders([
                         'name' => 'wrench',
                         'mass' => '1.3kg',
                         'count' => '3',
                     ])
                     ->setPayload(
-                        (new ApnsNotification)
+                        (new ApnsNotification())
                             ->setAlert(
-                                (new Alert)
+                                (new Alert())
                                     ->setTitle('Breaking News')
                                     ->setBody('Check out the Top Story')
                                     ->setSubTitle('Unbelievable')
@@ -164,7 +166,7 @@ class MessageTest extends AbstractTestCase
                             )
                             ->setBadge(true)
                             ->setSound(
-                                (new Sound)
+                                (new Sound())
                                     ->isCritical()
                                     ->setName(Sound::DEFAULT_NAME)
                                     ->setVolume(0.5)
@@ -176,21 +178,21 @@ class MessageTest extends AbstractTestCase
                             ->setTargetContentId('target-content-id')
                     )
                     ->setOptions(
-                        (new ApnsOptions)
+                        (new ApnsOptions())
                             ->setAnalyticsLabel('apns')
                             ->setImage('https://example.com/image.jpg')
                     )
             )
-            ->setCondition((new Condition)->and('TopicA', static function () {
-                return (new Condition)->or('TopicB', 'TopicC');
+            ->setCondition((new Condition())->and('TopicA', static function () {
+                return (new Condition())->or('TopicB', 'TopicC');
             }))
             ->setOptions(
-                (new Options)
+                (new Options())
                     ->setAnalyticsLabel('fcm')
             )
         ;
 
-        $this->assertJsonStringEqualsJsonFile(__DIR__ . '/../../Mocks/Model/message.json', json_encode($message));
+        $this->assertJsonStringEqualsJsonFile(__DIR__ . '/../Mocks/Model/message.json', json_encode($message));
     }
 
     public function testMessageWithTopic(): void
@@ -198,12 +200,12 @@ class MessageTest extends AbstractTestCase
         $message = (new Message('Breaking News'))
             ->setName('fcm')
             ->setData([
-                'story_id' => 'story_12345'
+                'story_id' => 'story_12345',
             ])
             ->setTopic('TopicA')
         ;
 
-        $this->assertJsonStringEqualsJsonFile(__DIR__ . '/../../Mocks/Model/message_with_topic.json', json_encode($message));
+        $this->assertJsonStringEqualsJsonFile(__DIR__ . '/../Mocks/Model/message_with_topic.json', json_encode($message));
     }
 
     public function testInvalidMessage(): void
