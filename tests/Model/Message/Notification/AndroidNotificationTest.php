@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Kerox\Fcm\Test\TestCase\Model\Message\Notification;
+namespace Tests\Kerox\Fcm\Model\Message\Notification;
 
 use Kerox\Fcm\Model\Message\Notification\AndroidNotification\Color;
 use Kerox\Fcm\Model\Message\Notification\AndroidNotification\LightSettings;
-use Kerox\Fcm\Test\TestCase\AbstractTestCase;
+use PHPUnit\Framework\TestCase;
 
-class AndroidNotificationTest extends AbstractTestCase
+class AndroidNotificationTest extends TestCase
 {
     public function testLightSettingsWithInvalidColor(): void
     {

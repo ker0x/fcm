@@ -1,11 +1,13 @@
 <?php
 
-namespace Kerox\Fcm\Test\TestCase\Model\Message\Notification;
+declare(strict_types=1);
+
+namespace Tests\Kerox\Fcm\Model\Message\Notification;
 
 use Kerox\Fcm\Model\Message\Notification\ApnsNotification;
-use Kerox\Fcm\Test\TestCase\AbstractTestCase;
+use PHPUnit\Framework\TestCase;
 
-class ApnsNotificationTest extends AbstractTestCase
+class ApnsNotificationTest extends TestCase
 {
     public function testApnsNotificationWithInvalidAlert(): void
     {
@@ -19,6 +21,6 @@ class ApnsNotificationTest extends AbstractTestCase
     {
         $apnsNotification = (new ApnsNotification())->setAlert('Breaking News');
 
-        $this->assertJsonStringEqualsJsonFile(__DIR__ . '/../../../../Mocks/Model/basic_apns_notification.json', json_encode($apnsNotification));
+        $this->assertJsonStringEqualsJsonFile(__DIR__ . '/../../../Mocks/Model/basic_apns_notification.json', json_encode($apnsNotification));
     }
 }

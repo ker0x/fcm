@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phpunit processIsolation="false"
          stopOnFailure="false"
-         bootstrap="./tests/bootstrap.php">
+         bootstrap="vendor/autoload.php">
     <testsuites>
         <testsuite name="Fcm Test Suite">
-            <directory>./tests/TestCase</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
 
