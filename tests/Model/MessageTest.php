@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Kerox\Fcm\Model;
+namespace Kerox\Fcm\Tests\Model;
 
 use Kerox\Fcm\Model\Message;
 use Kerox\Fcm\Model\Message\Android;
@@ -86,6 +86,7 @@ class MessageTest extends TestCase
                         (new AndroidOptions())
                             ->setAnalyticsLabel('android')
                     )
+                    ->setDirectBootOk(true)
             )
             ->setWebpush(
                 (new Webpush())
@@ -192,7 +193,7 @@ class MessageTest extends TestCase
             )
         ;
 
-        $this->assertJsonStringEqualsJsonFile(__DIR__ . '/../Mocks/Model/message.json', json_encode($message));
+        self::assertJsonStringEqualsJsonFile(__DIR__ . '/../Mocks/Model/message.json', json_encode($message));
     }
 
     public function testMessageWithTopic(): void
@@ -205,7 +206,7 @@ class MessageTest extends TestCase
             ->setTopic('TopicA')
         ;
 
-        $this->assertJsonStringEqualsJsonFile(__DIR__ . '/../Mocks/Model/message_with_topic.json', json_encode($message));
+        self::assertJsonStringEqualsJsonFile(__DIR__ . '/../Mocks/Model/message_with_topic.json', json_encode($message));
     }
 
     public function testInvalidMessage(): void

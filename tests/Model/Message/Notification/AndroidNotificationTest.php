@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Kerox\Fcm\Model\Message\Notification;
+namespace Kerox\Fcm\Tests\Model\Message\Notification;
 
 use Kerox\Fcm\Model\Message\Notification\AndroidNotification\Color;
 use Kerox\Fcm\Model\Message\Notification\AndroidNotification\LightSettings;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Kerox\Fcm\Api;
+namespace Kerox\Fcm\Tests\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -33,8 +33,8 @@ class SendTest extends TestCase
 
         $response = $sendApi->message($message, true);
 
-        $this->assertSame('projects/myproject-b5ae1/messages/0:1500415314455276%31bd1c9631bd1c96', $response->getName());
-        $this->assertSame('0:1500415314455276%31bd1c9631bd1c96', $response->getMessageId());
+        self::assertSame('projects/myproject-b5ae1/messages/0:1500415314455276%31bd1c9631bd1c96', $response->getName());
+        self::assertSame('0:1500415314455276%31bd1c9631bd1c96', $response->getMessageId());
     }
 
     public function testSendMessageWithResponseError(): void
@@ -56,10 +56,10 @@ class SendTest extends TestCase
 
         $response = $sendApi->message($message, true);
 
-        $this->assertNull($response->getName());
-        $this->assertNull($response->getMessageId());
-        $this->assertTrue($response->hasError());
-        $this->assertSame('UNSPECIFIED_ERROR', $response->getErrorCode());
-        $this->assertSame('No more information is available about this error.', $response->getErrorMessage());
+        self::assertNull($response->getName());
+        self::assertNull($response->getMessageId());
+        self::assertTrue($response->hasError());
+        self::assertSame('UNSPECIFIED_ERROR', $response->getErrorCode());
+        self::assertSame('No more information is available about this error.', $response->getErrorMessage());
     }
 }

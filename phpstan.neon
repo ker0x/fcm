@@ -4,6 +4,9 @@ parameters:
 
 	ignoreErrors:
 	    - '#Call to an undefined method GuzzleHttp\\ClientInterface::[a-zA-Z0-9_]+\(\)#'
+	    - '#Method Kerox\\Fcm\\Model\\Message\\[a-zA-z]+::setBody\(\) has no return typehint specified.#'
 
 	fileExtensions:
 		- php
+
+	checkMissingIterableValueType: false

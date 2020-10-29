@@ -7,9 +7,6 @@ namespace Kerox\Fcm\Model\Message;
 use Closure;
 use Kerox\Fcm\Helper\ValidatorTrait;
 
-/**
- * Class Condition.
- */
 class Condition
 {
     use ValidatorTrait;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Kerox\Fcm;
+namespace Kerox\Fcm\Tests;
 
 use Kerox\Fcm\Api\Send;
 use Kerox\Fcm\Fcm;
@@ -22,7 +22,7 @@ class FcmTest extends TestCase
 
     public function testGetInstanceOfApi(): void
     {
-        $this->assertInstanceOf(Send::class, $this->fcm->send());
+        self::assertInstanceOf(Send::class, $this->fcm->send());
     }
 
     public function tearDown(): void

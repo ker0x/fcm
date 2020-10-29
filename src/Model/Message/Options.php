@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Kerox\Fcm\Model\Message;
 
-use JsonSerializable;
-
-class Options implements JsonSerializable
+class Options implements \JsonSerializable
 {
     /**
      * @var string|null

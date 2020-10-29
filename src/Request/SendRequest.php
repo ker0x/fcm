@@ -6,9 +6,6 @@ namespace Kerox\Fcm\Request;
 
 use Kerox\Fcm\Model\Message;
 
-/**
- * Class SendRequest.
- */
 class SendRequest extends AbstractRequest
 {
     /**

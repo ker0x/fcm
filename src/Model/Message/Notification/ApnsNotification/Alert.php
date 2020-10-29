@@ -6,9 +6,6 @@ namespace Kerox\Fcm\Model\Message\Notification\ApnsNotification;
 
 use Kerox\Fcm\Model\Message\AbstractNotification;
 
-/**
- * Class Alert.
- */
 class Alert extends AbstractNotification
 {
     /**

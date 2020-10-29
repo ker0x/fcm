@@ -7,9 +7,6 @@ namespace Kerox\Fcm\Model\Message\Notification;
 use Kerox\Fcm\Model\Message\AbstractNotification;
 use Kerox\Fcm\Model\Message\Notification\AndroidNotification\LightSettings;
 
-/**
- * Class AndroidNotification.
- */
 class AndroidNotification extends AbstractNotification
 {
     public const PRIORITY_UNSPECIFIED = 'PRIORITY_UNSPECIFIED';

@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Kerox\Fcm\Request;
 
-/**
- * Class BaseRequest.
- */
 abstract class AbstractRequest
 {
     /**
@@ -28,7 +25,8 @@ abstract class AbstractRequest
     protected function buildHeaders(): array
     {
         $headers = [
-            'Authorization' => 'Bearer ' . $this->oauthToken,
+            'Authorization' => sprintf('Bearer %s', $this->oauthToken),
+            'Accept' => 'application/json',
             'Content-Type' => 'application/json',
         ];
 

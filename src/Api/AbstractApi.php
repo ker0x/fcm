@@ -6,9 +6,6 @@ namespace Kerox\Fcm\Api;
 
 use GuzzleHttp\ClientInterface;
 
-/**
- * Class AbstractApi.
- */
 abstract class AbstractApi
 {
     /**
