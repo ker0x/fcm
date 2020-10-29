@@ -8,9 +8,6 @@ use Kerox\Fcm\Model\Message;
 use Kerox\Fcm\Request\SendRequest;
 use Kerox\Fcm\Response\SendResponse;
 
-/**
- * Class Send.
- */
 class Send extends AbstractApi
 {
     public function message(Message $message, bool $validateOnly = false): SendResponse

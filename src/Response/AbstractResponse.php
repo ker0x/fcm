@@ -6,9 +6,6 @@ namespace Kerox\Fcm\Response;
 
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * Class AbstractResponse.
- */
 abstract class AbstractResponse
 {
     /**

@@ -4,12 +4,7 @@ declare(strict_types=1);
 
 namespace Kerox\Fcm\Model\Message;
 
-use JsonSerializable;
-
-/**
- * Class AbstractNotification.
- */
-abstract class AbstractNotification implements NotificationInterface, JsonSerializable
+abstract class AbstractNotification implements NotificationInterface, \JsonSerializable
 {
     /**
      * @var string|null

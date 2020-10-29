@@ -64,7 +64,8 @@
     },
     "fcm_options": {
       "analytics_label": "android"
-    }
+    },
+    "direct_boot_ok": true
   },
   "webpush": {
     "headers": {

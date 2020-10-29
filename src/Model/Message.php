@@ -12,9 +12,6 @@ use Kerox\Fcm\Model\Message\Notification;
 use Kerox\Fcm\Model\Message\Options;
 use Kerox\Fcm\Model\Message\Webpush;
 
-/**
- * Class Message.
- */
 class Message implements \JsonSerializable
 {
     use UtilityTrait;

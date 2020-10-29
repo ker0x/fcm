@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Kerox\Fcm\Model\Message;
+namespace Kerox\Fcm\Tests\Model\Message;
 
 use Kerox\Fcm\Model\Message\Webpush;
 use PHPUnit\Framework\Error\Warning;

@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Kerox\Fcm\Response;
 
-/**
- * Class SendResponse.
- */
 class SendResponse extends AbstractResponse
 {
     public const ERROR_KEY = 'error_code';

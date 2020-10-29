@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Kerox\Fcm\Model\Message;
+namespace Kerox\Fcm\Tests\Model\Message;
 
 use Kerox\Fcm\Model\Message\Condition;
 use PHPUnit\Framework\TestCase;
@@ -13,21 +13,21 @@ class ConditionTest extends TestCase
     {
         $condition = (new Condition())->and('TopicA', 'TopicB', 'TopicC');
 
-        $this->assertSame("'TopicA' in topics && 'TopicB' in topics && 'TopicC' in topics", $condition);
+        self::assertSame("'TopicA' in topics && 'TopicB' in topics && 'TopicC' in topics", $condition);
     }
 
     public function testConditionOrWithOnlyTopics(): void
     {
         $condition = (new Condition())->or('TopicA', 'TopicB', 'TopicC');
 
-        $this->assertSame("'TopicA' in topics || 'TopicB' in topics || 'TopicC' in topics", $condition);
+        self::assertSame("'TopicA' in topics || 'TopicB' in topics || 'TopicC' in topics", $condition);
     }
 
     public function testConditionNotWithTopic(): void
     {
         $condition = (new Condition())->not('TopicA');
 
-        $this->assertSame("!('TopicA' in topics)", $condition);
+        self::assertSame("!('TopicA' in topics)", $condition);
     }
 
     public function testConditionAndWithClosure(): void
@@ -36,7 +36,7 @@ class ConditionTest extends TestCase
             return (new Condition())->or('TopicB', 'TopicC');
         });
 
-        $this->assertSame("'TopicA' in topics && ('TopicB' in topics || 'TopicC' in topics)", $condition);
+        self::assertSame("'TopicA' in topics && ('TopicB' in topics || 'TopicC' in topics)", $condition);
     }
 
     public function testConditionOrWithClosure(): void
@@ -45,7 +45,7 @@ class ConditionTest extends TestCase
             return (new Condition())->and('TopicB', 'TopicC');
         });
 
-        $this->assertSame("'TopicA' in topics || ('TopicB' in topics && 'TopicC' in topics)", $condition);
+        self::assertSame("'TopicA' in topics || ('TopicB' in topics && 'TopicC' in topics)", $condition);
     }
 
     public function testConditionNotWithClosure(): void
@@ -54,7 +54,7 @@ class ConditionTest extends TestCase
             return (new Condition())->and('TopicA', 'TopicB');
         });
 
-        $this->assertSame("!('TopicA' in topics && 'TopicB' in topics)", $condition);
+        self::assertSame("!('TopicA' in topics && 'TopicB' in topics)", $condition);
     }
 
     public function testConditionWithMultipleClosure(): void
@@ -67,7 +67,7 @@ class ConditionTest extends TestCase
             });
         });
 
-        $this->assertSame("'TopicA' in topics && ('TopicB' in topics || ('TopicC' in topics && 'TopicD' in topics && (!('TopicE' in topics))))", $condition);
+        self::assertSame("'TopicA' in topics && ('TopicB' in topics || ('TopicC' in topics && 'TopicD' in topics && (!('TopicE' in topics))))", $condition);
     }
 
     public function testConditionAndWithInvalidTopics(): void

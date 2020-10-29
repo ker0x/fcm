@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Kerox\Fcm\Model\Message\Notification\AndroidNotification;
 
-/**
- * Class LightSettings.
- */
 class LightSettings implements \JsonSerializable
 {
     /**

@@ -8,9 +8,6 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Kerox\Fcm\Api\Send;
 
-/**
- * Class Fcm.
- */
 class Fcm
 {
     public const API_URL = 'https://fcm.googleapis.com/';

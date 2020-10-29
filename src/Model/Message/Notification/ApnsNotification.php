@@ -9,9 +9,6 @@ use Kerox\Fcm\Helper\UtilityTrait;
 use Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert;
 use Kerox\Fcm\Model\Message\Notification\ApnsNotification\Sound;
 
-/**
- * Class ApnsNotification.
- */
 class ApnsNotification implements \JsonSerializable
 {
     use UtilityTrait;

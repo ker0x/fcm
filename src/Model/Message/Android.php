@@ -51,6 +51,11 @@ class Android implements \JsonSerializable
     private $options;
 
     /**
+     * @var bool|null
+     */
+    private $directBootOk;
+
+    /**
      * @return \Kerox\Fcm\Model\Message\Android
      */
     public function setCollapseKey(string $collapseKey): self
@@ -124,6 +129,16 @@ class Android implements \JsonSerializable
         return $this;
     }
 
+    /**
+     * @return \Kerox\Fcm\Model\Message\Android
+     */
+    public function setDirectBootOk(bool $directBootOk): self
+    {
+        $this->directBootOk = $directBootOk;
+
+        return $this;
+    }
+
     public function toArray(): array
     {
         $array = [
@@ -134,6 +149,7 @@ class Android implements \JsonSerializable
             'data' => $this->data,
             'notification' => $this->notification,
             'fcm_options' => $this->options,
+            'direct_boot_ok' => $this->directBootOk,
         ];
 
         return array_filter($array);
