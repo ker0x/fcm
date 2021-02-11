@@ -6,7 +6,7 @@
         <img src="https://img.shields.io/codecov/c/gh/ker0x/fcm?style=for-the-badge" alt="Coverage">
     </a>
     <a href="https://php.net" title="PHP Version">
-        <img src="https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg?style=for-the-badge" alt="PHP Version">
+        <img src="https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg?style=for-the-badge" alt="PHP Version">
     </a>
     <a href="https://packagist.org/packages/kerox/fcm" title="Downloads">
         <img src="https://img.shields.io/packagist/dt/kerox/fcm.svg?style=for-the-badge" alt="Downloads">
