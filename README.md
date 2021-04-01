@@ -21,7 +21,7 @@
 
 # Fcm
 
-A PHP libray to send push notification with [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/)
+A PHP library to send push notification with [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/)
 
 ## Warning
 
