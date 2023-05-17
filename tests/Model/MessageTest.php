@@ -165,7 +165,7 @@ class MessageTest extends TestCase
                                     ])
                                     ->setActionLocKey('action-loc-key')
                             )
-                            ->setBadge(true)
+                            ->setBadge(2)
                             ->setSound(
                                 (new Sound())
                                     ->isCritical()
