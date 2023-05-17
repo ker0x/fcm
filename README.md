@@ -1,23 +1,9 @@
-<div align="center">
-    <a href="https://github.com/ker0x/fcm/actions?query=workflow%3Aci" title="CI">
-        <img src="https://img.shields.io/github/workflow/status/ker0x/fcm/ci?style=for-the-badge" alt="CI">
-    </a>
-    <a href="https://codecov.io/gh/ker0x/fcm/" title="Coverage">
-        <img src="https://img.shields.io/codecov/c/gh/ker0x/fcm?style=for-the-badge" alt="Coverage">
-    </a>
-    <a href="https://php.net" title="PHP Version">
-        <img src="https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg?style=for-the-badge" alt="PHP Version">
-    </a>
-    <a href="https://packagist.org/packages/kerox/fcm" title="Downloads">
-        <img src="https://img.shields.io/packagist/dt/kerox/fcm.svg?style=for-the-badge" alt="Downloads">
-    </a>
-    <a href="https://packagist.org/packages/kerox/fcm" title="Latest Stable Version">
-        <img src="https://img.shields.io/packagist/v/kerox/fcm.svg?style=for-the-badge" alt="Latest Stable Version">
-    </a>
-    <a href="https://packagist.org/packages/kerox/fcm" title="License">
-        <img src="https://img.shields.io/packagist/l/kerox/fcm.svg?style=for-the-badge" alt="License">
-    </a>
-</div>
+[![Tests](https://img.shields.io/github/actions/workflow/status/ker0x/fcm/ci.yml?label=tests&style=for-the-badge)](https://github.com/ker0x/fcm/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/codecov/c/gh/ker0x/fcm?style=for-the-badge)](https://codecov.io/gh/ker0x/fcm/)
+![PHP Version](https://img.shields.io/badge/php->=7.3-4f5b93.svg?style=for-the-badge)
+[![Download](https://img.shields.io/packagist/dt/kerox/fcm.svg?style=for-the-badge)](https://packagist.org/packages/kerox/fcm)
+[![Packagist](https://img.shields.io/packagist/v/kerox/fcm.svg?style=for-the-badge)](https://packagist.org/packages/kerox/fcm)
+[![License](https://img.shields.io/github/license/talesfromadev/flowbite-bundle?style=for-the-badge)](https://github.com/ker0x/fcm/blob/main/LICENSE)
 
 # Fcm
 
