@@ -139,7 +139,7 @@
           ],
           "action-loc-key": "action-loc-key"
         },
-        "badge": 1,
+        "badge": 2,
         "sound": {
           "critical": 1,
           "name": "default",
