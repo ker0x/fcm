@@ -16,7 +16,7 @@ class SendTest extends TestCase
 {
     public function testSendMessage(): void
     {
-        $bodyResponse = file_get_contents(__DIR__ . '/../Mocks/Response/Send/basic.json');
+        $bodyResponse = file_get_contents(__DIR__.'/../Mocks/Response/Send/basic.json');
         $mockedResponse = new MockHandler([
             new Response(200, [], $bodyResponse),
         ]);
@@ -39,7 +39,7 @@ class SendTest extends TestCase
 
     public function testSendMessageWithResponseError(): void
     {
-        $bodyResponse = file_get_contents(__DIR__ . '/../Mocks/Response/Send/error.json');
+        $bodyResponse = file_get_contents(__DIR__.'/../Mocks/Response/Send/error.json');
         $mockedResponse = new MockHandler([
             new Response(200, [], $bodyResponse),
         ]);

@@ -4,200 +4,51 @@ declare(strict_types=1);
 
 namespace Kerox\Fcm\Model;
 
-use Kerox\Fcm\Helper\UtilityTrait;
-use Kerox\Fcm\Helper\ValidatorTrait;
-use Kerox\Fcm\Model\Message\Android;
-use Kerox\Fcm\Model\Message\Apns;
-use Kerox\Fcm\Model\Message\Notification;
-use Kerox\Fcm\Model\Message\Options;
-use Kerox\Fcm\Model\Message\Webpush;
+use Kerox\Fcm\Model\Config\AndroidConfig;
+use Kerox\Fcm\Model\Config\ApnsConfig;
+use Kerox\Fcm\Model\Config\WebpushConfig;
+use Kerox\Fcm\Model\Notification\Notification;
+use Kerox\Fcm\Model\Option\FcmOptions;
+use Kerox\Fcm\Model\Target\Condition;
+use Kerox\Fcm\Model\Target\Token;
+use Kerox\Fcm\Model\Target\Topic;
 
-class Message implements \JsonSerializable
+/**
+ * @see https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#resource:-message
+ */
+final readonly class Message
 {
-    use UtilityTrait;
-    use ValidatorTrait;
+    public Notification $notification;
+    public ?string $token;
+    public ?string $topic;
+    public ?string $condition;
 
     /**
-     * @var string|null
+     * @param array<string, string> $data
      */
-    private $name;
+    public function __construct(
+        Notification|string $notification,
+        Token|Topic|Condition $target,
+        public array $data = [],
+        public ?AndroidConfig $android = null,
+        public ?WebpushConfig $webpush = null,
+        public ?ApnsConfig $apns = null,
+        public ?FcmOptions $options = null,
+    ) {
+        $this->notification = \is_string($notification)
+            ? new Notification($notification)
+            : $notification
+        ;
 
-    /**
-     * @var array
-     */
-    private $data = [];
-
-    /**
-     * @var \Kerox\Fcm\Model\Message\Notification
-     */
-    private $notification;
-
-    /**
-     * @var \Kerox\Fcm\Model\Message\Android
-     */
-    private $android;
-
-    /**
-     * @var \Kerox\Fcm\Model\Message\Webpush
-     */
-    private $webpush;
-
-    /**
-     * @var \Kerox\Fcm\Model\Message\Apns
-     */
-    private $apns;
-
-    /**
-     * @var string|null
-     */
-    private $token;
-
-    /**
-     * @var \Kerox\Fcm\Model\Message\Options|null
-     */
-    private $options;
-
-    /**
-     * @var string|null
-     */
-    protected $topic;
-
-    /**
-     * @var string|null
-     */
-    protected $condition;
-
-    /**
-     * Message constructor.
-     *
-     * @param \Kerox\Fcm\Model\Message\Notification|string $message
-     *
-     * @throws \Exception
-     */
-    public function __construct($message)
-    {
-        if (\is_string($message)) {
-            $message = new Notification($message);
+        if ($target instanceof Token) {
+            $this->topic = $this->condition = null;
+            $this->token = $target->__toString();
+        } elseif ($target instanceof Topic) {
+            $this->token = $this->condition = null;
+            $this->topic = $target->__toString();
+        } elseif ($target instanceof Condition) {
+            $this->token = $this->topic = null;
+            $this->condition = $target->__toString();
         }
-
-        if (!$message instanceof Notification) {
-            throw new \InvalidArgumentException(sprintf('$message must be a string or an instance of "%s".', Notification::class));
-        }
-
-        $this->notification = $message;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return \Kerox\Fcm\Model\Message
-     */
-    public function setData(array $data): self
-    {
-        $this->isValidData($data);
-
-        $this->data = $data;
-
-        return $this;
-    }
-
-    /**
-     * @return \Kerox\Fcm\Model\Message
-     */
-    public function setAndroid(Android $android): self
-    {
-        $this->android = $android;
-
-        return $this;
-    }
-
-    /**
-     * @return \Kerox\Fcm\Model\Message
-     */
-    public function setWebpush(Webpush $webpush): self
-    {
-        $this->webpush = $webpush;
-
-        return $this;
-    }
-
-    /**
-     * @return \Kerox\Fcm\Model\Message
-     */
-    public function setApns(Apns $apns): self
-    {
-        $this->apns = $apns;
-
-        return $this;
-    }
-
-    public function setOptions(Options $options): self
-    {
-        $this->options = $options;
-
-        return $this;
-    }
-
-    /**
-     * @return \Kerox\Fcm\Model\Message
-     */
-    public function setToken(string $token): self
-    {
-        $this->topic = $this->condition = null;
-        $this->token = $token;
-
-        return $this;
-    }
-
-    /**
-     * @return \Kerox\Fcm\Model\Message
-     */
-    public function setTopic(string $topic): self
-    {
-        $this->isValidTopicName($topic);
-
-        $this->token = $this->condition = null;
-        $this->topic = $topic;
-
-        return $this;
-    }
-
-    /**
-     * @return \Kerox\Fcm\Model\Message
-     */
-    public function setCondition(string $condition): self
-    {
-        $this->token = $this->topic = null;
-        $this->condition = $condition;
-
-        return $this;
-    }
-
-    public function toArray(): array
-    {
-        $array = [
-            'name' => $this->name,
-            'data' => $this->data,
-            'notification' => $this->notification,
-            'android' => $this->android,
-            'webpush' => $this->webpush,
-            'apns' => $this->apns,
-            'fcm_options' => $this->options,
-            'token' => $this->token,
-            'topic' => $this->topic,
-            'condition' => $this->condition,
-        ];
-
-        return array_filter($array);
-    }
-
-    public function jsonSerialize(): array
-    {
-        return $this->toArray();
     }
 }

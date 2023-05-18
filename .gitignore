@@ -1,7 +1,4 @@
-build/
-vendor/
+/.phpunit.cache/
+/vendor/
+.php-cs-fixer.cache
 composer.lock
-.php_cs
-.php_cs.cache
-.phpunit.result.cache
-phpunit.xml

@@ -15,7 +15,7 @@ class FcmTest extends TestCase
      */
     protected $fcm;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->fcm = new Fcm('4321dcba', 'abcd1234');
     }
@@ -25,7 +25,7 @@ class FcmTest extends TestCase
         self::assertInstanceOf(Send::class, $this->fcm->send());
     }
 
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         unset($this->fcm);
     }

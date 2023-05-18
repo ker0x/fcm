@@ -1,0 +1,8 @@
+parameters:
+	paths:
+		- src
+
+	fileExtensions:
+		- php
+
+	level: 8
