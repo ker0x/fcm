@@ -18,17 +18,17 @@ final readonly class Condition implements \Stringable
         return $this->condition;
     }
 
-    public static function and(string|callable ...$topics): self
+    public static function and(string|\Closure ...$topics): self
     {
         return new self(implode(' && ', self::parseTopics($topics)));
     }
 
-    public static function or(string|callable ...$topics): self
+    public static function or(string|\Closure ...$topics): self
     {
         return new self(implode(' || ', self::parseTopics($topics)));
     }
 
-    public static function not(string|callable $topic): self
+    public static function not(string|\Closure $topic): self
     {
         $topic = \is_callable($topic)
             ? $topic()
@@ -39,20 +39,22 @@ final readonly class Condition implements \Stringable
     }
 
     /**
-     * @param array<int, (callable(): mixed)|string> $topics
+     * @template TKey of array-key
      *
-     * @return string[]
+     * @param array<TKey, mixed> $topics
+     *
+     * @return array<TKey, mixed>
      */
     private static function parseTopics(array $topics): array
     {
         foreach ($topics as $key => $topic) {
             if (\is_string($topic)) {
                 $topics[$key] = self::formatTopic($topic);
+
+                continue;
             }
 
-            if (\is_callable($topic)) {
-                $topics[$key] = self::PRE_SEPARATOR.$topic().self::POST_SEPARATOR;
-            }
+            $topics[$key] = self::PRE_SEPARATOR.$topic().self::POST_SEPARATOR;
         }
 
         return $topics;

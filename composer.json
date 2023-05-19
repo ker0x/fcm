@@ -22,6 +22,7 @@
     "php": ">=8.2",
     "fig/http-message-util": "^1.1",
     "php-http/discovery": "^1.18",
+    "psr/http-client": "^1.0",
     "psr/http-client-implementation": "*",
     "psr/http-factory-implementation": "*",
     "symfony/property-access": "^6.2",

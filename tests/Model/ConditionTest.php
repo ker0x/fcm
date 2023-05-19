@@ -7,7 +7,7 @@ namespace Kerox\Fcm\Tests\Model;
 use Kerox\Fcm\Model\Target\Condition;
 use PHPUnit\Framework\TestCase;
 
-class ConditionTest extends TestCase
+final class ConditionTest extends TestCase
 {
     public function testConditionAndWithOnlyTopics(): void
     {

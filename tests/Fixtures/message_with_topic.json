@@ -1,0 +1,9 @@
+{
+  "notification": {
+    "title": "Breaking News"
+  },
+  "topic": "TopicA",
+  "data": {
+    "story_id": "story_12345"
+  }
+}

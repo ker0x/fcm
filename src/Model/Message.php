@@ -40,15 +40,10 @@ final readonly class Message
             : $notification
         ;
 
-        if ($target instanceof Token) {
-            $this->topic = $this->condition = null;
-            $this->token = $target->__toString();
-        } elseif ($target instanceof Topic) {
-            $this->token = $this->condition = null;
-            $this->topic = $target->__toString();
-        } elseif ($target instanceof Condition) {
-            $this->token = $this->topic = null;
-            $this->condition = $target->__toString();
-        }
+        match (true) {
+            $target instanceof Token => $this->token = $target->__toString(),
+            $target instanceof Topic => $this->topic = $target->__toString(),
+            $target instanceof Condition => $this->condition = $target->__toString(),
+        };
     }
 }

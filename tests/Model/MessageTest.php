@@ -27,6 +27,8 @@ use Kerox\Fcm\Model\Option\ApnsFcmOptions;
 use Kerox\Fcm\Model\Option\FcmOptions;
 use Kerox\Fcm\Model\Option\WebpushFcmOptions;
 use Kerox\Fcm\Model\Target\Condition;
+use Kerox\Fcm\Model\Target\Token;
+use Kerox\Fcm\Model\Target\Topic;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
@@ -38,9 +40,30 @@ use Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
-class MessageTest extends TestCase
+final class MessageTest extends TestCase
 {
-    public function testMessage(): void
+    private ?Serializer $serializer;
+
+    protected function setUp(): void
+    {
+        $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
+        $metadataAwareNameConverter = new MetadataAwareNameConverter($classMetadataFactory, new CamelCaseToSnakeCaseNameConverter());
+
+        $this->serializer = new Serializer(
+            [
+                new BackedEnumNormalizer(),
+                new ObjectNormalizer(null, $metadataAwareNameConverter),
+            ],
+            [new JsonEncoder()]
+        );
+    }
+
+    protected function tearDown(): void
+    {
+        $this->serializer = null;
+    }
+
+    public function testItCanSerializeMessage(): void
     {
         $message = new Message(
             notification: new Notification(
@@ -102,9 +125,7 @@ class MessageTest extends TestCase
             ),
             webpush: new WebpushConfig(
                 headers: [
-                    'name' => 'wrench',
-                    'mass' => '1.3kg',
-                    'count' => '3',
+                    'Urgency' => 'high',
                 ],
                 data: [
                     'name' => 'wrench',
@@ -136,7 +157,7 @@ class MessageTest extends TestCase
                     renotify: true,
                     requireInteraction: true,
                     silent: true,
-                    timestamp: (new \DateTime())->getTimestamp(),
+                    timestamp: 1684478064,
                     title: 'New Breaking',
                     vibrate: [
                         300,
@@ -151,9 +172,7 @@ class MessageTest extends TestCase
             ),
             apns: new ApnsConfig(
                 headers: [
-                    'name' => 'wrench',
-                    'mass' => '1.3kg',
-                    'count' => '3',
+                    'apns-priority' => '5',
                 ],
                 payload: new ApnsNotification(
                     alert: new Alert(
@@ -189,7 +208,7 @@ class MessageTest extends TestCase
                     filterCriteria: 'filter-criteria',
                     staleDate: 1,
                     contentState: 'content-state',
-                    timestamp: (new \DateTime())->getTimestamp(),
+                    timestamp: 1684478064,
                     events: 'events',
                 ),
                 options: new ApnsFcmOptions(
@@ -202,37 +221,41 @@ class MessageTest extends TestCase
             )
         );
 
-        $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
-        $metadataAwareNameConverter = new MetadataAwareNameConverter($classMetadataFactory, new CamelCaseToSnakeCaseNameConverter());
-
-        $serializer = new Serializer(
-            [
-                new BackedEnumNormalizer(),
-                new ObjectNormalizer(null, $metadataAwareNameConverter),
-            ],
-            [new JsonEncoder()]
+        self::assertJsonStringEqualsJsonFile(
+            __DIR__.'/../Fixtures/message.json',
+            $this->serializer->serialize($message, 'json', [AbstractObjectNormalizer::SKIP_NULL_VALUES => true])
         );
-
-        self::assertJsonStringEqualsJsonFile(__DIR__.'/../Mocks/Model/message.json', $serializer->serialize($message, 'json', [AbstractObjectNormalizer::SKIP_NULL_VALUES => true]);
     }
 
-//    public function testMessageWithTopic(): void
-//    {
-//        $message = (new Message('Breaking News'))
-//            ->setName('fcm')
-//            ->setData([
-//                'story_id' => 'story_12345',
-//            ])
-//            ->setTopic('TopicA');
-//
-//        self::assertJsonStringEqualsJsonFile(__DIR__.'/../Mocks/Model/message_with_topic.json', json_encode($message));
-//    }
-//
-//    public function testInvalidMessage(): void
-//    {
-//        $this->expectException(\InvalidArgumentException::class);
-//        $this->expectExceptionMessage('$message must be a string or an instance of "Kerox\Fcm\Model\Message\Notification".');
-//
-//        new Message(1234);
-//    }
+    public function testItCanSerializeMessageWithTopic(): void
+    {
+        $message = new Message(
+            notification: 'Breaking News',
+            target: new Topic('TopicA'),
+            data: [
+                'story_id' => 'story_12345',
+            ],
+        );
+
+        self::assertJsonStringEqualsJsonFile(
+            __DIR__.'/../Fixtures/message_with_topic.json',
+            $this->serializer->serialize($message, 'json', [AbstractObjectNormalizer::SKIP_NULL_VALUES => true])
+        );
+    }
+
+    public function testItCanSerializeMessageWithToken(): void
+    {
+        $message = new Message(
+            notification: 'Breaking News',
+            target: new Token('KAQi4krH36z5jdlY'),
+            data: [
+                'story_id' => 'story_12345',
+            ],
+        );
+
+        self::assertJsonStringEqualsJsonFile(
+            __DIR__.'/../Fixtures/message_with_token.json',
+            $this->serializer->serialize($message, 'json', [AbstractObjectNormalizer::SKIP_NULL_VALUES => true])
+        );
+    }
 }
