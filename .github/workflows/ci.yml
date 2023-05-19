@@ -9,19 +9,15 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: false
-      matrix:
-        php-version: [ '8.2' ]
-
     steps:
       - uses: actions/checkout@v3
 
       - name: php-setup
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-version }}
+          php-version: '8.2'
           coverage: xdebug
+          extensions: xdebug
 
       - name: composer-validate
         run: composer validate
@@ -37,7 +33,7 @@ jobs:
 
       - name: composer-install
         if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --prefer-dist --no-progress --no-interaction
 
       - name: php-cs-fixer
         run: vendor/bin/php-cs-fixer fix --dry-run --diff --verbose --ansi
@@ -46,4 +42,13 @@ jobs:
         run: vendor/bin/phpstan analyse --memory-limit 256M
 
       - name: phpunit
+        env:
+          FCM_OAUTH_TOKEN: ${{ secrets.FCM_OAUTH_TOKEN }}
+          FCM_PROJECT_ID: ${{ secrets.FCM_PROJECT_ID }}
         run: vendor/bin/phpunit
+
+      - name: coverage
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./.coverage/coverage.xml
