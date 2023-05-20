@@ -1,6 +1,6 @@
 [![Tests](https://img.shields.io/github/actions/workflow/status/ker0x/fcm/ci.yml?label=tests&style=for-the-badge)](https://github.com/ker0x/fcm/actions/workflows/ci.yml)
 [![Coverage](https://img.shields.io/codecov/c/gh/ker0x/fcm?style=for-the-badge)](https://codecov.io/gh/ker0x/fcm/)
-![PHP Version](https://img.shields.io/badge/php->=7.3-4f5b93.svg?style=for-the-badge)
+![PHP Version](https://img.shields.io/badge/php->=8.2-4f5b93.svg?style=for-the-badge)
 [![Download](https://img.shields.io/packagist/dt/kerox/fcm.svg?style=for-the-badge)](https://packagist.org/packages/kerox/fcm)
 [![Packagist](https://img.shields.io/packagist/v/kerox/fcm.svg?style=for-the-badge)](https://packagist.org/packages/kerox/fcm)
 [![License](https://img.shields.io/github/license/talesfromadev/flowbite-bundle?style=for-the-badge)](https://github.com/ker0x/fcm/blob/main/LICENSE)

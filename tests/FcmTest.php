@@ -6,27 +6,40 @@ namespace Kerox\Fcm\Tests;
 
 use Kerox\Fcm\Api\Send;
 use Kerox\Fcm\Fcm;
+use Kerox\Fcm\Model\Message;
+use Kerox\Fcm\Model\Target\Topic;
 use PHPUnit\Framework\TestCase;
 
-class FcmTest extends TestCase
+final class FcmTest extends TestCase
 {
-    /**
-     * @var \Kerox\Fcm\Fcm
-     */
-    protected $fcm;
+    private ?Fcm $fcm;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
-        $this->fcm = new Fcm('4321dcba', 'abcd1234');
+        $this->fcm = new Fcm(getenv('FCM_OAUTH_TOKEN'), getenv('FCM_PROJECT_ID'));
     }
 
-    public function testGetInstanceOfApi(): void
+    protected function tearDown(): void
     {
-        self::assertInstanceOf(Send::class, $this->fcm->send());
+        $this->fcm = null;
     }
 
-    public function tearDown(): void
+    public function testItCanGetAnInstanceOfSendApi(): void
     {
-        unset($this->fcm);
+        $sendApi = $this->fcm->send();
+
+        self::assertInstanceOf(Send::class, $sendApi);
+
+        $response = $sendApi->message(new Message(
+            notification: 'Breaking News',
+            target: new Topic('TopicA'),
+            data: [
+                'story_id' => 'story_12345',
+            ],
+        ));
+
+        self::assertSame(200, $response->getStatusCode());
+        self::assertStringContainsString('projects/'.getenv('FCM_PROJECT_ID').'/messages/', $response->getBody()->getContents());
+        self::assertArrayHasKey('content-type', $response->getHeaders());
     }
 }

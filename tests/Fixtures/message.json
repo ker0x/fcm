@@ -1,0 +1,169 @@
+{
+  "notification": {
+    "title": "Breaking News",
+    "body": "New news story available."
+  },
+  "condition": "'TopicA' in topics && ('TopicB' in topics || 'TopicC' in topics)",
+  "data": {
+    "story_id": "story_12345"
+  },
+  "android": {
+    "collapse_key": "collapse_key",
+    "priority": "normal",
+    "ttl": "3.000000001s",
+    "restricted_package_name": "fcm",
+    "data": {
+      "story_id": "story_12345"
+    },
+    "notification": {
+      "title": "New Breaking",
+      "body": "Check out the Top Story",
+      "icon": "icon",
+      "color": "#FFFFFF",
+      "sound": "sound",
+      "tag": "tag",
+      "click_action": "TOP_STORY_ACTIVITY",
+      "title_loc_key": "title_loc_key",
+      "title_loc_args": [
+        "title_loc_args"
+      ],
+      "body_loc_key": "body_loc_key",
+      "body_loc_args": [
+        "body_loc_args"
+      ],
+      "channel_id": "1234",
+      "ticker": "ticker",
+      "sticky": true,
+      "event_time": "2022-10-12T19:00:00.012345678Z",
+      "local_only": true,
+      "notification_priority": "PRIORITY_HIGH",
+      "default_sound": true,
+      "default_vibrate_timings": true,
+      "default_light_settings": true,
+      "vibrate_timings": [
+        "1.0s",
+        "1.5s",
+        "2.0s",
+        "2.5s",
+        "3.0s",
+        "3.5s"
+      ],
+      "visibility": "PUBLIC",
+      "notification_count": 1,
+      "light_settings": {
+        "color": {
+          "red": 0.1,
+          "green": 0.2,
+          "blue": 0.3,
+          "alpha": 0.4
+        },
+        "light_on_duration": "3.5s",
+        "light_off_duration": "3.5s"
+      },
+      "image": "https:\/\/example.com\/image.jpg"
+    },
+    "fcm_options": {
+      "analytics_label": "android"
+    },
+    "direct_boot_ok": true
+  },
+  "webpush": {
+    "headers": {
+      "Urgency": "high"
+    },
+    "data": {
+      "name": "wrench",
+      "mass": "1.3kg",
+      "count": "3"
+    },
+    "notification": {
+      "permission": "granted",
+      "max_actions": 1,
+      "actions": [
+        {
+          "title": "title",
+          "action": "action",
+          "icon": "icon"
+        }
+      ],
+      "badge": "https:\/\/example.com\/badge",
+      "body": "Check out the Top Story",
+      "data": {
+        "name": "wrench",
+        "mass": "1.3kg",
+        "count": "3"
+      },
+      "direction": "ltr",
+      "lang": "fr-FR",
+      "tag": "tag",
+      "icon": "https:\/\/example.com\/icon",
+      "image": "https:\/\/example.com\/image",
+      "renotify": true,
+      "require_interaction": true,
+      "silent": true,
+      "timestamp": 1684478064,
+      "title": "New Breaking",
+      "vibrate": [
+        300,
+        200,
+        300
+      ]
+    },
+    "fcm_options": {
+      "analytics_label": "webpush",
+      "link": "https:\/\/example.com"
+    }
+  },
+  "apns": {
+    "headers": {
+      "apns-priority": "5"
+    },
+    "payload": {
+      "aps": {
+        "alert": {
+          "title": "Breaking News",
+          "subtitle": "Unbelievable",
+          "body": "Check out the Top Story",
+          "launch-image": "launch-image.jpg",
+          "title-loc-key": "title-loc-key",
+          "title-loc-args": [
+            "title-loc-args"
+          ],
+          "subtitle-loc-key": "subtitle-loc-key",
+          "subtitle-loc-args": [
+            "subtitle-loc-args"
+          ],
+          "loc-key": "loc-key",
+          "loc-args": [
+            "loc-args"
+          ]
+        },
+        "badge": 2,
+        "sound": {
+          "critical": 1,
+          "name": "default",
+          "volume": 0.5
+        },
+        "thread-id": "thread-id",
+        "category": "category",
+        "content-available": 1,
+        "mutable-content": 1,
+        "target-content-id": "target-content-id",
+        "interruption-level": "interruption-level",
+        "relevance-score": 1.0,
+        "filter-criteria": "filter-criteria",
+        "stale-date": 1,
+        "content-state": "content-state",
+        "timestamp": 1684478064,
+        "events": "events"
+      }
+    },
+    "fcm_options": {
+      "analytics_label": "apns",
+      "image": "https:\/\/example.com\/image.jpg"
+    }
+  },
+  "fcm_options": {
+    "analytics_label": "fcm"
+  }
+}
