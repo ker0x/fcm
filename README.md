@@ -11,7 +11,10 @@ A PHP library to send push notification with [Firebase Cloud Messaging](https://
 
 ## Warning
 
-Version `2.x` of this library is a full rewrite to be compliant with [HTTP v1 API](https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages). If you are on Legacy HTTP API, then you should consider using version `1.x`
+Version `3.x` of this library is a full rewrite using [PSR-18 HTTP Client](https://www.php-fig.org/psr/psr-18/) interface, 
+which means that **no** HTTP Client, like [Guzzle](https://github.com/guzzle/guzzle) or [httplug](https://github.com/php-http/httplug), 
+are provided within. If you already have one in your project, the package will **automatically discover it** and use it.
+Otherwise You will need to require one separately.
 
 ## Installation
 
@@ -30,22 +33,22 @@ You will then need to:
 ```php
 use Kerox\Fcm\Fcm;
 use Kerox\Fcm\Model\Message;
-use Kerox\Fcm\Model\Message\Notification;
+use Kerox\Fcm\Model\Notification\Notification
+use Kerox\Fcm\Model\Target
 
 $fcm = new Fcm('<oauth_token>', '<project_id>');
 
-// Create a notification
-$notification = new Notification('Hello World');
-$notification->setBody('My awesome Hello World!');
-
 // Create the message
-$message = new Message($notification);
-$message->setData([
-    'data-1' => 'Lorem ipsum',
-    'data-2' => '1234',
-    'data-3' => 'true'
-]);
-$message->setToken('1');
+$message = new Message(
+    notification: new Notification(
+        title: 'Hello World',
+        body: 'My awesome Hello World!'
+    ),
+    target: new Token('TopicA'),
+    data: [
+        'story_id' => 'story_12345',
+    ],
+)
 
 // Send the message and get the response
 $response = $fcm->send()->message($message);
