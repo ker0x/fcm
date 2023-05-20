@@ -120,7 +120,7 @@ final class MessageTest extends TestCase
                     ),
                     image: 'https://example.com/image.jpg',
                 ),
-                options: new AndroidFcmOptions('android'),
+                fcmOptions: new AndroidFcmOptions('android'),
                 directBootOk: true,
             ),
             webpush: new WebpushConfig(
@@ -165,16 +165,13 @@ final class MessageTest extends TestCase
                         300,
                     ],
                 ),
-                options: new WebpushFcmOptions(
+                fcmOptions: new WebpushFcmOptions(
                     analyticsLabel: 'webpush',
                     link: 'https://example.com',
                 )
             ),
             apns: new ApnsConfig(
-                headers: [
-                    'apns-priority' => '5',
-                ],
-                payload: new ApnsNotification(
+                notification: new ApnsNotification(
                     alert: new Alert(
                         title: 'Breaking News',
                         subtitle: 'Unbelievable',
@@ -211,12 +208,15 @@ final class MessageTest extends TestCase
                     timestamp: 1684478064,
                     events: 'events',
                 ),
-                options: new ApnsFcmOptions(
+                headers: [
+                    'apns-priority' => '5',
+                ],
+                fcmOptions: new ApnsFcmOptions(
                     analyticsLabel: 'apns',
-                    images: 'https://example.com/image.jpg',
+                    image: 'https://example.com/image.jpg',
                 )
             ),
-            options: new FcmOptions(
+            fcmOptions: new FcmOptions(
                 'fcm',
             )
         );

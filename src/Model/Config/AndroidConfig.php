@@ -23,7 +23,7 @@ final readonly class AndroidConfig
         public ?string $restrictedPackageName = null,
         public array $data = [],
         public ?AndroidNotification $notification = null,
-        public ?AndroidFcmOptions $options = null,
+        public ?AndroidFcmOptions $fcmOptions = null,
         public bool $directBootOk = false,
     ) {
     }

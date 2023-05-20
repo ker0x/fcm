@@ -20,7 +20,7 @@ final readonly class WebpushConfig
         public array $headers = [],
         public array $data = [],
         public ?WebpushNotification $notification = null,
-        public ?WebpushFcmOptions $options = null,
+        public ?WebpushFcmOptions $fcmOptions = null,
     ) {
     }
 }

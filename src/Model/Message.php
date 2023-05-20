@@ -33,7 +33,7 @@ final readonly class Message
         public ?AndroidConfig $android = null,
         public ?WebpushConfig $webpush = null,
         public ?ApnsConfig $apns = null,
-        public ?FcmOptions $options = null,
+        public ?FcmOptions $fcmOptions = null,
     ) {
         $this->notification = \is_string($notification)
             ? new Notification($notification)

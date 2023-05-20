@@ -11,7 +11,7 @@ final readonly class ApnsFcmOptions
 {
     public function __construct(
         public ?string $analyticsLabel = null,
-        public ?string $images = null,
+        public ?string $image = null,
     ) {
     }
 }
