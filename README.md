@@ -33,8 +33,8 @@ You will then need to:
 ```php
 use Kerox\Fcm\Fcm;
 use Kerox\Fcm\Model\Message;
-use Kerox\Fcm\Model\Notification\Notification
-use Kerox\Fcm\Model\Target
+use Kerox\Fcm\Model\Notification\Notification;
+use Kerox\Fcm\Model\Target;
 
 $fcm = new Fcm('<oauth_token>', '<project_id>');
 
