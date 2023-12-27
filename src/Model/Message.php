@@ -16,12 +16,12 @@ use Kerox\Fcm\Model\Target\Topic;
 /**
  * @see https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages#resource:-message
  */
-final readonly class Message
+final class Message
 {
     public Notification $notification;
-    public ?string $token;
-    public ?string $topic;
-    public ?string $condition;
+    public ?string $token = null;
+    public ?string $topic = null;
+    public ?string $condition = null;
 
     /**
      * @param array<string, string> $data

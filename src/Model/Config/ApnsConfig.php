@@ -12,23 +12,24 @@ use Kerox\Fcm\Model\Option\ApnsFcmOptions;
  */
 final readonly class ApnsConfig
 {
-    public object $payload;
+    public ?object $payload;
 
     /**
      * @param array<string, string> $headers
      */
     public function __construct(
-        ?ApnsNotification $notification = null,
+        ApnsNotification $notification = null,
         public array $headers = [],
         public ?ApnsFcmOptions $fcmOptions = null,
     ) {
-        if (null !== $notification) {
-            $this->payload = new class($notification) {
+        $this->payload = null !== $notification
+            ? new class($notification) {
                 public function __construct(
                     public ApnsNotification $aps
                 ) {
                 }
-            };
-        }
+            }
+            : null
+        ;
     }
 }
