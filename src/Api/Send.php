@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Kerox\Fcm\Api;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use Fig\Http\Message\RequestMethodInterface;
 use Http\Discovery\Psr18Client;
 use Kerox\Fcm\Fcm;
@@ -12,7 +11,7 @@ use Kerox\Fcm\Model\Message;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
+use Symfony\Component\Serializer\Mapping\Loader\AttributeLoader;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
@@ -30,7 +29,7 @@ final readonly class Send
         private string $projectId,
         private Psr18Client $client
     ) {
-        $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
+        $classMetadataFactory = new ClassMetadataFactory(new AttributeLoader());
         $metadataAwareNameConverter = new MetadataAwareNameConverter($classMetadataFactory, new CamelCaseToSnakeCaseNameConverter());
 
         $this->serializer = new Serializer(

@@ -14,9 +14,6 @@ final readonly class Fcm
 
     private Psr18Client $client;
 
-    /**
-     * Fcm constructor.
-     */
     public function __construct(
         private string $oauthToken,
         private string $projectId,

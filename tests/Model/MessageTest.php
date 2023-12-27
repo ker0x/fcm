@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Kerox\Fcm\Tests\Model;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use Kerox\Fcm\Enum\AndroidMessagePriority;
 use Kerox\Fcm\Enum\Direction;
 use Kerox\Fcm\Enum\NotificationPriority;
@@ -32,7 +31,7 @@ use Kerox\Fcm\Model\Target\Topic;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
+use Symfony\Component\Serializer\Mapping\Loader\AttributeLoader;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter;
 use Symfony\Component\Serializer\Normalizer\AbstractObjectNormalizer;
@@ -46,7 +45,7 @@ final class MessageTest extends TestCase
 
     protected function setUp(): void
     {
-        $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
+        $classMetadataFactory = new ClassMetadataFactory(new AttributeLoader());
         $metadataAwareNameConverter = new MetadataAwareNameConverter($classMetadataFactory, new CamelCaseToSnakeCaseNameConverter());
 
         $this->serializer = new Serializer(

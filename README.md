@@ -9,12 +9,11 @@
 
 A PHP library to send push notification with [Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/)
 
-## Warning
-
-Version `3.x` of this library is a full rewrite using [PSR-18 HTTP Client](https://www.php-fig.org/psr/psr-18/) interface, 
-which means that **no** HTTP Client, like [Guzzle](https://github.com/guzzle/guzzle) or [httplug](https://github.com/php-http/httplug), 
-are provided within. If you already have one in your project, the package will **automatically discover it** and use it.
-Otherwise You will need to require one separately.
+> [!NOTE]
+> Version `3.x` of this library is a full rewrite using [PSR-18 HTTP Client](https://www.php-fig.org/psr/psr-18/) interface, 
+> which means that **no** HTTP Client, like [Guzzle](https://github.com/guzzle/guzzle) or [httplug](https://github.com/php-http/httplug), 
+> are provided within. If you already have one in your project, the package will **automatically discover it** and use it.
+> Otherwise You will need to require one separately.
 
 ## Installation
 
