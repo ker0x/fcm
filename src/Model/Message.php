@@ -18,7 +18,7 @@ use Kerox\Fcm\Model\Target\Topic;
  */
 final class Message
 {
-    public Notification $notification;
+    public ?Notification $notification = null;
     public ?string $token = null;
     public ?string $topic = null;
     public ?string $condition = null;
@@ -27,18 +27,20 @@ final class Message
      * @param array<string, string> $data
      */
     public function __construct(
-        Notification|string $notification,
         Token|Topic|Condition $target,
         public array $data = [],
+        Notification|string|null $notification = null,
         public ?AndroidConfig $android = null,
         public ?WebpushConfig $webpush = null,
         public ?ApnsConfig $apns = null,
         public ?FcmOptions $fcmOptions = null,
     ) {
-        $this->notification = \is_string($notification)
-            ? new Notification($notification)
-            : $notification
-        ;
+        if (null !== $notification) {
+            $this->notification = \is_string($notification)
+                ? new Notification($notification)
+                : $notification
+            ;
+        }
 
         match (true) {
             $target instanceof Token => $this->token = $target->__toString(),

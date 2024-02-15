@@ -1,11 +1,11 @@
 {
-  "notification": {
-    "title": "Breaking News",
-    "body": "New news story available."
-  },
   "condition": "'TopicA' in topics && ('TopicB' in topics || 'TopicC' in topics)",
   "data": {
     "story_id": "story_12345"
+  },
+  "notification": {
+    "title": "Breaking News",
+    "body": "New news story available."
   },
   "android": {
     "collapse_key": "collapse_key",

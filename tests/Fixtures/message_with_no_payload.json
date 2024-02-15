@@ -1,0 +1,22 @@
+{
+  "topic": "TopicA",
+  "data": {
+    "story_id": "story_12345"
+  },
+  "notification": {
+    "title": "Breaking News",
+    "body": "New news story available."
+  },
+  "apns": {
+    "headers": {
+      "apns-priority": "5"
+    },
+    "fcm_options": {
+      "analytics_label": "apns",
+      "image": "https:\/\/example.com\/image.jpg"
+    }
+  },
+  "fcm_options": {
+    "analytics_label": "fcm"
+  }
+}
