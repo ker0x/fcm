@@ -62,17 +62,17 @@ final class MessageTest extends TestCase
         $this->serializer = null;
     }
 
-    public function testItCanSerializeMessage(): void
+    public function testItCanSerializeMessageWithNotification(): void
     {
         $message = new Message(
-            notification: new Notification(
-                title: 'Breaking News',
-                body: 'New news story available.'
-            ),
             target: Condition::and('TopicA', fn () => Condition::or('TopicB', 'TopicC')),
             data: [
                 'story_id' => 'story_12345',
             ],
+            notification: new Notification(
+                title: 'Breaking News',
+                body: 'New news story available.'
+            ),
             android: new AndroidConfig(
                 collapseKey: 'collapse_key',
                 priority: AndroidMessagePriority::Normal,
@@ -229,11 +229,11 @@ final class MessageTest extends TestCase
     public function testItCanSerializeMessageWithTopic(): void
     {
         $message = new Message(
-            notification: 'Breaking News',
             target: new Topic('TopicA'),
             data: [
                 'story_id' => 'story_12345',
             ],
+            notification: 'Breaking News',
         );
 
         self::assertJsonStringEqualsJsonFile(
@@ -245,15 +245,61 @@ final class MessageTest extends TestCase
     public function testItCanSerializeMessageWithToken(): void
     {
         $message = new Message(
-            notification: 'Breaking News',
             target: new Token('KAQi4krH36z5jdlY'),
+            data: [
+                'story_id' => 'story_12345',
+            ],
+            notification: 'Breaking News',
+        );
+
+        self::assertJsonStringEqualsJsonFile(
+            __DIR__.'/../Fixtures/message_with_token.json',
+            $this->serializer->serialize($message, 'json', [AbstractObjectNormalizer::SKIP_NULL_VALUES => true])
+        );
+    }
+
+    public function testItCanSerializeMessageWithData(): void
+    {
+        $message = new Message(
+            target: new Topic('TopicA'),
             data: [
                 'story_id' => 'story_12345',
             ],
         );
 
         self::assertJsonStringEqualsJsonFile(
-            __DIR__.'/../Fixtures/message_with_token.json',
+            __DIR__.'/../Fixtures/message_with_data.json',
+            $this->serializer->serialize($message, 'json', [AbstractObjectNormalizer::SKIP_NULL_VALUES => true])
+        );
+    }
+
+    public function testItCanSerializeMessageWithNoApnsPayload(): void
+    {
+        $message = new Message(
+            target: new Topic('TopicA'),
+            data: [
+                'story_id' => 'story_12345',
+            ],
+            notification: new Notification(
+                title: 'Breaking News',
+                body: 'New news story available.'
+            ),
+            apns: new ApnsConfig(
+                headers: [
+                    'apns-priority' => '5',
+                ],
+                fcmOptions: new ApnsFcmOptions(
+                    analyticsLabel: 'apns',
+                    image: 'https://example.com/image.jpg',
+                )
+            ),
+            fcmOptions: new FcmOptions(
+                'fcm',
+            )
+        );
+
+        self::assertJsonStringEqualsJsonFile(
+            __DIR__.'/../Fixtures/message_with_no_payload.json',
             $this->serializer->serialize($message, 'json', [AbstractObjectNormalizer::SKIP_NULL_VALUES => true])
         );
     }

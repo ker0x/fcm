@@ -18,7 +18,7 @@ final readonly class ApnsConfig
      * @param array<string, string> $headers
      */
     public function __construct(
-        ApnsNotification $notification = null,
+        ?ApnsNotification $notification = null,
         public array $headers = [],
         public ?ApnsFcmOptions $fcmOptions = null,
     ) {
@@ -29,7 +29,7 @@ final readonly class ApnsConfig
                 ) {
                 }
             }
-            : null
+        : null
         ;
     }
 }

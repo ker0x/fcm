@@ -2,67 +2,112 @@
 
 The Fcm library follows [SemVer](http://semver.org/).
 
+## 3.x
+
+> [!NOTE]
+> Version `3.x` of this library is a full rewrite using [PSR-18 HTTP Client](https://www.php-fig.org/psr/psr-18/) interface,
+> which means that **no** HTTP Client, like [Guzzle](https://github.com/guzzle/guzzle) or [httplug](https://github.com/php-http/httplug),
+> are provided within. If you already have one in your project, the package will **automatically discover it** and use it.
+> Otherwise You will need to require one separately.
+
+### 3.2
+
+> [!WARNING]
+> Version `3.2` introduce a BC break.
+> The signature of the `__construct()` method of the `Kerox\Fcm\Model\Message` class has changed, with the `$notification` parameter becoming the third argument and being optional.
+
+```diff
+final class Message
+{
+-   public Notification $notification;
++   public ?Notification $notification = null;
+    public ?string $token = null;
+    public ?string $topic = null;
+    public ?string $condition = null;
+
+    /**
+     * @param array<string, string> $data
+     */
+    public function __construct(
+-       Notification|string $notification,
+        Token|Topic|Condition $target,
+        public array $data = [],
++       Notification|string|null $notification = null,
+        public ?AndroidConfig $android = null,
+        public ?WebpushConfig $webpush = null,
+        public ?ApnsConfig $apns = null,
+        public ?FcmOptions $fcmOptions = null,
+    ) {
+ +      if (null !== $notification) {
+            $this->notification = \is_string($notification)
+                ? new Notification($notification)
+                : $notification
+            ;
++       }
+
+        match (true) {
+            $target instanceof Token => $this->token = $target->__toString(),
+            $target instanceof Topic => $this->topic = $target->__toString(),
+            $target instanceof Condition => $this->condition = $target->__toString(),
+        };
+    }
+}
+```
+#### Before
+
+````php
+$message = new Message(
+    notification: 'Breaking News',
+    target: new Topic('TopicA'),
+    data: [
+        'story_id' => 'story_12345',
+    ],
+);
+````
+
+#### After
+
+````php
+$message = new Message(
+    target: new Topic('TopicA'),
+    data: [
+        'story_id' => 'story_12345',
+    ],
+    notification: 'Breaking News',
+);
+````
+
+### 3.1
+
+#### What's Changed
+* :bug: Fix README by @ker0x in https://github.com/ker0x/fcm/pull/23 and https://github.com/ker0x/fcm/pull/25
+* :bug: Fix .gitattributes by @ker0x in https://github.com/ker0x/fcm/pull/24
+* :arrow_up: Bump Symfony components to `6.4`, allow Symfony 7 by @ker0x in https://github.com/ker0x/fcm/pull/25
+* :green_heart: Update CI workflow by @ker0x in https://github.com/ker0x/fcm/pull/25
+* :rotating_light: Fix PHP-CS-Fixer and PHPStan warning  by @ker0x in https://github.com/ker0x/fcm/pull/25
+
+**Full Changelog**: https://github.com/ker0x/fcm/compare/3.0.0...3.1.0
+
+### 3.0
+
+#### What's Changed
+* :art: Full package refactoring by @ker0x in https://github.com/ker0x/fcm/pull/21
+* :memo: Update README by @ker0x in https://github.com/ker0x/fcm/pull/22
+
+**Full Changelog**: https://github.com/ker0x/fcm/compare/2.4.0...3.0.0
+
 ## 2.x
 
-Version `2.x` of this library is a full rewrite to be compliant with [HTTP v1 API](https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages). If
-you are on Legacy HTTP API, then you should consider using version `1.x`
+> [!NOTE]
+> Version `2.x` of this library is a full rewrite to be compliant with [HTTP v1 API](https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages). If
+> you are on Legacy HTTP API, then you should consider using version `1.x`
 
-**Changelog** (since [`2.2.0`](https://github.com/ker0x/fcm/compare/2.2.0...2.3.0))
+### 2.4
 
-- 2.3.0 (2021-02)
-    - Bump minimal PHP version to `7.3`
-    - Bump Guzzle version to `7.2`
-    - Bump PHPUnit version to `8.`
-    - Update `.gitattributes`
-    - Update CI workflow
+#### What's Changed
+* Typo by @tin-cat in https://github.com/ker0x/fcm/pull/17
+* Add PHP 8.1 to CI by @ker0x in https://github.com/ker0x/fcm/pull/18
+* fix: setBadge var type by @demmmmios in https://github.com/ker0x/fcm/pull/19
+* Fix tests by @ker0x in https://github.com/ker0x/fcm/pull/20
 
-**Changelog** (since [`2.1.0`](https://github.com/ker0x/fcm/compare/2.1.0...2.2.0))
-
-- 2.2.0 (2020-10)
-    - Add direct_book_ok parameter for Android configuration.
-    - Change test namespace from `Tests\Kerox\Fcm` to `Kerox\Fcm\Tests`
-    - Update PHPStan to `0.12`
-
-**Changelog** (since [`2.0.0`](https://github.com/ker0x/fcm/compare/2.0.0...2.1.0))
-
-- 2.1.0 (2020-01)
-    - Change class properties visibility from `protected` to `private`.
-    - Add new configurations classes
-        * `Kerox\Fcm\Model\Message\Notification\AndroidNotification\Color::class`
-        * `Kerox\Fcm\Model\Message\Notification\AndroidNotification\LightSettings::class`
-        * `Kerox\Fcm\Model\Message\Notification\ApnsNotification\Sound::class`
-    - Add new options classes
-        * `Kerox\Fcm\Model\Message\Options\AndroidOptions::class`
-        * `Kerox\Fcm\Model\Message\Options\ApnsOptions::class`
-        * `Kerox\Fcm\Model\Message\Options\WebpushOptions::class`
-    - `Kerox\Fcm\Model\Message\Notification\AndroidNotification::class`: add new properties
-        * `$channelId`
-        * `$ticker`
-        * `$sticky`
-        * `$eventTime`
-        * `$localOnly`
-        * `$notificationPriority`
-        * `$defaultSound`
-        * `$defaultVibrateTimings`
-        * `$defaultLightSettings`
-        * `$vibrateTimings`
-        * `$visibility`
-        * `$lightSettings`
-        * `$image`
-    - `Kerox\Fcm\Model\Message\Notification\ApnsNotification\Alert::class`: add new properties
-        * `$subTitle`
-        * `$subTitleLocKey`
-        * `$subTitleLocArgs`
-    - `Kerox\Fcm\Model\Message\Android::class`: add new property `$options`.
-    - `Kerox\Fcm\Model\Message\Apns::class`: add new property `$options`.
-    - Method `Kerox\Fcm\Model\Message\Webpush::setOptions()`, type `array` is deprecated, use class `Kerox\Fcm\Model\Message\Options\WebpushOptions::class`
-      instead.
-    - Method `Kerox\Fcm\Model\Message\AbstractNotification\Alert::setActionLocKey()` is deprecated and will be removed in 3.0 with no replacement.
-
-**Changelog** (since [`1.0.1`](https://github.com/ker0x/fcm/compare/1.0.1...2.0.0))
-
-- 2.0.0 (2018-09)
-    - Rewrite library to be compatible with [HTTP v1 API](https://firebase.google.com/docs/reference/fcm/rest/v1/projects.messages)
-    - Improve tests
-    - Refactor code
-    - Move documentation to the [Wiki](https://github.com/ker0x/fcm/wiki) section of the repo
+**Full Changelog**: https://github.com/ker0x/fcm/compare/2.3.0...2.4.0

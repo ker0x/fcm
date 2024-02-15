@@ -54,9 +54,10 @@
     }
   },
   "scripts": {
-    "php-cs-fixer": "vendor/bin/php-cs-fixer fix --diff --verbose --ansi",
-    "phpstan": "vendor/bin/phpstan",
-    "phpunit": "vendor/bin/phpunit",
+    "cs": "vendor/bin/php-cs-fixer fix --dry-run --diff --verbose --ansi",
+    "cs:fix": "vendor/bin/php-cs-fixer fix --diff --verbose --ansi",
+    "lint": "vendor/bin/phpstan analyse --memory-limit 256M",
+    "tests": "vendor/bin/phpunit",
     "rector": "vendor/bin/rector process src"
   }
 }

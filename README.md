@@ -15,6 +15,10 @@ A PHP library to send push notification with [Firebase Cloud Messaging](https://
 > are provided within. If you already have one in your project, the package will **automatically discover it** and use it.
 > Otherwise You will need to require one separately.
 
+> [!WARNING]
+> Version `3.2` introduce a BC break.
+> The signature of the `__construct()` method of the `Kerox\Fcm\Model\Message` class has changed, with the `$notification` parameter becoming the third argument and being optional.
+
 ## Installation
 
 You can install Fcm using Composer:
@@ -56,3 +60,10 @@ $response = $fcm->send()->message($message);
 ## Documentation
 
 The documentation is available [here](https://github.com/ker0x/fcm/wiki)
+
+## Testing
+
+To live test the package, you must first generate an OAuth token.
+Go to https://developers.google.com/oauthplayground/ and select **Firebase Cloud Messaging API v1** from the list of APIs.
+Then select https://www.googleapis.com/auth/firebase.messaging and generate the OAuth token.
+Finally, define an environment variable named `FCM_OAUTH_TOKEN` and assign it the value of the access token.
