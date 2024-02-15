@@ -43,14 +43,14 @@ $fcm = new Fcm('<oauth_token>', '<project_id>');
 
 // Create the message
 $message = new Message(
-    notification: new Notification(
-        title: 'Hello World',
-        body: 'My awesome Hello World!'
-    ),
     target: new Token('TopicA'),
     data: [
         'story_id' => 'story_12345',
     ],
+    notification: new Notification(
+        title: 'Hello World',
+        body: 'My awesome Hello World!'
+    ),
 )
 
 // Send the message and get the response
