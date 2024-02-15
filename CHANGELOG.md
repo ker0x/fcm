@@ -77,6 +77,11 @@ $message = new Message(
 );
 ````
 
+#### What's Changed
+* :bug: Allow to send message with data only by @ker0x in https://github.com/ker0x/fcm/pull/27
+
+**Full Changelog**: https://github.com/ker0x/fcm/compare/3.1.0...3.2.0
+
 ### 3.1
 
 #### What's Changed
